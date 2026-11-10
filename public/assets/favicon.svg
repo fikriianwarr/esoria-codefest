@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Esoria</title>
+  <rect width="64" height="64" rx="14" fill="#f8f0df"/>
+  <path d="M31 7 40 20 28 40l-8-12L31 7Z" fill="#131b24"/>
+  <path d="m19 32 11 16 11-20 14 20-8 9H17L9 46l10-14Zm11 16h14l-7-10-7 10Z" fill="#131b24" fill-rule="evenodd"/>
+  <path d="M50 48h5l-8 9h-5l8-9Z" fill="#b52a31"/>
+</svg>

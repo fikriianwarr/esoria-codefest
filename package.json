@@ -1,0 +1,35 @@
+{
+  "name": "esoria-codefest",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "check": "node scripts/check-project.mjs",
+    "lint": "eslint functions public scripts",
+    "test": "node --test tests/*.test.cjs tests/*.test.mjs",
+    "test:emulator": "node scripts/run-emulators.mjs",
+    "test:responsive": "node --test tests/responsive-contract.test.mjs",
+    "prepare:assets": "node scripts/prepare-assets.mjs",
+    "test:browser": "playwright test",
+    "audit:css": "node scripts/audit-css-budget.mjs"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "5.0.2",
+    "@playwright/test": "1.58.2",
+    "eslint": "10.13.0",
+    "firebase": "12.16.0",
+    "firebase-tools": "15.34.0"
+  },
+  "overrides": {
+    "@grpc/grpc-js": "1.14.5",
+    "firebase-tools": {
+      "chokidar": "4.0.3"
+    },
+    "@opentelemetry/core": "2.8.0",
+    "gaxios": {
+      "uuid": "11.1.1"
+    }
+  }
+}

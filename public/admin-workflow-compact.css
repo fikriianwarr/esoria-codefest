@@ -1,0 +1,11 @@
+/* Administrator links: compact paper cards, equal height, accessible. */
+.admin-competition-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 10px;align-items:stretch}
+.admin-competition-links a{box-sizing:border-box;display:flex;flex-direction:column;min-width:0;justify-content:flex-start;min-height:74px;padding:10px 12px;background:#f7f1e4;color:#142c3d;border:1px solid #e2d2aa;border-bottom:4px solid #a53532;text-decoration:none;box-shadow:3px 3px 0 #28334133}
+.admin-competition-links a:focus-visible{outline:3px solid #f8d982;outline-offset:3px}
+.admin-competition-links .admin-workflow-number{font:800 9px/1.15 Arial,sans-serif;letter-spacing:.12em;color:#a23730;margin-bottom:3px}
+.admin-competition-links strong{font-size:clamp(12px,1.18vw,15px);line-height:1.18;overflow-wrap:anywhere}
+.admin-competition-links small{font-size:10px;line-height:1.24;color:#536572;margin-top:3px}
+.admin-workflow-short{display:none}
+@media(max-width:840px){.admin-competition-links{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.admin-competition-links a{min-height:68px;padding:9px 10px}}
+@media(max-width:600px){.admin-competition-links{gap:4px}.admin-competition-links a{min-height:62px;padding:8px 6px}.admin-competition-links .admin-workflow-number{font-size:8px;letter-spacing:.02em}.admin-competition-links strong{font-size:10px;line-height:1.14}.admin-competition-links small{display:none}.admin-workflow-long{display:none}.admin-workflow-short{display:inline}}
+@media(max-width:365px){.admin-competition-links{gap:3px}.admin-competition-links a{min-height:58px;padding:7px 5px}.admin-competition-links strong{font-size:9px}}

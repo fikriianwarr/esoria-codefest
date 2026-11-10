@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Panel pengelolaan peserta dan pendaftaran Esoria CodeFest." name="description">
+  <meta content="#111b2d" name="theme-color">
+  <title>Panel Administrator | ESORIA CodeFest</title>
+  <link rel="canonical" href="https://esoria-codefest.web.app/admin.html">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ESORIA CodeFest">
+  <meta property="og:title" content="Panel Administrator | ESORIA CodeFest">
+  <meta property="og:description" content="Panel pengelolaan peserta dan pendaftaran Esoria CodeFest.">
+  <meta property="og:url" content="https://esoria-codefest.web.app/admin.html">
+  <meta property="og:image" content="https://esoria-codefest.web.app/assets/logo_esoria.png">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=20261015-r7">
+  <script src="/runtime-config.js"></script>
+  <link href="styles.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="admin.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="cookie-consent.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link rel="stylesheet" href="paper-confirm.css?v=b74586eaa5ef6110">
+  <link href="refinement.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="esoria-ui-final.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="admin-period-paper.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="responsive-stability.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="responsive-precision-20261016.css?v=b74586eaa5ef6110" rel="stylesheet">
+<link rel="stylesheet" href="paper-tokens.css?v=b74586eaa5ef6110">
+  <link rel="stylesheet" href="admin-workflow-compact.css?v=b74586eaa5ef6110">
+<link rel="stylesheet" href="admin-registration-alignment-20261020.css?v=b74586eaa5ef6110">
+<link rel="stylesheet" href="session-continuity.css?v=b74586eaa5ef6110"><link rel="stylesheet" href="paper-viewport-refresh-20261020.css?v=b74586eaa5ef6110"><link rel="stylesheet" href="esoria-paper-final-20261020.css?v=b74586eaa5ef6110"><link rel="stylesheet" href="paper-date.css?v=b74586eaa5ef6110"><link rel="stylesheet" href="admin-security-fit.css?v=b74586eaa5ef6110"></head>
+<body class="admin-body auth-pending">
+  <div class="auth-gate admin-auth-gate"><span></span><strong>Memverifikasi akses admin…</strong><small>Ruang pengelolaan terbatas</small></div>
+  <header class="admin-header"><div class="admin-brand"><span class="admin-logo"><img alt="Logo Esoria" src="assets/logo_esoria.webp"></span><div><strong>ESORIA CODEFEST</strong><small>PANEL ADMINISTRASI</small></div></div><div class="admin-account"><span>AKUN ADMIN AKTIF</span><b id="admin-account">Admin</b><em id="admin-account-role">ROLE</em><button class="admin-security-trigger" id="admin-security-open" type="button"><i aria-hidden="true"></i><span>Keamanan akun</span></button><button id="admin-logout" type="button">Keluar</button></div></header>
+
+  <main class="admin-main"><nav class="admin-competition-links" aria-label="Alur kompetisi dan penjurian"><a href="operations.html"><span class="admin-workflow-number">01 / PANITIA</span><strong><span class="admin-workflow-long">Operasional &amp; Penilaian</span><span class="admin-workflow-short">Operasional</span> </strong><small>Kelola pembayaran, rubrik, hasil, dan sertifikat pemenang</small></a><a href="jury.html"><span class="admin-workflow-number">02 / SKOR & RUBRIK</span><strong>Penilaian Admin </strong><small>Beri skor pada karya yang sudah ditugaskan ke admin</small></a><a href="results.html?from=admin"><span class="admin-workflow-number">03 / PUBLIKASI</span><strong>Hasil Publik </strong><small>Lihat hanya hasil yang sudah disahkan dan diumumkan</small></a></nav>
+    <section class="admin-hero"><div><span>OPERASI PESERTA / AKTIF</span><h1>Pusat Kendali Lomba</h1><p>Kelola peserta, permintaan perubahan profil, pendaftaran, tiket, jadwal, dan riwayat keputusan dalam satu panel.</p></div></section>
+    <section aria-label="Ringkasan data" class="admin-metrics"><article><span>01 / PESERTA</span><strong id="metric-users">0</strong><p>Total akun peserta</p></article><article><span>02 / PENDAFTARAN</span><strong id="metric-registrations">0</strong><p>Total pendaftaran</p></article><article><span>03 / DIPROSES</span><strong id="metric-pending">0</strong><p>Sedang diproses</p></article><article><span>04 / DITERIMA</span><strong id="metric-verified">0</strong><p>Diterima / ACC</p></article><article><span>05 / UBAH PROFIL</span><strong id="metric-edit-requests">0</strong><p>Menunggu keputusan</p></article></section>
+
+    <section class="admin-workspace">
+      <header class="admin-toolbar">
+        <div aria-label="Navigasi panel admin" class="admin-tabs" role="tablist"><button aria-controls="admin-panel-users" aria-selected="true" class="active" data-admin-tab="users" id="admin-tab-users" role="tab" type="button"><i>01</i><span>Data Peserta</span></button><button aria-controls="admin-panel-profile-requests" aria-selected="false" data-admin-tab="editRequests" id="admin-tab-profile-requests" role="tab" title="Permintaan Edit Profil" type="button"><i>02</i><span>Edit Profil</span><b aria-label="Jumlah permintaan menunggu" hidden id="admin-request-tab-count">0</b></button><button aria-controls="admin-panel-registrations" aria-selected="false" data-admin-tab="registrations" id="admin-tab-registrations" role="tab" type="button"><i>03</i><span>Pendaftaran</span></button><button aria-controls="admin-panel-periods" aria-selected="false" data-admin-tab="periods" id="admin-tab-periods" role="tab" type="button"><i>04</i><span>Periode</span></button><button aria-controls="admin-panel-audit" aria-selected="false" data-admin-tab="auditLogs" id="admin-tab-audit" role="tab" type="button"><i>05</i><span>Audit Log</span></button></div>
+        <div class="admin-toolbar-actions">
+          <label class="admin-control"><span>FILTER</span><select id="admin-filter"><option value="all">Semua data</option><option value="complete">Profil lengkap</option><option value="incomplete">Profil belum lengkap</option></select></label>
+          <label class="admin-control"><span>URUTKAN</span><select id="admin-sort"><option value="newest">Terbaru</option><option value="oldest">Terlama</option><option value="name">Nama A–Z</option></select></label>
+          <button class="admin-tool-button" id="admin-export" type="button">Ekspor CSV ↗</button>
+          <button class="admin-tool-button subtle" id="admin-clear" type="button">Reset</button>
+        </div>
+        <label class="admin-search"><span>CARI DATA</span><input id="admin-search" placeholder="Nama, email, kategori, kota…" type="search"><b aria-hidden="true">⌕</b></label>
+      </header>
+      <section aria-labelledby="admin-tab-users" data-admin-panel="users" id="admin-panel-users" role="tabpanel"><div class="admin-panel-head"><div><span>DAFTAR PESERTA</span><h2>Data Peserta</h2></div><p>Buka detail, edit profil, lihat riwayat, atau hapus data peserta yang tidak lagi diperlukan.</p></div><div class="admin-data-list" id="admin-user-list"><div class="admin-empty"><b>Memuat peserta…</b><span>Menyiapkan direktori peserta.</span></div></div></section><section aria-labelledby="admin-tab-profile-requests" data-admin-panel="editRequests" hidden id="admin-panel-profile-requests" role="tabpanel"><div class="admin-panel-head admin-request-panel-head"><div><span>PERMINTAAN PERUBAHAN PROFIL</span><h2>Permintaan Edit Profil</h2></div><p>Tinjau alasan peserta sebelum membuka akses perubahan data utama. Persetujuan hanya berlaku untuk satu kali penyimpanan.</p></div><div class="admin-request-guide"><span><b>01</b>Peserta mengirim alasan</span><span><b>02</b>Admin menyetujui atau menolak</span><span><b>03</b>Profil terkunci kembali setelah disimpan</span></div><div class="admin-data-list admin-request-list" id="admin-profile-request-list"><div class="admin-empty"><b>Memuat permintaan…</b><span>Menyiapkan antrean perubahan profil.</span></div></div></section>
+      <section aria-labelledby="admin-tab-registrations" data-admin-panel="registrations" hidden id="admin-panel-registrations" role="tabpanel"><div class="admin-panel-head"><div><span>DAFTAR PENDAFTARAN</span><h2>Seluruh Pendaftaran</h2></div><p>Periksa rincian, masukkan nomor tiket, lalu pilih Proses, ACC, atau Tolak. Keputusan langsung muncul pada riwayat peserta.</p></div><div class="admin-bulk-review-bar" id="admin-bulk-review-bar" hidden><div><span>TINDAKAN BERSAMA</span><b><i id="admin-bulk-count">0</i> pendaftaran dipilih</b></div><button data-bulk-action="clear" type="button">Batal Pilih</button><button data-bulk-action="process" type="button">Tandai Proses</button><button class="reject" data-bulk-action="reject" type="button">Tolak Terpilih</button><button class="approve" data-bulk-action="approve" type="button">ACC Terpilih</button></div><div class="admin-data-list" id="admin-registration-list"><div class="admin-empty"><b>Memuat pendaftaran…</b><span>Menyiapkan arsip kompetisi.</span></div></div></section>
+      <section aria-labelledby="admin-tab-periods" data-admin-panel="periods" hidden id="admin-panel-periods" role="tabpanel">
+        <div class="admin-panel-head period-panel-head"><div><span>PENGATURAN JADWAL LOMBA</span><h2>Periode Kompetisi</h2></div><p>Pilih bulan kompetisi. Jadwal pendaftaran dan hari pelaksanaan berbeda: W01 didaftarkan tanggal 20–akhir bulan sebelumnya, W02 tanggal 5–14 bulan kompetisi (WIB). Centang untuk mengizinkan slot; sistem hanya menerima pendaftaran dalam waktunya.</p></div>
+        <div class="admin-period-layout">
+          <form class="admin-period-form period-control-form" id="admin-period-form">
+            <input id="period-id" type="hidden">
+            <input id="period-label" type="hidden">
+            <div class="period-control-heading">
+              <div class="period-control-copy"><span>PENGATURAN BULAN</span><h3>Enam slot, satu pengaturan.</h3><p>Setiap kategori mempunyai Wave 01 dan Wave 02 sendiri. Aktifkan gelombang yang dibuka, tentukan kapasitas, lalu simpan.</p></div>
+              <div class="period-master-controls">
+                <label><span>Bulan kompetisi *</span><input id="period-month" required type="month"></label>
+                <label><span>Status periode *</span><select id="period-status" required><option value="draft">Draft</option><option value="open">Open</option><option value="full">Full</option><option value="closed">Closed</option><option value="completed">Completed</option></select></label>
+              </div>
+            </div>
+
+            <div class="period-edit-toolbar" aria-label="Pengelolaan periode">
+              <p id="period-edit-state" role="status" aria-live="polite">Mode lihat. Perubahan belum diizinkan.</p>
+              <div class="period-edit-actions">
+                <button id="period-new" type="button">+ Buat Periode Baru</button>
+                <button id="period-edit-current" type="button">Edit Periode Terpilih</button>
+                <button id="period-cancel-edit" type="button" hidden>Batal Edit</button>
+                <button id="period-delete-current" class="period-delete-button" type="button" hidden>Hapus Draft</button>
+              </div>
+            </div>
+            <section aria-labelledby="period-auto-title" class="period-auto-timeline">
+              <header><span>JADWAL RESMI</span><h3 id="period-auto-title">Jadwal pendaftaran dan pelaksanaan berbeda.</h3></header>
+              <div class="period-auto-grid">
+                <article><b>REG</b><div><small>Rentang seluruh pendaftaran</small><strong id="period-preview-registration">Pilih bulan terlebih dahulu</strong></div></article>
+                <article><b>W1</b><div><small>Gelombang awal</small><strong id="period-preview-wave1">Kompetisi tanggal 01–08</strong></div></article>
+                <article><b>W2</b><div><small>Gelombang pertengahan</small><strong id="period-preview-wave2">Kompetisi tanggal 15–22</strong></div></article>
+              </div>
+            </section>
+
+            <fieldset class="period-category-control">
+              <legend>Kategori dan Gelombang</legend>
+              <p class="period-control-help">Lihat pengaturan di bawah. Klik <b>Edit Periode Terpilih</b> untuk mengubah semua gelombang dan kapasitas sekaligus. Pendaftaran tetap mengikuti tanggal dan kuota masing-masing.</p>
+              <div class="period-category-grid">
+                <article class="period-category-card" data-period-category="web">
+                  <header class="period-category-header"><div><span>01 / WEB</span><h3>Website Programming</h3><p>Sprint individu. Deadline hari ke-3, pengumuman hari ke-4.</p></div><strong class="period-category-state" data-category-state="web">2 / 2 diizinkan</strong></header>
+                  <div class="period-wave-control-grid">
+                    <section class="period-wave-control" data-wave-control="web_wave-01"><header><div><b>W01</b><span>Gelombang Awal</span></div><label><input checked data-enabled-package-wave="web_wave-01" type="checkbox"><i></i><span>Diizinkan</span></label></header><p><small>Jadwal gelombang</small><b data-wave-schedule="web_wave-01">01–04</b></p><label class="period-capacity-field"><span>Kapasitas peserta</span><input data-capacity="web_wave-01" min="1" required type="number" value="50"></label></section>
+                    <section class="period-wave-control" data-wave-control="web_wave-02"><header><div><b>W02</b><span>Gelombang Tengah</span></div><label><input checked data-enabled-package-wave="web_wave-02" type="checkbox"><i></i><span>Diizinkan</span></label></header><p><small>Jadwal gelombang</small><b data-wave-schedule="web_wave-02">15–18</b></p><label class="period-capacity-field"><span>Kapasitas peserta</span><input data-capacity="web_wave-02" min="1" required type="number" value="50"></label></section>
+                  </div>
+                </article>
+
+                <article class="period-category-card" data-period-category="cyber">
+                  <header class="period-category-header"><div><span>02 / CYBER</span><h3>Cybersecurity Mini CTF</h3><p>Mini CTF individu. Deadline hari ke-3, pengumuman hari ke-4.</p></div><strong class="period-category-state" data-category-state="cyber">2 / 2 diizinkan</strong></header>
+                  <div class="period-wave-control-grid">
+                    <section class="period-wave-control" data-wave-control="cyber_wave-01"><header><div><b>W01</b><span>Gelombang Awal</span></div><label><input checked data-enabled-package-wave="cyber_wave-01" type="checkbox"><i></i><span>Diizinkan</span></label></header><p><small>Jadwal gelombang</small><b data-wave-schedule="cyber_wave-01">01–04</b></p><label class="period-capacity-field"><span>Kapasitas peserta</span><input data-capacity="cyber_wave-01" min="1" required type="number" value="50"></label></section>
+                    <section class="period-wave-control" data-wave-control="cyber_wave-02"><header><div><b>W02</b><span>Gelombang Tengah</span></div><label><input checked data-enabled-package-wave="cyber_wave-02" type="checkbox"><i></i><span>Diizinkan</span></label></header><p><small>Jadwal gelombang</small><b data-wave-schedule="cyber_wave-02">15–18</b></p><label class="period-capacity-field"><span>Kapasitas peserta</span><input data-capacity="cyber_wave-02" min="1" required type="number" value="50"></label></section>
+                  </div>
+                </article>
+
+                <article class="period-category-card" data-period-category="team">
+                  <header class="period-category-header"><div><span>03 / TEAM</span><h3>Full Stack Development Team</h3><p>Build tim 2–4 orang. Final hari ke-7, pengumuman hari ke-8.</p></div><strong class="period-category-state" data-category-state="team">2 / 2 diizinkan</strong></header>
+                  <div class="period-wave-control-grid">
+                    <section class="period-wave-control" data-wave-control="team_wave-01"><header><div><b>W01</b><span>Gelombang Awal</span></div><label><input checked data-enabled-package-wave="team_wave-01" type="checkbox"><i></i><span>Diizinkan</span></label></header><p><small>Jadwal gelombang</small><b data-wave-schedule="team_wave-01">01–08</b></p><label class="period-capacity-field"><span>Kapasitas tim</span><input data-capacity="team_wave-01" min="1" required type="number" value="50"></label></section>
+                    <section class="period-wave-control" data-wave-control="team_wave-02"><header><div><b>W02</b><span>Gelombang Tengah</span></div><label><input checked data-enabled-package-wave="team_wave-02" type="checkbox"><i></i><span>Diizinkan</span></label></header><p><small>Jadwal gelombang</small><b data-wave-schedule="team_wave-02">15–22</b></p><label class="period-capacity-field"><span>Kapasitas tim</span><input data-capacity="team_wave-02" min="1" required type="number" value="50"></label></section>
+                  </div>
+                </article>
+              </div>
+            </fieldset>
+
+            <div class="admin-edit-footer period-control-footer"><span>Status Open mengizinkan pendaftaran sesuai tanggal setiap gelombang dan kapasitasnya. Setelah waktu tutup, pendaftaran otomatis tertutup.</span><button class="admin-save-button" type="submit" disabled>Tinjau Perubahan →</button></div>
+          </form>
+          <div class="admin-period-list" id="admin-period-list"><div class="admin-empty"><b>Memuat periode…</b><span>Menyiapkan kalender kompetisi.</span></div></div>
+        </div>
+      </section>
+      <section aria-labelledby="admin-tab-audit" data-admin-panel="auditLogs" hidden id="admin-panel-audit" role="tabpanel"><div class="admin-panel-head"><div><span>RIWAYAT AKTIVITAS ADMIN</span><h2>Audit Log</h2></div><p>Riwayat tindakan penting yang ditulis server. Gunakan untuk penelusuran keputusan dan perubahan data.</p></div><div class="admin-audit-list" id="admin-audit-list"><div class="admin-empty"><b>Memuat audit log…</b><span>Menyiapkan catatan tindakan.</span></div></div></section>
+    </section>
+  </main>
+
+  <div aria-live="polite" class="admin-toast" hidden id="admin-toast"></div>
+
+  <dialog aria-label="Detail data" class="admin-dialog" id="admin-detail-dialog"><button aria-label="Tutup detail" class="admin-dialog-close" data-dialog-close type="button">×</button><div data-dialog-content></div></dialog>
+  <dialog aria-labelledby="admin-edit-title" class="admin-dialog admin-edit-dialog" id="admin-edit-dialog">
+    <button aria-label="Tutup editor" class="admin-dialog-close" data-dialog-close type="button">×</button>
+    <form id="admin-edit-form">
+      <div class="admin-detail-head"><span>EDIT PARTICIPANT FILE</span><h2 id="admin-edit-title">Perbarui Profil Peserta</h2><p>Perubahan langsung digunakan pada data profil berikutnya.</p></div>
+      <input id="admin-edit-uid" type="hidden">
+      <div class="admin-edit-grid">
+        <label><span>Nama lengkap *</span><input id="admin-edit-name" required type="text"></label>
+        <label><span>Email akun</span><input id="admin-edit-email" readonly type="email"></label>
+        <label><span>Tanggal lahir *</span><input id="admin-edit-birth" required type="date"></label>
+        <label><span>Jenis kelamin *</span><select id="admin-edit-gender" required><option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option><option>Tidak disebutkan</option></select></label>
+        <label><span>Nomor telepon *</span><input id="admin-edit-phone" inputmode="numeric" maxlength="16" pattern="\+62[0-9]{8,13}" placeholder="+628123456789" required type="tel"></label>
+        <label><span>Status utama *</span><select id="admin-edit-occupation" required><option value="">Pilih</option><option>Pelajar</option><option>Mahasiswa</option><option>Profesional</option><option>Komunitas</option><option>Lainnya</option></select></label>
+        <label><span>Instansi</span><input id="admin-edit-institution" type="text"></label>
+        <label><span>Kota/Kabupaten *</span><input id="admin-edit-city" required type="text"></label>
+        <label><span>Provinsi *</span><input id="admin-edit-province" required type="text"></label>
+        <label><span>Keahlian utama *</span><input id="admin-edit-skill" required type="text"></label>
+        <label><span>Tingkat pengalaman *</span><select id="admin-edit-level" required><option value="">Pilih</option><option>Pemula</option><option>Menengah</option><option>Mahir</option></select></label>
+        <label><span>Kategori minat *</span><select id="admin-edit-track" required><option value="">Pilih</option><option>Website Programming</option><option>Cybersecurity Mini CTF</option><option>Full Stack Development Team</option></select></label>
+        <label class="wide"><span>Alamat ringkas</span><textarea id="admin-edit-address" rows="3"></textarea></label>
+        <label class="wide"><span>Portfolio/GitHub/LinkedIn</span><input id="admin-edit-portfolio" type="url"></label>
+        <label class="wide"><span>Bio singkat</span><textarea id="admin-edit-bio" maxlength="300" rows="4"></textarea></label>
+      </div>
+      <div class="admin-edit-footer"><span>Pastikan identitas dan kategori minat sudah benar.</span><button class="admin-save-button" type="submit">Simpan Perubahan →</button></div>
+    </form>
+  </dialog>
+
+  <dialog aria-labelledby="admin-profile-request-title" class="admin-dialog admin-profile-request-dialog" id="admin-profile-request-dialog">
+    <button aria-label="Tutup review request" class="admin-dialog-close" data-dialog-close type="button">×</button>
+    <form id="admin-profile-request-form">
+      <div class="admin-detail-head"><span>PENINJAUAN PERUBAHAN PROFIL</span><h2 id="admin-profile-request-title">Tinjau permintaan edit</h2><p id="admin-profile-request-participant">Peserta</p></div>
+      <input id="admin-profile-request-uid" type="hidden">
+      <div class="admin-request-review-body"><div class="admin-request-reason-box"><small>ALASAN PESERTA</small><p id="admin-profile-request-reason">—</p></div><label><span>Catatan keputusan admin</span><textarea id="admin-profile-request-note" maxlength="500" placeholder="Wajib diisi bila request ditolak. Untuk persetujuan, catatan boleh dikosongkan." rows="5"></textarea></label><div class="admin-request-review-note"><b>Satu kali akses</b><span>Jika disetujui, peserta dapat mengubah profil satu kali. Setelah perubahan disimpan, profil dikunci kembali.</span></div></div>
+      <div class="admin-request-decision-actions"><button class="reject" id="admin-profile-request-reject" type="button">Tolak Request</button><button class="approve" id="admin-profile-request-approve" type="button">Setujui &amp; Buka Edit →</button></div>
+    </form>
+  </dialog>
+  <dialog aria-labelledby="admin-review-title" class="admin-dialog admin-review-dialog" id="admin-review-dialog"><button aria-label="Tutup review" class="admin-dialog-close" data-dialog-close type="button">×</button><form id="admin-review-form"><div class="admin-detail-head"><span>PENINJAUAN PEMBAYARAN DAN TIKET</span><h2 id="admin-review-title">Putuskan pendaftaran</h2><p id="admin-review-participant">Peserta</p></div><input id="admin-review-id" type="hidden"><input id="admin-review-revision" type="hidden"><label class="admin-checkbox-option" style="margin:16px 0;display:flex;gap:12px;align-items:start"><input type="checkbox" id="admin-bank-confirm"><span>Saya telah memeriksa mutasi rekening resmi secara terpisah dan memastikan dana masuk untuk pendaftaran ini. Screenshot saja tidak cukup untuk ACC.</span></label><div class="admin-edit-grid"><label><span>Status pendaftaran *</span><select id="admin-review-status" required><option value="menunggu">Sedang diproses</option><option value="terverifikasi">Diterima / ACC</option><option value="ditolak">Ditolak</option></select></label><label><span>Status pembayaran *</span><select id="admin-review-payment" required><option value="belum_diperiksa">Belum diperiksa</option><option value="sesuai">Pembayaran sesuai</option><option value="bermasalah">Pembayaran bermasalah</option></select></label><label class="wide"><span>Nomor tiket</span><input id="admin-review-ticket" maxlength="40" placeholder="ECF-WEB-001" type="text"></label><label class="wide"><span>Alasan penolakan</span><textarea id="admin-review-reason" maxlength="500" rows="3"></textarea></label><label class="wide"><span>Catatan internal admin</span><textarea id="admin-review-notes" maxlength="1000" rows="4"></textarea></label></div><div class="admin-edit-footer"><span>Nomor tiket wajib untuk ACC; alasan wajib untuk penolakan.</span><button class="admin-save-button" type="submit">Simpan Keputusan →</button></div></form></dialog>
+
+  <dialog aria-labelledby="admin-bulk-title" class="admin-dialog admin-bulk-dialog" id="admin-bulk-dialog">
+    <button aria-label="Tutup bulk review" class="admin-dialog-close" data-dialog-close type="button">×</button>
+    <form id="admin-bulk-form"><div class="admin-detail-head"><span>PENINJAUAN BEBERAPA PENDAFTARAN</span><h2 id="admin-bulk-title">Proses pendaftaran terpilih</h2><p id="admin-bulk-summary">0 pendaftaran</p></div><input id="admin-bulk-action" type="hidden"><label class="admin-checkbox-option" style="margin:16px 0;display:flex;gap:12px;align-items:start"><input type="checkbox" id="admin-bulk-bank-confirm"><span>Saya telah memeriksa dana masuk satu per satu untuk seluruh pendaftaran yang akan di-ACC.</span></label><div class="admin-edit-grid"><label class="wide"><span>Status pembayaran</span><select id="admin-bulk-payment"><option value="belum_diperiksa">Belum diperiksa</option><option value="sesuai">Pembayaran sesuai</option><option value="bermasalah">Pembayaran bermasalah</option></select></label><label class="wide"><span>Alasan / catatan</span><textarea id="admin-bulk-reason" maxlength="500" placeholder="Alasan wajib untuk penolakan; catatan opsional untuk proses." rows="4"></textarea></label></div><div class="admin-bulk-warning"><b>Nomor tiket ACC</b><span>Nomor tiket dibuat otomatis dari nomor referensi. Konflik tiket akan dilaporkan per item tanpa membatalkan item lainnya.</span></div><div class="admin-edit-footer"><span>Maksimal 20 data dalam satu operasi untuk menjaga batas transaksi dan audit.</span><button class="admin-save-button" type="submit">Proses Pendaftaran Terpilih →</button></div></form>
+  </dialog>
+
+  <dialog aria-labelledby="admin-confirm-title" aria-describedby="admin-confirm-description" class="admin-dialog admin-confirm-dialog" id="admin-confirm-dialog"><span class="danger-stamp">KONFIRMASI ADMIN</span><h2 id="admin-confirm-title">Konfirmasi tindakan</h2><p id="admin-confirm-description">Periksa kembali sebelum melanjutkan.</p><label class="admin-acc-cancel-reason" id="admin-cancel-acc-reason-wrap" hidden><span>Alasan pembatalan ACC (minimal 10 karakter)</span><textarea id="admin-cancel-acc-reason" minlength="10" maxlength="1000" rows="3" placeholder="Jelaskan alasan pembatalan tiket dan keputusan yang perlu ditinjau ulang"></textarea></label><div><button data-dialog-close type="button">Batal</button><button class="danger" id="admin-confirm-action" type="button">Lanjutkan</button></div></dialog>
+
+
+  <dialog aria-labelledby="admin-security-title" class="admin-dialog admin-security-dialog" id="admin-security-dialog">
+    <button aria-label="Tutup Security Center" class="admin-dialog-close" data-admin-security-close type="button">×</button>
+    <header class="admin-security-head"><div><span>KONTROL AKSES / ADMIN</span><h2 id="admin-security-title">Pusat keamanan admin</h2><p>Kelola akses akun dan verifikasi SMS tambahan.</p></div><strong>AKUN<br>AMAN</strong></header>
+    <section class="admin-security-grid">
+      <article><span>01 / STATUS AKSES</span><h3 data-security-claim data-state="neutral">MEMERIKSA</h3><p>Status akun: <b data-security-role>—</b></p><button id="admin-security-refresh-claim" type="button">Sinkronkan Akses</button></article>
+      <article><span>02 / VERIFIKASI SMS</span><h3 data-security-mfa data-state="neutral">MEMERIKSA</h3><p>Faktor kedua untuk melindungi akses administrator.</p></article>
+      <article><span>03 / KEAMANAN LAYANAN</span><h3 data-security-app-check data-state="neutral">MEMERIKSA</h3><p>Validasi permintaan aplikasi.</p></article>
+    </section>
+    <section class="admin-mfa-enroll">
+      <header><span>KEAMANAN AKUN ADMIN</span><h3>Verifikasi SMS administrator</h3><p data-mfa-instruction>Tambahkan atau ganti nomor verifikasi untuk menjaga akses admin tetap aman.</p></header>
+      <div class="admin-mfa-fields"><label><span>Password akun</span><input autocomplete="current-password" id="admin-mfa-password" type="password"></label><label><span>Nomor verifikasi baru</span><input id="admin-mfa-phone" inputmode="tel" placeholder="+628123456789" type="tel"></label><button id="admin-mfa-send" type="button">Kirim Kode</button><label><span>Kode SMS</span><input disabled id="admin-mfa-code" inputmode="numeric" maxlength="6" placeholder="6 digit kode SMS" type="text"></label><button disabled id="admin-mfa-enroll" type="button">Simpan nomor verifikasi →</button></div>
+      <div id="admin-mfa-recaptcha"></div>
+      <section class="admin-mfa-old-panel" id="admin-mfa-old-panel" hidden>
+        <div><strong>Ganti nomor verifikasi</strong><p>Setelah nomor baru berhasil diverifikasi, pilih nomor lama untuk dinonaktifkan. Setidaknya satu metode kedua wajib tetap tersedia.</p></div>
+        <label><span>Nomor lama terdaftar</span><select id="admin-mfa-old-factor"></select></label>
+        <button id="admin-mfa-remove-old" type="button">Nonaktifkan Nomor Lama</button>
+      </section>
+      <p class="admin-security-feedback" hidden id="admin-security-feedback" role="status" aria-live="polite"></p>
+    </section>
+  </dialog>
+
+  <footer class="admin-footer"><span>ESORIA CODEFEST / KHUSUS PENGELOLA ESORIA</span><p>Gunakan panel dengan teliti dan periksa kembali sebelum menghapus data.</p></footer>
+  <script data-module="./admin.js?v=b74586eaa5ef6110" src="app-loader.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="admin-security.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="admin-idle-guard.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="analytics-consent.js?v=b74586eaa5ef6110"></script>
+  <script data-esoria-cookie src="cookie-consent.js?v=b74586eaa5ef6110"></script>
+<script type="module" src="/logout-controller.js?v=b74586eaa5ef6110"></script>
+<script type="module" src="paper-date-init.js?v=b74586eaa5ef6110"></script>
+</body>
+</html>

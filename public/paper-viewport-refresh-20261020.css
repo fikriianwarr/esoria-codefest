@@ -1,0 +1,142 @@
+/* ESORIA 2026 / unified paper-sheet refinements.
+   Deliberately scoped: no changes to permissions, payment state or Firebase rules. */
+:root{--ec-v-ink:#183548;--ec-v-red:#a52a30;--ec-v-cream:#fffaf0;--ec-v-edge:#c8b99d;--ec-v-shadow:#d3c4aa}
+:where(body[data-workspace],body.profile-body,body.admin-body){overflow-x:clip}
+:where(body[data-workspace],body.profile-body,body.admin-body) :where(button,a,input,select,textarea):focus-visible{outline:3px solid #c09340;outline-offset:3px}
+:where(body[data-workspace],body.profile-body,body.admin-body) :where(button,a){transition:background-color .16s ease,color .16s ease,transform .16s ease,box-shadow .16s ease}
+:where(body[data-workspace],body.profile-body,body.admin-body) :where(.cf-button,.profile-home-link,.profile-landing-link,.profile-logout):hover{transform:translateY(-2px)}
+/* Stable navigation. All role links are still hidden/verified by their own JS. */
+body:is([data-workspace="operations"],[data-workspace="jury"],.esoria-dossier-page) .cf-nav [hidden]{display:none!important}
+body:is([data-workspace="operations"],[data-workspace="jury"],.esoria-dossier-page) .cf-nav .cf-landing-link{background:#fff9eb;border:1px solid #b8a88b;color:#183548;box-shadow:inset 3px 0 0 #bb3439}
+body:is([data-workspace="operations"],[data-workspace="jury"],.esoria-dossier-page) .cf-nav button[data-logout]{background:#f8e1d7!important;color:#8b2228!important;border:1px solid #bb4948!important;box-shadow:inset 0 -3px 0 #b34743,2px 2px 0 #d4c2a7!important;font-weight:800}
+body:is([data-workspace="operations"],[data-workspace="jury"],.esoria-dossier-page) .cf-nav button[data-logout]:hover{background:#f4d0c1!important}
+/* Profile nav: add a real landing button; preserve Dashboard/Profil/Logout. */
+.profile-body .profile-landing-link{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:85px;min-height:49px;height:49px;padding:8px 14px;text-decoration:none;font-size:12px;font-weight:850;letter-spacing:.02em;color:#173548;border:1px solid #a99b80;background:linear-gradient(135deg,#fffdf5,#e9decb);box-shadow:3px 4px 0 #cdbfa5;white-space:nowrap}
+.profile-body .profile-nav-actions .profile-logout{background:#a52b32;border:1px solid #7e2028;color:#fffaf1;box-shadow:3px 4px 0 #d4c0a5}
+.profile-body .profile-nav-actions .profile-logout:hover{background:#8b222a}
+.profile-body .profile-nav-actions .profile-home-link{background:#fdf8ec;border-color:#a89a81;color:#173548}
+.profile-body .profile-nav-actions .profile-home-link:hover{background:#e9decb}
+.profile-body .profile-nav-actions .profile-current-tab{box-shadow:inset 0 -3px 0 #af373e!important}
+/* Participant dossier: use the available width rather than leaving half a page blank. */
+body[data-workspace="dashboard"].esoria-dossier-page .cf-shell{max-width:1680px;width:100%;padding-inline:clamp(12px,2vw,28px)}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-header{padding:10px 0 9px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-hero{margin-top:12px;padding:13px 21px;grid-template-columns:minmax(0,1fr) minmax(160px,220px);gap:16px;min-height:0}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-hero h1{font-size:clamp(28px,3.2vw,43px);margin:7px 0 6px;line-height:1.06}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-hero .cf-lead{font-size:12px;line-height:1.5}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-stamp{padding:10px 17px;transform:rotate(.4deg)}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-stamp:before{margin-bottom:5px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-stamp strong{font-size:21px;line-height:1.1;margin-bottom:7px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-stamp span{font-size:9px;padding-top:6px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-main{padding:11px 0 16px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-overline{padding:5px 0 7px;margin:0 0 9px;min-width:0}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:13px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric{display:grid;align-content:center;gap:3px;min-width:0;min-height:80px;padding:10px 15px;background:linear-gradient(145deg,#fffdf4,#ede0c9);border-top-width:4px;box-shadow:3px 3px 0 #cfc0a6;overflow:hidden}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric b{font-size:clamp(26px,3vw,38px);line-height:1}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric span{font-size:clamp(9px,.9vw,11px);line-height:1.25;letter-spacing:.06em;overflow-wrap:anywhere}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric:before{right:8px;top:6px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-dossier-section{margin-bottom:13px;padding:clamp(12px,1.4vw,19px);background:repeating-linear-gradient(0deg,transparent 0 31px,#17354908 32px 33px),#fff9ed}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-head{align-items:center;gap:12px;margin-bottom:10px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-head h2{font-size:clamp(25px,2.6vw,34px);margin:0 0 3px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-description{font-size:12px;line-height:1.45}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:13px;width:100%}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card{width:100%;min-width:0;margin:0;padding:clamp(12px,1.7vw,23px);border:1px solid #19394a;border-bottom:4px solid #19394a;box-shadow:3px 4px 0 #d2c2a7;background:linear-gradient(120deg,#fffdf7,#fcf5e8)}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top{margin-bottom:9px;min-width:0}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top>div{min-width:0}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top .cf-kicker{line-height:1.3;font-size:10px;letter-spacing:.1em;overflow-wrap:anywhere}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top h3{font-size:clamp(23px,2.2vw,32px);margin:7px 0 6px;line-height:1.1}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top .cf-meta{font-size:12px;margin:0;overflow-wrap:anywhere}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts{gap:6px 13px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts>div{padding:7px 0;min-width:0}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts dd{font-size:13px;line-height:1.25}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card>p.cf-meta{font-size:11px;margin:7px 0}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card footer{padding:9px 0 0;margin-top:9px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card footer .cf-button{min-height:38px;padding:7px 12px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-section{margin-top:12px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-section .cf-list{padding:0 12px;width:100%}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-section .cf-list li{padding:9px 6px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-empty{min-height:68px;gap:12px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-seal{width:40px;height:40px;flex-basis:40px;font-size:20px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-empty strong{font-size:18px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-empty p{font-size:12px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-details{margin:10px 0 12px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-team-dossier>summary{min-height:43px;padding:9px 14px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-footer{margin-top:5px;padding:12px 0}
+/* Give a single card a wide, editorial layout; no unreadable stretch. */
+@media(min-width:1000px){body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card:only-child{display:grid;grid-template-columns:minmax(270px,.8fr) minmax(0,1.25fr);align-items:start;gap:0 22px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card:only-child .cf-card-top{grid-column:1;grid-row:1;align-self:start}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card:only-child .cf-facts{grid-column:2;grid-row:1}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card:only-child>p,body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card:only-child>.cf-help,body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card:only-child>footer{grid-column:1/-1}}
+/* Paper checkbox and file selection: keep native focus, validity and file input. */
+body[data-workspace="submission"] #submission-form .cf-check{display:flex;align-items:flex-start;gap:12px;margin:7px 0;padding:11px 13px;min-width:0;background:#fffcf5;border:1px solid #c9baa1;border-left:4px solid #235e51;box-shadow:2px 2px 0 #d6c6ae}
+body[data-workspace="submission"] #submission-form .cf-check:has(input:checked){background:#eaf2e5;border-color:#8aab90;border-left-color:#176b50}
+body[data-workspace="submission"] #submission-form input[type="checkbox"]{appearance:none;-webkit-appearance:none;display:grid;place-items:center;width:22px;height:22px;min-width:22px;min-height:22px;flex:0 0 22px;margin:1px 0 0;padding:0;border:2px solid #60756f;background:#fffef8;border-radius:2px;cursor:pointer;box-shadow:2px 2px 0 #d3c5ae}
+body[data-workspace="submission"] #submission-form input[type="checkbox"]:checked{background:#176950;border-color:#176950}
+body[data-workspace="submission"] #submission-form input[type="checkbox"]:checked:after{content:'✓';font:900 15px/1 Arial,sans-serif;color:#fff}
+body[data-workspace="submission"] #submission-form input[type="checkbox"]:disabled{opacity:.65;cursor:not-allowed}
+body[data-workspace="submission"] #submission-form .cf-check span{font-size:clamp(12px,1vw,14px);line-height:1.5;min-width:0;overflow-wrap:anywhere}
+body[data-workspace="submission"] #artifact-input{display:block;width:100%;min-height:52px;padding:7px 9px;border:1px dashed #9e8a69;box-shadow:3px 3px 0 #ddd0b7;background:#fffcf4;font-size:13px;line-height:1.5;color:#1a3b4b;cursor:pointer}
+body[data-workspace="submission"] #artifact-input::file-selector-button{margin-right:14px;padding:9px 14px;border:1px solid #1b3949;border-bottom:3px solid #1b3949;background:#e6dcc9;color:#143449;font-weight:750;cursor:pointer;transition:background-color .15s ease}
+body[data-workspace="submission"] #artifact-input:hover::file-selector-button{background:#d8e5db}
+body[data-workspace="submission"] #artifact-input:disabled{opacity:.6;cursor:not-allowed}
+/* One-viewport operations modal. Where a low-height viewport cannot fit the
+   content, only its content area scrolls; no field or action is clipped. */
+body[data-workspace="operations"] dialog.cf-dialog[open]{box-sizing:border-box;display:flex;flex-direction:column;width:min(800px,calc(100vw - 20px));max-width:800px;max-height:calc(100dvh - 20px);height:auto;margin:auto;padding:clamp(12px,2vw,23px);overflow:hidden!important;overscroll-behavior:contain;background:repeating-linear-gradient(0deg,transparent 0 35px,#1d354008 36px 37px),#fffaf0}
+body[data-workspace="operations"] dialog.cf-dialog>header{position:relative;flex:0 0 auto;min-width:0;top:auto;z-index:3;margin:0 0 10px;padding:0 0 9px;background:transparent}
+body[data-workspace="operations"] dialog.cf-dialog>header h2{font-size:clamp(21px,2.9vw,32px);line-height:1.13}
+body[data-workspace="operations"] dialog.cf-dialog>header button{min-height:38px;min-width:38px;width:38px;height:38px;flex:0 0 38px;background:#fffaf0;border:1px solid #183548;box-shadow:2px 2px 0 #cbb9a0}
+body[data-workspace="operations"] dialog.cf-dialog #workspace-dialog-content{min-height:0;max-height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#b6a88f transparent;overscroll-behavior:contain;padding:2px 3px 6px 0}
+body[data-workspace="operations"] #operation-action-form{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px}
+body[data-workspace="operations"] #operation-action-form .cf-field>span{font-size:12px;line-height:1.4;margin-bottom:4px}
+body[data-workspace="operations"] #operation-action-form .cf-field :is(input,select){height:40px;min-height:40px;padding:7px 9px}
+body[data-workspace="operations"] #operation-action-form .cf-help{padding:9px 12px;margin:0;font-size:12px;line-height:1.45}
+body[data-workspace="operations"] #operation-action-form .cf-field textarea{min-height:62px;height:clamp(62px,10dvh,88px);padding:8px 10px;resize:vertical}
+body[data-workspace="operations"] #operation-action-form .cf-check{gap:9px;padding:8px 11px;margin:0;font-size:12px}
+body[data-workspace="operations"] #operation-action-form>.cf-button[type="submit"]{position:sticky;bottom:0;min-height:43px;z-index:2;margin-top:0;box-shadow:0 -5px 0 #fffaf0}
+body[data-workspace="operations"] #operation-action-form [hidden]{display:none!important}
+/* Compact style for the other staff panels; preserve click target size. */
+body:is([data-workspace="operations"],[data-workspace="jury"]) .cf-metric{min-height:82px;padding:11px 15px}
+body:is([data-workspace="operations"],[data-workspace="jury"]) .cf-metric b{font-size:clamp(25px,3vw,36px);line-height:1.1}
+@media(max-width:760px){
+.profile-body .profile-nav-actions{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;width:100%!important;gap:7px!important}
+.profile-body .profile-nav-actions>:is(button,a){width:100%!important;min-width:0!important;flex:none!important;min-height:44px!important;height:44px!important;padding:7px 5px!important;font-size:11px!important;letter-spacing:0;white-space:normal!important}
+.profile-body .profile-nav-actions .profile-landing-link{display:flex!important}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-hero{grid-template-columns:1fr;margin-top:10px;padding:15px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-hero .cf-stamp{display:none}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top{gap:10px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:590px){
+body[data-workspace="dashboard"].esoria-dossier-page .cf-shell{padding-inline:11px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-hero h1{font-size:30px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-main{padding-top:10px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metrics{gap:6px;grid-template-columns:repeat(2,minmax(0,1fr))}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric{min-height:72px;padding:9px 11px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric b{font-size:28px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-overline{flex-wrap:wrap;gap:3px 8px;font-size:9px;overflow-wrap:anywhere}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-overline span{max-width:100%;white-space:normal}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-dossier-section{padding:11px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-head{align-items:flex-start;flex-direction:column;gap:10px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-head .cf-actions{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-section-head .cf-actions>*{min-width:0;white-space:normal;font-size:11px;min-height:40px;padding:8px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-activity-section .cf-section-head a{font-size:12px;line-height:1.4}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card footer .cf-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card footer .cf-actions>*{min-width:0;font-size:11px;padding:7px}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-card-top h3{font-size:24px}
+body[data-workspace="operations"] #operation-action-form{grid-template-columns:minmax(0,1fr);gap:8px}
+body[data-workspace="operations"] #operation-action-form .cf-field textarea{height:64px;min-height:64px}
+body[data-workspace="operations"] .cf-dialog>header{gap:8px}
+body[data-workspace="operations"] dialog.cf-dialog>header h2{font-size:clamp(21px,5vw,25px)}
+body[data-workspace="submission"] #artifact-input::file-selector-button{margin-right:8px;padding:8px;font-size:11px}
+}
+@media(max-width:355px){.profile-body .profile-nav-actions>:is(button,a){font-size:9px!important;padding:5px 2px!important}body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){:where(body[data-workspace],body.profile-body,body.admin-body) *{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+/* Restrained motion, never required to understand content. */
+@keyframes ec-paper-arrive{from{opacity:.55;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:no-preference){
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric,
+body[data-workspace="dashboard"].esoria-dossier-page .cf-grid>.cf-card,
+.profile-body .profile-landing-link{animation:ec-paper-arrive .3s cubic-bezier(.2,.75,.25,1) both}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric:nth-child(2){animation-delay:40ms}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric:nth-child(3){animation-delay:80ms}
+body[data-workspace="dashboard"].esoria-dossier-page .cf-metric:nth-child(4){animation-delay:120ms}
+}

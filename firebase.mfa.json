@@ -1,0 +1,4 @@
+{
+  "firestore": {"rules":"firestore.rules.mfa-enforced", "indexes":"firestore.indexes.json"},
+  "storage": {"rules":"storage.rules.mfa-enforced"}
+}

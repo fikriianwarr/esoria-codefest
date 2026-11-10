@@ -1,0 +1,39 @@
+/* Small visual corrections requested after production review. */
+.quick-grid {
+  background-color: #f7eddc;
+  background-image:
+    linear-gradient(rgba(36, 74, 112, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36, 74, 112, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 20% 30%, rgba(128, 93, 47, 0.035) 0 0.7px, transparent 0.9px);
+  background-size: 22px 22px, 22px 22px, 5px 5px;
+}
+.quick-grid::before,
+.quick-grid::after {
+  background: radial-gradient(circle at 8px 9px, transparent 7px, #f7eddc 7.5px) 0 0 / 16px 9px repeat-x;
+}
+.quick-ticket { background: transparent; }
+.quick-ticket:hover { background: #efe0c8; }
+.quick-ticket h3 { color: var(--ink); }
+.quick-ticket p { color: #5f594f; }
+
+@media (max-width: 720px) {
+  .quick-ticket {
+    grid-template-columns: 30px 48px minmax(0, 1fr);
+    gap: 9px;
+    min-height: 0;
+    padding: 20px 16px;
+  }
+  .quick-ticket .ticket-label { padding-top: 3px; }
+  .quick-ticket .quick-icon { font-size: 1.8rem; }
+  .quick-ticket h3 { min-width: 0; font-size: clamp(1.25rem, 6vw, 1.55rem); line-height: 1.08; }
+  .quick-ticket p { grid-column: 2 / -1; margin-top: 2px; font-size: 0.68rem; }
+}
+
+@media (max-width: 390px) {
+  .quick-ticket {
+    grid-template-columns: 24px 42px minmax(0, 1fr);
+    padding-inline: 12px;
+  }
+  .quick-ticket .ticket-label { font-size: 0.49rem; }
+  .quick-ticket .quick-icon { font-size: 1.6rem; }
+}

@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+const read=(f)=>fs.readFileSync(path.resolve(import.meta.dirname,'..',f),'utf8');
+const conf=JSON.parse(read('firebase.json'));
+const backend=read('functions/index.js');
+test('Hosting rewrite dedicated public endpoint',()=>{const r=conf.hosting.rewrites.find(r=>r.source==='/api/public');assert.equal(r?.function?.functionId,'esoriaPublic');assert.equal(r?.function?.region,'asia-southeast2');});
+test('public endpoint whitelist and GET only',()=>{assert.match(backend,/PUBLIC_RECORD_ACTIONS = Object.freeze\(\{results: 'getPublishedResults', archive: 'getPublishedArchive', certificate: 'verifyCertificate'\}\)/);assert.match(backend,/request.method !== 'GET'/);assert.match(backend,/Object.hasOwn\(PUBLIC_RECORD_ACTIONS, kind\)/);});
+test('private callable remains App Check enforced',()=>{assert.match(backend,/enforceAppCheck: ENFORCE_APP_CHECK/);assert.match(backend,/export const esoriaApi = onCall\(callableOptions/);});
+test('published status and time checked on backend',()=>{const c=read('functions/competition.js');const d=read('functions/domain.js');assert.match(c,/officiallyReleased\(data\)/);assert.match(d,/result\?\.published === true && Number\.isFinite\(announcedAt\) && announcedAt <= now/);});
+test('public pages do not bootstrap Firebase SDK',()=>{for(const page of ['results.html','verify-certificate.html']){const html=read('public/'+page);assert.match(html,/src="public-records.js\?v=/);assert.doesNotMatch(html,/data-module="\.\/workspace.js/);}});
+test('retry and anonymous request have a truthful failure state',()=>{const js=read('public/public-records.js');assert.match(js,/credentials:'omit'/);assert.match(js,/data-public-retry/);assert.match(js,/Arsip belum bisa diperiksa/);});
+test('hero decorative tape removed',()=>{assert.doesNotMatch(read('public/esoria-workspace-dossier.css'),/\.cf-hero:after\s*\{/);});
+test('all legal pages omit removed panels and retain navigation to valid core policies',()=>{const d=path.resolve(import.meta.dirname,'..','public/legal');const pages=fs.readdirSync(d).filter(f=>f.endsWith('.html'));assert.equal(pages.length,10);for(const page of pages){const html=fs.readFileSync(path.join(d,page),'utf8');assert.doesNotMatch(html,/legal-resource-band|legal-context-note|legal-documents-next|Catatan penting:|Bacaan terkait/i,page);assert.match(html,/<footer class="footer">/,page);for(const core of ['privacy-policy.html','terms-and-conditions.html','refund-policy.html','payment-policy.html']){assert.match(html,new RegExp(`href="${core}"`),`${page}: ${core}`);assert.ok(fs.existsSync(path.join(d,core)),`${page}: ${core}`);}}});
+test('full deploy includes new endpoint before hosting',()=>{const d=read('scripts/DEPLOY_FULL_FIREBASE.ps1');assert.match(d,/functions:esoriaPublic/);assert.match(d,/GET Cloud Function publik/);const launcher=read('scripts/live/START_LIVE.ps1');assert.match(launcher,/DEPLOY_FULL_FIREBASE\.ps1/);assert.doesNotMatch(launcher,/seed-production\.mjs/);});

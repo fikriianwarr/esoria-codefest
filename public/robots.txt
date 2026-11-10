@@ -1,0 +1,13 @@
+# Public documents can be indexed. Authenticated pages must be protected by server-side checks.
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /profil.html
+Disallow: /form-pendaftaran.html
+Disallow: /pendaftaran-berhasil.html
+Disallow: /auth-action.html
+Disallow: /verify-email.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /forgot-password.html
+Sitemap: https://esoria-codefest.web.app/sitemap.xml

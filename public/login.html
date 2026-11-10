@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Masuk ke akun Esoria CodeFest menggunakan Google atau email dan kata sandi." name="description">
+  <meta content="#f1e8d5" name="theme-color">
+  <title>Masuk Akun | ESORIA CodeFest</title>
+  <link rel="canonical" href="https://esoria-codefest.web.app/login.html">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ESORIA CodeFest">
+  <meta property="og:title" content="Masuk Akun | ESORIA CodeFest">
+  <meta property="og:description" content="Masuk ke akun Esoria CodeFest menggunakan Google atau email dan kata sandi.">
+  <meta property="og:url" content="https://esoria-codefest.web.app/login.html">
+  <meta property="og:image" content="https://esoria-codefest.web.app/assets/logo_esoria.png">
+  <meta name="twitter:card" content="summary">
+
+  <script src="/runtime-config.js"></script>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=20261015-r7">
+  <link href="styles.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="refinement.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="esoria-ui-final.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="cookie-consent.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="responsive-stability.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="auth-mfa.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="account-paper.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <script defer src="account-layout.js?v=b74586eaa5ef6110"></script>
+<link rel="stylesheet" href="paper-tokens.css?v=b74586eaa5ef6110">
+</head>
+<body class="auth-body" data-auth-page="login">
+<header class="auth-header"><div class="container auth-nav"><a class="brand" href="index.html"><span class="brand-mark"><img alt="Logo Esoria" src="assets/logo_esoria.webp"></span><span class="brand-copy"><strong>ESORIA CODEFEST</strong><small>PORTAL AKUN</small></span></a><a class="detail-back" href="index.html">← Beranda</a></div></header>
+
+  <main class="auth-main">
+    <section class="container auth-layout">
+      <article class="auth-story reveal">
+        <span class="auth-kicker">ESORIA CODEFEST</span>
+        <h1>Masuk ke ruangmu.</h1>
+        <p>Lanjutkan aktivitasmu, pantau perkembangan kompetisi, dan lihat hasil terbaru setelah masuk.</p><div aria-hidden="true" class="auth-paper-kit"><div class="auth-paper-poster"><span>ESORIA / CODEFEST</span><strong>CODE.<br>CREATE.<br>COMPETE.</strong><small>WEB / CYBER / FULL STACK</small></div><b class="auth-paper-seal">MAKE<br>YOUR MARK</b><i>✦</i></div>
+      </article>
+
+      <section class="auth-card reveal">
+        <div class="auth-card-ribbon">MASUK AKUN</div>
+        <header class="auth-card-head"><span>SELAMAT DATANG</span><h2>Masuk akun.</h2><p>Pakai Google atau email yang sudah terdaftar.</p></header>
+
+
+        <button class="google-auth-button" id="google-auth" type="button" disabled aria-label="Memeriksa sesi sebelum autentikasi"><span aria-hidden="true" class="google-mark">G</span><strong>Masuk dengan Google</strong><i aria-hidden="true">→</i></button>
+        <section class="auth-mfa-panel" id="auth-mfa-panel" aria-labelledby="auth-mfa-title" hidden>
+          <header><span>VERIFIKASI KEAMANAN / TAHAP 02</span><h3 id="auth-mfa-title">Verifikasi akun.</h3></header>
+          <p id="auth-mfa-description">Selesaikan verifikasi tambahan untuk masuk ke akun.</p>
+          <label class="auth-mfa-method" id="auth-mfa-method-row" hidden><span>Pilih metode verifikasi</span><select id="auth-mfa-method"></select></label>
+          <div class="auth-mfa-recaptcha" id="auth-mfa-recaptcha"></div>
+          <div class="auth-mfa-actions"><button class="auth-mfa-send" id="auth-mfa-send" type="button">Kirim kode</button><button aria-label="Batalkan verifikasi" class="auth-mfa-cancel" id="auth-mfa-cancel" type="button">Batalkan</button></div>
+          <form class="auth-mfa-code-form" id="auth-mfa-code-form" hidden>
+            <label for="auth-mfa-code">Kode 6 digit</label>
+            <input id="auth-mfa-code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6" placeholder="000000" required>
+            <button id="auth-mfa-confirm" type="submit">Verifikasi &amp; Masuk</button>
+          </form>
+          <p class="auth-mfa-feedback" id="auth-mfa-feedback" role="status" aria-live="polite" hidden></p>
+          
+        </section>
+        <div class="auth-divider"><span>atau gunakan akun email</span></div>
+
+        <form class="auth-form" id="auth-form">
+          <div class="auth-field"><label for="auth-identifier">Email aktif</label><div class="auth-input-wrap"><b aria-hidden="true">@</b><input autocomplete="username" id="auth-identifier" name="identifier" placeholder="nama@email.com" required type="email"></div></div>
+          <div class="auth-field"><label for="auth-password">Kata sandi</label><div class="auth-input-wrap"><b aria-hidden="true">••</b><input autocomplete="current-password" id="auth-password" minlength="6" name="password" placeholder="Masukkan kata sandi" required type="password"><button aria-pressed="false" data-toggle-password="auth-password" type="button">Lihat</button></div></div>
+          <a class="auth-forgot" href="forgot-password.html">Lupa kata sandi?</a>
+          <div aria-live="polite" class="auth-alert" hidden id="auth-alert"></div>
+          <button class="btn btn-register auth-submit" id="auth-submit" type="submit" disabled><span>Masuk</span><b aria-hidden="true">→</b></button>
+        </form>
+
+        <p class="auth-switch">Belum memiliki akun? <a href="signup.html">Buat akun baru</a></p>
+      </section>
+    </section>
+  </main>
+  <footer class="auth-footer"><span>ESORIA CODEFEST / PORTAL AKUN</span><p>Pendaftaran, karya, dan pencapaian dalam satu tempat.</p></footer>
+  <script src="script.js?v=b74586eaa5ef6110"></script>
+  <script data-module="./auth-pages.js?v=b74586eaa5ef6110" src="app-loader.js?v=b74586eaa5ef6110"></script>
+  <script data-esoria-cookie src="cookie-consent.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="/analytics-consent.js?v=b74586eaa5ef6110"></script>
+</body>
+</html>

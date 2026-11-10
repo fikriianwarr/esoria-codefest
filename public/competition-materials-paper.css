@@ -1,0 +1,29 @@
+/* ESORIA CodeFest — bahan lomba khusus tiket ACC. Shared responsive paper components. */
+.cf-materials-notice,.cf-materials-dossier,.cf-materials-inline{box-sizing:border-box;max-width:100%;min-width:0}
+.cf-materials-notice{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;border:1px solid #b8a989;border-left:5px solid #17694d;background:#fffaf0;padding:16px 20px;margin-bottom:27px;box-shadow:4px 5px 0 #ddd0b6}
+.cf-materials-notice-number{font:700 12px/1.4 monospace;color:#a52e38;letter-spacing:.1em;padding-top:2px}
+.cf-materials-notice strong{font:700 17px/1.25 Georgia,serif;color:#142e40}
+.cf-materials-notice p{margin:5px 0 0;font-size:13px;color:#3c5361}
+.cf-materials-inline{margin:18px 0 0;padding:15px 17px;border:1px solid #b7aa90;border-left:4px solid #a52e38;background:repeating-linear-gradient(0deg,transparent,transparent 25px,rgba(36,64,78,.025) 26px),#f8f1e3}
+.cf-materials-inline.is-ready{border-left-color:#17694d;background:#edf3e7}
+.cf-materials-inline-label{display:block;color:#94323a;font:700 10px/1.4 monospace;letter-spacing:.11em;margin-bottom:8px;overflow-wrap:anywhere}
+.cf-materials-inline.is-ready .cf-materials-inline-label{color:#1e6550}
+.cf-materials-inline p{font-size:13px;line-height:1.5;margin:0;color:#304856}
+.cf-materials-inline-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cf-materials-inline-row .cf-button{white-space:nowrap;min-height:44px}
+.cf-materials-dossier{border:1px solid #193449;border-top:5px solid #17694d;background:linear-gradient(90deg,transparent 96%,rgba(0,0,0,.025) 96%),#fffaf0;padding:clamp(18px,3vw,28px);margin:0 0 24px;box-shadow:6px 6px 0 #d6cab6}
+.cf-materials-dossier-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.cf-materials-dossier h2{margin:7px 0 6px;font:normal clamp(26px,3vw,38px)/1.1 Georgia,serif;color:#162d40}
+.cf-materials-dossier-heading p{margin:0 0 16px;font-size:14px;color:#4c5e68}
+.cf-materials-seal{display:flex;align-items:center;justify-content:center;width:66px;aspect-ratio:1;flex:none;border:2px double #a42d37;border-radius:50%;color:#9d3039;font:800 10px/1.4 monospace;text-align:center;letter-spacing:.08em;transform:rotate(-10deg)}
+.cf-materials-dossier-foot{border-top:1px dashed #b5a88f;padding-top:15px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px}
+.cf-materials-dossier-foot small{display:block;color:#a12c37;letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:5px;overflow-wrap:anywhere}
+.cf-materials-dossier-foot p{margin:0;color:#334d57;font-size:13px;max-width:650px}
+.cf-materials-dossier-foot .cf-button{white-space:nowrap;min-width:180px}
+.cf-materials-dossier-foot .cf-button:disabled{cursor:not-allowed;opacity:.55}
+.cf-materials-notice :is(p,strong),.cf-materials-dossier :is(p,strong){overflow-wrap:break-word}
+@media(hover:hover){.cf-materials-inline-row .cf-button:not(:disabled):hover,.cf-materials-dossier-foot .cf-button:not(:disabled):hover{transform:translateY(-2px);box-shadow:3px 4px 0 #afbea9}}
+@media(prefers-reduced-motion:no-preference){.cf-materials-inline-row .cf-button,.cf-materials-dossier-foot .cf-button{transition:transform .18s ease,box-shadow .18s ease}}
+@media(max-width:720px){.cf-materials-notice{padding:13px 14px;gap:10px}.cf-materials-notice strong{font-size:15px}.cf-materials-dossier{padding:16px;box-shadow:3px 4px 0 #d6cab6}.cf-materials-dossier-foot{grid-template-columns:1fr;gap:12px}.cf-materials-dossier-foot .cf-button,.cf-materials-inline-row .cf-button{width:100%;min-width:0;white-space:normal}.cf-materials-inline-row{display:grid;grid-template-columns:1fr}.cf-materials-seal{width:52px;font-size:8px}}
+@media(max-width:360px){.cf-materials-seal{display:none}.cf-materials-notice{grid-template-columns:1fr}.cf-materials-inline{padding:12px}}
+[hidden]{display:none!important}

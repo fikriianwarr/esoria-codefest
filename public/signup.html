@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Buat akun Esoria CodeFest dengan Google atau email dan kata sandi." name="description">
+  <meta content="#f1e8d5" name="theme-color">
+  <title>Buat Akun | ESORIA CodeFest</title>
+  <link rel="canonical" href="https://esoria-codefest.web.app/signup.html">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ESORIA CodeFest">
+  <meta property="og:title" content="Buat Akun | ESORIA CodeFest">
+  <meta property="og:description" content="Buat akun Esoria CodeFest dengan Google atau email dan kata sandi.">
+  <meta property="og:url" content="https://esoria-codefest.web.app/signup.html">
+  <meta property="og:image" content="https://esoria-codefest.web.app/assets/logo_esoria.png">
+  <meta name="twitter:card" content="summary">
+
+  <script src="/runtime-config.js"></script>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=20261015-r7">
+  <link href="styles.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="cookie-consent.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="esoria-ui-final.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="responsive-stability.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="account-paper.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <script defer src="account-layout.js?v=b74586eaa5ef6110"></script>
+<link rel="stylesheet" href="paper-tokens.css?v=b74586eaa5ef6110">
+</head>
+<body class="auth-body" data-auth-page="signup">
+<header class="auth-header"><div class="container auth-nav"><a class="brand" href="index.html"><span class="brand-mark"><img alt="Logo Esoria" src="assets/logo_esoria.webp"></span><span class="brand-copy"><strong>ESORIA CODEFEST</strong><small>NEW MEMBER REGISTRY</small></span></a><a class="detail-back" href="index.html">← Beranda</a></div></header>
+
+  <main class="auth-main">
+    <section class="container auth-layout">
+      <article class="auth-story signup-story reveal">
+        <span class="auth-kicker">MEMBER REGISTRATION / 02</span>
+        <h1>Mulai dari sini.</h1>
+        <p>Buat akunmu, pilih tantangan, dan tunjukkan karyamu.</p><div aria-hidden="true" class="auth-paper-kit"><div class="auth-paper-poster"><span>ESORIA / CODEFEST</span><strong>CODE.<br>CREATE.<br>COMPETE.</strong><small>WEB / CYBER / FULL STACK</small></div><b class="auth-paper-seal">MAKE<br>YOUR MARK</b><i>✦</i></div>
+        
+        
+      </article>
+
+      <section class="auth-card reveal">
+        <div class="auth-card-ribbon">CREATE ACCOUNT</div>
+        <header class="auth-card-head"><span>NEW MEMBER FILE</span><h2>Buat akun.</h2><p>Pilih Google atau gunakan email aktif dan kata sandi kuat.</p></header>
+
+
+        <button class="google-auth-button" id="google-auth" type="button" disabled aria-label="Memeriksa sesi sebelum autentikasi"><span aria-hidden="true" class="google-mark">G</span><strong>Daftar dengan Google</strong><i aria-hidden="true">→</i></button>
+        <p class="auth-policy-notice">Baca <a href="legal/privacy-policy.html">Kebijakan Privasi</a> dan <a href="legal/terms-and-conditions.html">Syarat &amp; Ketentuan</a> sebelum membuat akun Google atau email.</p>
+        <div class="auth-divider"><span>atau buat akun dengan email</span></div>
+
+        <form class="auth-form" id="auth-form">
+          <div class="account-step-nav" data-account-steps hidden aria-label="Tahap membuat akun"><button type="button" data-account-tab="identity">Identitas</button><span aria-hidden="true">→</span><button type="button" data-account-tab="security">Kata sandi</button></div>
+          <fieldset class="account-step" data-account-step="identity"><legend>Identitas akun</legend>
+          <div class="auth-field"><label for="signup-name">Nama lengkap</label><div class="auth-input-wrap"><b aria-hidden="true">ID</b><input autocomplete="name" id="signup-name" name="display_name" placeholder="Nama lengkap" required type="text"></div></div>
+          <div class="auth-field"><label for="signup-email">Email aktif</label><div class="auth-input-wrap"><b aria-hidden="true">@</b><input autocomplete="email" id="signup-email" name="email" placeholder="nama@email.com" required type="email"></div></div>
+          </fieldset><fieldset class="account-step" data-account-step="security"><legend>Keamanan akun</legend><div class="auth-field"><label for="auth-password">Kata sandi</label><div class="auth-input-wrap"><b aria-hidden="true">••</b><input autocomplete="new-password" id="auth-password" minlength="10" name="password" placeholder="Min. 10 karakter" required type="password"><button aria-pressed="false" data-toggle-password="auth-password" type="button">Lihat</button></div><div class="password-strength" data-score="0" id="password-strength"><div><i></i></div><span>Belum diisi</span></div></div>
+          <div class="auth-field"><label for="auth-password-confirm">Ulangi kata sandi</label><div class="auth-input-wrap"><b aria-hidden="true" class="auth-icon-repeat"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7H7"></path><path d="M17 4l3 3-3 3"></path><path d="M4 17h13"></path><path d="M7 14l-3 3 3 3"></path></svg></b><input autocomplete="new-password" id="auth-password-confirm" minlength="10" name="password_confirm" placeholder="Ulangi kata sandi" required type="password"><button aria-pressed="false" data-toggle-password="auth-password-confirm" type="button">Lihat</button></div></div>
+          <label class="auth-consent"><input required type="checkbox"><span>Saya menyetujui <a href="legal/terms-and-conditions.html" target="_blank" rel="noopener noreferrer">Syarat &amp; Ketentuan</a> serta memahami <a href="legal/privacy-policy.html" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a>.</span></label>
+          </fieldset><div aria-live="polite" class="auth-alert" hidden id="auth-alert"></div>
+          <div class="account-step-actions"><button class="account-step-back" data-account-back hidden type="button">← Kembali</button><button class="btn btn-register" data-account-next hidden type="button">Lanjut →</button><button class="btn btn-register auth-submit" id="auth-submit" type="submit" disabled><span>Buat Akun</span><b aria-hidden="true">→</b></button></div>
+        </form>
+
+        <p class="auth-switch">Sudah memiliki akun? <a href="login.html">Masuk di sini</a></p>
+      </section>
+    </section>
+  </main>
+  <footer class="auth-footer"><span>ESORIA CODEFEST / MEMBER REGISTRY</span><p>Satu akun untuk profil, pendaftaran, dan pemantauan status.</p></footer>
+  <script src="script.js?v=b74586eaa5ef6110"></script>
+  <script data-module="./auth-pages.js?v=b74586eaa5ef6110" src="app-loader.js?v=b74586eaa5ef6110"></script>
+  <script data-esoria-cookie src="cookie-consent.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="/analytics-consent.js?v=b74586eaa5ef6110"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+/* ESORIA / periode administration v10. Deliberately scoped to the admin page.
+   One editing entry per period; controls remain locked until explicit edit. */
+.admin-body .admin-period-form .period-wave-control header label {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center !important;
+  justify-content: flex-start;
+  gap: 9px !important;
+  padding: 9px 11px !important;
+  min-height: 45px !important;
+  width: 100% !important;
+  border: 1px solid #c3af84 !important;
+  border-radius: 2px;
+  background: #f7f0e0 !important;
+  color: #10243a !important;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+.admin-body .admin-period-form .period-wave-control header label:hover {
+  background: #fff9e9 !important;
+  border-color: #d3ab53 !important;
+}
+.admin-body .admin-period-form .period-wave-control header label:has(input:disabled) {
+  cursor: default;
+}
+.admin-body .admin-period-form .period-wave-control header label input[type="checkbox"] {
+  /* Keep a native, keyboard-focusable control; the adjacent element draws the paper switch. */
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+}
+.admin-body .admin-period-form .period-wave-control header label i {
+  position: relative !important;
+  flex: 0 0 23px !important;
+  display: grid !important;
+  place-items: center;
+  box-sizing: border-box;
+  width: 23px !important;
+  min-width: 23px !important;
+  height: 23px !important;
+  margin: 0 !important;
+  border: 2px solid #4d7168 !important;
+  background: #fffcf2 !important;
+  box-shadow: none !important;
+  border-radius: 3px;
+  transform: none;
+  transition: background-color 140ms ease, border-color 140ms ease;
+}
+.admin-body .admin-period-form .period-wave-control header label i::after {
+  content: '' !important;
+  display: none !important;
+}
+.admin-body .admin-period-form .period-wave-control header label input[type="checkbox"]:checked + i {
+  background: #146d52 !important;
+  border-color: #146d52 !important;
+  box-shadow: none !important;
+}
+.admin-body .admin-period-form .period-wave-control header label input[type="checkbox"]:checked + i::after {
+  content: '✓' !important;
+  position: static !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+  color: #fffdf4;
+  font: 900 18px/1 Arial,sans-serif;
+  transform: none !important;
+}
+.admin-body .admin-period-form .period-wave-control header label input[type="checkbox"]:focus-visible + i {
+  outline: 3px solid #bd922e !important;
+  outline-offset: 3px !important;
+}
+.admin-body .admin-period-form .period-wave-control header label span {
+  color: #10243a !important;
+  font-size: 12px !important;
+  font-weight: 850 !important;
+  line-height: 1.3;
+  opacity: 1 !important;
+}
+.admin-body .admin-period-form[data-edit-mode="view"] .period-wave-control header label i,
+.admin-body .admin-period-form[data-edit-mode="view"] .period-wave-control header label {
+  filter: none !important;
+  opacity: 1 !important;
+}
+.admin-body .admin-period-form[data-edit-mode="view"] .period-wave-control header label {
+  background: #ebe5d8 !important;
+}
+.admin-body .admin-period-form[data-edit-mode="view"] .period-wave-control header label span {
+  color: #24364a !important;
+}
+.admin-body .admin-period-form .period-wave-control[data-disabled] header label {
+  border-color: #b6b1a5 !important;
+  background: #e5e0d6 !important;
+}
+.admin-body .admin-period-form .period-wave-control[data-disabled] header label i {
+  border-color: #737d80 !important;
+}
+/* Saved period cards are reports, not a second editor. */
+.admin-body .period-record-category {
+  min-height: 0 !important;
+  padding: clamp(12px, 1.2vw, 17px) !important;
+}
+.admin-body .period-record-category > header {
+  display: block !important;
+}
+.admin-body .period-record-category h4 {
+  min-height: 0 !important;
+  margin: 15px 0 17px !important;
+  font-size: clamp(1.1rem,1.4vw,1.45rem);
+  line-height: 1.22;
+}
+.admin-body .period-record-wave {
+  grid-template-areas: 'head meter' 'dates meter' !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  min-height: 118px !important;
+  gap: 9px 12px !important;
+  padding: 14px !important;
+}
+.admin-body .period-record-wave small {
+  font-size: clamp(10px,.67vw,12px) !important;
+  line-height: 1.5 !important;
+  overflow-wrap: anywhere;
+}
+.admin-body .period-record-wave header span {font-size: 11px !important;}
+.admin-body .period-record-wave header i {font-size: 9px !important;text-align: right;}
+.admin-body .period-record-wave-meter span {font-size: 10px !important;}
+.admin-body .period-record-head button.period-open-editor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  min-width: 180px;
+  background: #f3e5c7;
+  border: 1px solid #cda957;
+  color: #0c2339;
+  box-shadow: 3px 3px 0 #29415c;
+  font-weight: 850;
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+.admin-body .period-record-head button.period-open-editor:hover {background:#fff1cf;}
+.admin-body .period-record-head button.period-open-editor:active {transform:translate(2px,2px);box-shadow:1px 1px 0 #29415c;}
+.admin-body .admin-period-form[data-edit-mode="view"] .admin-save-button {
+  display: none !important;
+}
+.admin-body .period-edit-state {color: #0c273d;}
+/* Contrast-correct confirmation panel, preserving the paper theme. */
+.admin-body dialog.admin-confirm-dialog {
+  box-sizing: border-box;
+  width: min(520px, calc(100vw - 28px)) !important;
+  padding: clamp(22px,4vw,36px) !important;
+  background: #f8f0de !important;
+  background-image: linear-gradient(90deg,rgba(185,142,57,.075) 1px,transparent 1px),linear-gradient(rgba(185,142,57,.075) 1px,transparent 1px) !important;
+  background-size: 24px 24px !important;
+  border: 1px solid #bda06e !important;
+  border-top: 7px solid #ad2836 !important;
+  color: #10243a !important;
+  color-scheme: light;
+  box-shadow: 9px 11px 0 rgba(0,0,0,.4) !important;
+}
+.admin-body dialog.admin-confirm-dialog .danger-stamp {
+  display: inline-block;
+  color: #9e2530 !important;
+  background: #ffebd0;
+  padding: 7px 10px;
+  border: 1px solid #d9bd89;
+  font: 900 11px/1.2 ui-monospace,Consolas,monospace;
+  letter-spacing: .11em;
+}
+.admin-body dialog.admin-confirm-dialog h2 {
+  margin: 18px 0 10px !important;
+  color: #10243a !important;
+  font-size: clamp(27px,3.5vw,38px) !important;
+  line-height: 1.14 !important;
+  font-weight: 850 !important;
+  overflow-wrap: normal !important;
+}
+.admin-body dialog.admin-confirm-dialog p {
+  margin: 0 !important;
+  color: #34485a !important;
+  font-size: clamp(14px,1.6vw,16px) !important;
+  line-height: 1.65 !important;
+  overflow-wrap: anywhere;
+}
+.admin-body dialog.admin-confirm-dialog > div {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 27px !important;
+}
+.admin-body dialog.admin-confirm-dialog button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 45px;
+  padding: 11px 17px !important;
+  font-size: 13px !important;
+  font-weight: 850 !important;
+  color: #10243a !important;
+  border: 1px solid #5d7080 !important;
+  background: #fffaf0 !important;
+  box-shadow: 3px 3px 0 #c9bba6;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.admin-body dialog.admin-confirm-dialog button.danger {
+  color: #fffef8 !important;
+  background: #aa2836 !important;
+  border-color: #871b2b !important;
+  box-shadow: 3px 3px 0 #b7a6a1;
+}
+.admin-body dialog.admin-confirm-dialog button:not(:disabled):hover {filter:brightness(1.06);}
+.admin-body dialog.admin-confirm-dialog button:not(:disabled):active {transform:translate(2px,2px);box-shadow:1px 1px 0 #c9bba6;}
+.admin-body dialog.admin-confirm-dialog button:focus-visible {outline:3px solid #b18a38;outline-offset:3px;}
+.admin-body dialog.admin-confirm-dialog button:disabled {opacity:.72;cursor:progress;}
+@media(max-width:700px){
+  .admin-body .period-record-head {grid-template-columns: minmax(0,1fr) !important;}
+  .admin-body .period-record-head button.period-open-editor {width:100%;}
+  .admin-body .period-record-wave {grid-template-areas:'head meter' 'dates meter' !important;grid-template-columns:minmax(0,1fr) auto !important;}
+  .admin-body dialog.admin-confirm-dialog > div {display:grid;grid-template-columns:1fr 1fr;}
+  .admin-body dialog.admin-confirm-dialog button {min-width:0;}
+}
+@media(max-width:390px){
+  .admin-body dialog.admin-confirm-dialog > div{grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion: reduce){
+  .admin-body .admin-period-form .period-wave-control header label,
+  .admin-body .admin-period-form .period-wave-control header label i,
+  .admin-body .period-record-head button.period-open-editor,
+  .admin-body dialog.admin-confirm-dialog button {transition:none !important;}
+}
+/* Three-column desktop cards must never clip the capacity field. */
+.admin-body .period-category-card .period-wave-control {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) minmax(108px,.74fr) !important;
+  grid-template-areas: 'wave-top wave-top' 'timeline quota' !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 12px !important;
+}
+.admin-body .period-category-card .period-wave-control > header {
+  grid-area: wave-top !important;
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) minmax(130px,.95fr) !important;
+  gap: 10px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+.admin-body .period-category-card .period-wave-control > p {
+  grid-area: timeline !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  padding: 11px !important;
+  align-self: stretch !important;
+}
+.admin-body .period-category-card .period-wave-control > p b {
+  font-size: 11px !important;
+  overflow-wrap: anywhere;
+}
+.admin-body .period-category-card .period-wave-control .period-capacity-field {
+  grid-area: quota !important;
+  display: grid !important;
+  grid-template-rows: auto 1fr;
+  gap: 6px;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+.admin-body .period-category-card .period-wave-control .period-capacity-field > span {
+  overflow-wrap: anywhere;
+  font-size: 10px !important;
+}
+.admin-body .period-category-card .period-wave-control .period-capacity-field > input {
+  display: block;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+  padding: 8px 10px !important;
+  min-height: 44px !important;
+}
+@media (max-width: 450px) {
+  .admin-body .period-category-card .period-wave-control > header {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+  .admin-body .period-category-card .period-wave-control {
+    grid-template-columns: minmax(0,1fr) minmax(96px,.8fr) !important;
+  }
+}

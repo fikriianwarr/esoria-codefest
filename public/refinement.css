@@ -1,0 +1,224 @@
+/* ESORIA - focused UI refinements, loaded after existing styles. */
+.admin-body .admin-metrics { gap: 9px !important; }
+.admin-body .admin-metrics article {
+  min-height: 94px !important;
+  padding: 12px 15px !important;
+  box-shadow: 3px 4px 0 rgba(0,0,0,.19);
+}
+.admin-body .admin-metrics strong { font-size: clamp(1.75rem,3vw,2.5rem) !important; margin: 5px 0 !important; line-height: 1.05 !important; }
+.admin-body .admin-metrics p { font-size: clamp(.65rem,.9vw,.85rem) !important; margin: 4px 0 0 !important; }
+.admin-body .admin-metrics span { font-size: .58rem !important; }
+.admin-body .admin-header { display: flex; align-items: center; gap: 12px; }
+.admin-body .admin-account { margin-left: auto; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.admin-body .admin-security-trigger { background: #17694d !important; border-color: #72d9b2 !important; color:#fff !important; font-size:.85rem; min-height:40px; }
+.admin-body .admin-security-trigger span { display: inline !important; }
+.admin-body .admin-account > button { flex: 0 0 auto; }
+.admin-body .admin-main { padding-top: clamp(16px,2vw,28px) !important; }
+.admin-body .admin-hero { padding-block: clamp(13px,2vw,22px) !important; }
+.admin-body .admin-hero h1 { font-size: clamp(2rem,4vw,3.6rem) !important; }
+.admin-body .admin-metrics { margin-top: 12px !important; }
+.registration-body .form-progress-panel { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.registration-body .custom-options [role=option]:disabled, .registration-body .custom-options [aria-disabled=true] { opacity: .48; cursor: not-allowed; filter: grayscale(.5); }
+.registration-body .custom-options [role=option]:disabled:hover { background: transparent; }
+/* Saat App Check gagal, jangan biarkan profil di belakang dialog bisa diklik. */
+.auth-error .auth-gate.auth-gate-failed {
+  display:grid !important; position:fixed; inset:0; z-index:9999;
+  width:100%; height:100dvh; max-height:none; transform:none;
+  padding:clamp(14px,3vw,28px); overflow-y:auto;
+  place-content:center; justify-items:center;
+  background:linear-gradient(rgba(36,74,112,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(36,74,112,.055) 1px,transparent 1px),#f4ead7;
+  background-size:18px 18px,18px 18px,auto;
+}
+.auth-error-card {
+  width:min(100%,600px); display:grid; gap:14px;
+  background:#fff9ed; color:#13233a; border:2px solid #b02d38;
+  padding:clamp(20px,4vw,36px); box-shadow:8px 8px 0 #102239;
+}
+.auth-error-kicker { font:700 .68rem/1.5 monospace; letter-spacing:.14em; color:#b02d38; }
+.auth-error-card h1 { font-family:Georgia,serif; font-size:clamp(1.65rem,3.5vw,2.35rem); line-height:1.15; margin:0; }
+.auth-error-card p { font:400 1rem/1.55 system-ui,sans-serif; margin:0; overflow-wrap:anywhere; }
+.auth-error-card .auth-error-advisory { font-size:.87rem; color:#42536b; }
+.auth-error-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+.auth-error-actions a,.auth-error-actions button {
+  cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:11px 16px; font:700 .9rem/1.4 system-ui,sans-serif;
+  border:1px solid #11243d; text-decoration:none; background:#fff9ed; color:#11243d;
+}
+.auth-error-actions button { background:#11243d; color:white; }
+.auth-error-actions :is(a,button):focus-visible { outline:3px solid #d38c2d; outline-offset:3px; }
+@media(max-width:480px){ .auth-error-actions > * { flex:1 1 100%; } }
+.esoria-logout-error { color:#f3d9c5; background:#852a2f; padding:8px; font:600 .75rem/1.4 Arial,sans-serif; }
+@media (max-width: 980px) { .admin-body .admin-header { flex-wrap:wrap; }.admin-body .admin-account { width:auto; } }
+@media (max-width: 760px) {
+ .admin-body .admin-metrics { gap: 6px !important; }
+ .admin-body .admin-metrics article { min-height: 108px !important; flex: 0 0 142px !important; padding: 11px !important; }
+ .admin-body .admin-metrics strong { font-size: 1.95rem !important; }
+ .admin-body .admin-account { width:100%; justify-content: space-between; }
+ .admin-body .admin-account b { max-width: 65vw; overflow-wrap:anywhere; }
+ .admin-body .admin-security-trigger { padding:9px 11px !important; }
+ .registration-body .form-progress-panel { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { .registration-body .form-progress-panel { animation:none !important; transition:none !important; } }
+
+/* Pengendali overlay error berada pada .auth-gate.auth-gate-failed di atas. */
+
+
+/* ESORIA UI readability patch — reuses existing elements, no extra dependencies. */
+.admin-body .admin-hero p {
+  color: #d5e2ee !important;
+  max-width: 860px;
+  line-height: 1.65 !important;
+}
+.admin-body .admin-workspace {
+  background: #0e2238;
+  border-color: #42627f;
+}
+.admin-body .admin-toolbar {
+  background: linear-gradient(130deg, #19334f, #142b44);
+  gap: 13px;
+}
+.admin-body .admin-tabs button {
+  position: relative;
+  min-height: 52px;
+  padding: 10px 12px;
+  color: #eef4fa;
+  background: #112941;
+  border-color: #526d86;
+  line-height: 1.3;
+  transition: background-color 120ms ease, border-color 120ms ease;
+}
+.admin-body .admin-tabs button.active {
+  color: #142238;
+  background: #e7cc79;
+  border-color: #f2dfa3;
+}
+.admin-body .admin-tabs button:focus-visible {
+  outline: 3px solid #f6d071;
+  outline-offset: 2px;
+}
+.admin-body #admin-tab-profile-requests {
+  padding-right: 34px;
+}
+.admin-body #admin-request-tab-count {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 21px;
+  height: 21px;
+  padding: 0 5px;
+  border-radius: 100px;
+  background: #c83743;
+  color: #fff;
+  border: 1px solid #ffe4d1;
+  box-shadow: none;
+  font: 800 11px/1 ui-sans-serif, system-ui, sans-serif;
+  inset-inline-start: auto;
+}
+.admin-body #admin-request-tab-count[hidden] { display: none !important; }
+.admin-body .admin-panel-head p,
+.admin-body .admin-request-guide,
+.admin-body .admin-metrics p { color: #d6e1eb; line-height: 1.65; }
+.admin-body .admin-metrics article {
+  background: linear-gradient(145deg, #17324e, #10253e);
+  border-color: #466582;
+}
+.admin-body .admin-control select,
+.admin-body .admin-search input { border-color: #64819c; }
+/* MFA placeholders must be readable even while code input is disabled. */
+.admin-body .admin-mfa-fields input {
+  color: #11243b !important;
+  background: #fffcf4 !important;
+  border-color: #425a70 !important;
+  font-size: .9rem;
+  min-width: 0;
+}
+.admin-body .admin-mfa-fields input::placeholder {
+  color: #506174 !important;
+  opacity: 1 !important;
+}
+.admin-body .admin-mfa-fields input:disabled {
+  background: #eae5da !important;
+  border-color: #7b8790 !important;
+  color: #35475c !important;
+  -webkit-text-fill-color: #35475c;
+}
+.admin-body .admin-mfa-fields input:disabled::placeholder {
+  color: #5e6974 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #5e6974;
+}
+@media (max-width: 760px) {
+  .admin-body .admin-tabs button { padding: 9px 9px; }
+  .admin-body #admin-tab-profile-requests { padding-right: 32px; }
+  .admin-body #admin-request-tab-count { min-width: 20px; height: 20px; }
+}
+
+/* Brighter paper note in the login side panel. */
+.auth-body .auth-security-note {
+  border: 1px solid #b7a37f;
+  border-left: 6px solid #b52a31;
+  border-top: 4px solid #17476f;
+  background: linear-gradient(110deg, rgba(255,255,255,.55), transparent 75%), #fff7e7;
+  color: #13273e;
+  box-shadow: 5px 6px 0 rgba(8,24,42,.25);
+  padding: clamp(18px,2vw,25px);
+}
+.auth-body .auth-security-note span { color: #963038; font-size: .66rem; letter-spacing: .12em; }
+.auth-body .auth-security-note strong { color: #122a42; font-size: clamp(1.2rem,2vw,1.55rem); line-height: 1.2; }
+.auth-body .auth-security-note p { color: #4d5865; font-size: .85rem; line-height: 1.6; }
+
+
+/* === Landing responsive CTA refinement v20261016b === */
+@media (max-width: 560px) {
+  .landing-body .hero-copy .hero-actions,
+  .landing-body .cta-copy .hero-actions.center-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px !important;
+    width: 100%;
+  }
+  .landing-body .hero-copy .hero-actions .btn,
+  .landing-body .cta-copy .hero-actions.center-actions .btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: normal;
+  }
+}
+@media (max-width: 380px) {
+  .landing-body .hero-copy .hero-actions,
+  .landing-body .cta-copy .hero-actions.center-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Paper tickets for the participant registration page. */
+.registration-body .registration-intro{display:flex;flex-direction:column;gap:20px;min-height:440px}
+.registration-body .registration-intro .detail-tag{align-self:flex-start}
+.registration-body .registration-intro h1{margin:0;font-size:clamp(2.6rem,4.6vw,4.25rem);line-height:.99;max-width:15ch}
+.registration-body .registration-intro > p{margin:0;max-width:55ch;font-size:.95rem;line-height:1.65}
+.registration-body .registration-intro .registration-flow-mini{position:relative!important;inset:auto!important;gap:10px;width:100%;margin-top:auto!important;padding:12px;border:1px solid #213b52;background:repeating-linear-gradient(135deg,transparent 0 5px,rgba(83,66,38,.025) 5px 6px),#f0e5ce;box-shadow:4px 5px 0 rgba(25,42,58,.1)}
+.registration-body .registration-intro .registration-flow-mini > span{--step-ink:#214966;display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:start;align-items:center;gap:8px;min-width:0;min-height:141px;padding:13px 11px;color:#172b3d;border:1px solid #c5b99e;border-right:1px solid #c5b99e;background:#fffaf0;box-shadow:2px 3px 0 rgba(37,45,52,.1);transform:rotate(-1deg)}
+.registration-body .registration-intro .registration-flow-mini > span:nth-child(2){--step-ink:#a02b30;transform:rotate(1deg)}
+.registration-body .registration-intro .registration-flow-mini > span:nth-child(3){--step-ink:#17684d;transform:rotate(-.7deg)}
+.registration-body .registration-intro .registration-flow-mini b{color:var(--step-ink);font:900 .65rem/1 var(--mono)}
+.registration-body .registration-intro .registration-flow-mini i{display:grid;place-items:center;width:32px;height:32px;color:var(--step-ink);border:1px solid currentColor;background:#f8f0dc;font-style:normal}
+.registration-body .registration-intro .registration-flow-mini svg{stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.registration-body .registration-intro .registration-flow-mini strong{grid-column:1/-1;font:900 1rem/1.12 var(--serif);letter-spacing:-.015em;overflow-wrap:normal;word-break:normal}
+.registration-body .registration-intro .registration-flow-mini small{grid-column:1/-1;font:500 .68rem/1.45 var(--sans);color:#645f55;overflow-wrap:normal;word-break:normal}
+
+@media(max-width:420px){
+ .registration-body .registration-intro .registration-flow-mini{gap:7px;padding:10px 8px}
+ .registration-body .registration-intro .registration-flow-mini > span{gap:7px;min-height:142px;padding:11px 7px}
+ .registration-body .registration-intro .registration-flow-mini i{width:26px;height:28px}
+ .registration-body .registration-intro .registration-flow-mini svg{width:20px;height:20px}
+ .registration-body .registration-intro .registration-flow-mini strong{font-size:.85rem}
+ .registration-body .registration-intro .registration-flow-mini small{font-size:.65rem;line-height:1.4}
+}
+
+.registration-body .bank-security-seal{position:relative;right:auto!important;bottom:auto!important;width:96px;height:96px;margin:20px 0 0 auto;animation:none}

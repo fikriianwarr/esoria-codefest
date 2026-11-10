@@ -1,0 +1,17 @@
+/* Decision dialogs: shorter readable fields, no misleading second selection. */
+body[data-workspace="operations"] .cf-dialog {width:min(780px,calc(100% - 28px));max-height:min(86dvh,840px);padding:clamp(15px,2vw,26px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b2a386 transparent;}
+body[data-workspace="operations"] .cf-dialog>header {position:sticky;top:0;z-index:2;align-items:center;padding:0 0 13px;margin-bottom:14px;border-bottom:1px solid #c8baa3;background:var(--esoria-sheet);}
+body[data-workspace="operations"] .cf-dialog>header h2{margin:0;font-size:clamp(23px,2.7vw,34px);line-height:1.12;}
+body[data-workspace="operations"] #operation-action-form {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;align-items:start;}
+body[data-workspace="operations"] #operation-action-form .cf-field {min-width:0;margin:0;}
+body[data-workspace="operations"] #operation-action-form .cf-field :is(input,select,textarea){width:100%;min-width:0;box-sizing:border-box;font:inherit;}
+body[data-workspace="operations"] #operation-action-form .cf-field textarea {resize:vertical;min-height:80px;height:clamp(80px,12dvh,112px);line-height:1.5;padding:10px;}
+body[data-workspace="operations"] #operation-action-form :is(.cf-field,.cf-check)[hidden]{display:none!important;}
+body[data-workspace="operations"] #operation-action-form .cf-help{margin:0;grid-column:1/-1;line-height:1.45;overflow-wrap:anywhere;}
+body[data-workspace="operations"] #operation-action-form .cf-check{align-items:center;padding:8px 12px;background:#e6ece1;border-left:3px solid #265e4c;}
+body[data-workspace="operations"] #operation-action-form .cf-check input{width:20px;height:20px;flex:none;}
+body[data-workspace="operations"] #operation-action-form>.cf-button[type="submit"]{grid-column:1/-1;position:sticky;bottom:-1px;z-index:1;min-height:46px;box-shadow:0 -7px 0 var(--esoria-sheet);}
+body[data-workspace="operations"] #operations-list .cf-facts dd{overflow-wrap:anywhere;line-height:1.45;}
+body[data-workspace="operations"] #operations-list .cf-actions .cf-button{min-height:42px;display:inline-flex;align-items:center;justify-content:center;text-align:center;white-space:normal;line-height:1.35;}
+@media(max-width:600px){body[data-workspace="operations"] #operation-action-form{grid-template-columns:minmax(0,1fr);gap:10px;}body[data-workspace="operations"] .cf-dialog{max-height:89dvh;}body[data-workspace="operations"] #operation-action-form .cf-field textarea{height:88px;}body[data-workspace="operations"] .cf-dialog>header h2{font-size:24px;}}
+@media(max-height:620px){body[data-workspace="operations"] .cf-dialog{max-height:91dvh;}body[data-workspace="operations"] #operation-action-form .cf-field textarea{height:74px;min-height:74px;}}

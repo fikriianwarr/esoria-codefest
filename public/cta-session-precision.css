@@ -1,0 +1,175 @@
+/* ESORIA v3 — layout pairs, readable receipt and non-interactive session check. */
+:root[data-auth-state="checking"] [data-auth-link],
+:root[data-auth-state="verification-error"] [data-auth-link],
+[data-auth-link][aria-disabled="true"] {
+  pointer-events: none !important;
+  cursor: progress !important;
+  opacity: .7;
+  filter: saturate(.7);
+}
+[data-auth-link][aria-disabled="true"]:focus-visible { outline: none; }
+
+/* Consistent side-by-side action pairs. No clipping of long translated text. */
+.landing-body .hero-copy .hero-actions,
+.landing-body .cta-copy .hero-actions.center-actions,
+.ticket-detail-body .detail-cta,
+.success-body .hero-actions,
+.success-dossier .center-actions {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: clamp(6px, 1.3vw, 12px) !important;
+}
+:is(.landing-body .hero-copy .hero-actions,
+     .landing-body .cta-copy .hero-actions.center-actions,
+     .ticket-detail-body .detail-cta,
+     .success-body .hero-actions,
+     .success-dossier .center-actions) > :is(a,button,.btn) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 50px !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 9px 12px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  line-height: 1.22 !important;
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: normal;
+}
+:is(.landing-body .hero-copy .hero-actions,
+     .landing-body .cta-copy .hero-actions.center-actions,
+     .ticket-detail-body .detail-cta,
+     .success-body .hero-actions,
+     .success-dossier .center-actions) > :is(a,button,.btn) > b { margin-left: 8px !important; }
+:is(.landing-body .hero-copy .hero-actions,
+     .landing-body .cta-copy .hero-actions.center-actions,
+     .ticket-detail-body .detail-cta,
+     .success-body .hero-actions,
+     .success-dossier .center-actions):has(> :only-child) { grid-template-columns: minmax(0,1fr) !important; }
+
+/* The green registration action and its adjoining paper note remain balanced. */
+.landing-body .ticket-action-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  align-items: stretch !important;
+  gap: 9px !important;
+}
+.landing-body .ticket-action-grid > * { min-width: 0 !important; height: auto !important; }
+.landing-body .ticket-action-grid .ticket-payment-cta,
+.landing-body .registration-ready-card {
+  min-height: 76px !important;
+  padding: 12px 14px !important;
+}
+.landing-body .registration-ready-card {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+.landing-body .registration-ready-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+.landing-body .registration-ready-copy strong {
+  max-width: none !important;
+  font-size: clamp(.92rem, 1.6vw, 1.17rem) !important;
+  line-height: 1.22 !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+.landing-body .registration-ready-tags { flex: 0 0 auto; }
+@media (max-width: 1000px) {
+  .landing-body .registration-ready-tags { display: none !important; }
+  .landing-body .registration-ready-copy p { font-size: .68rem !important; }
+}
+@media (max-width: 760px) {
+  .landing-body .hero-copy .hero-actions,
+  .landing-body .cta-copy .hero-actions.center-actions,
+  .ticket-detail-body .detail-cta,
+  .success-body .hero-actions,
+  .success-dossier .center-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 7px !important;
+  }
+  :is(.landing-body .hero-copy .hero-actions,
+       .landing-body .cta-copy .hero-actions.center-actions,
+       .ticket-detail-body .detail-cta,
+       .success-body .hero-actions,
+       .success-dossier .center-actions) > :is(a,button,.btn) {
+    min-height: 46px !important;
+    padding: 8px 7px !important;
+    font-size: clamp(.64rem, 2vw, .74rem) !important;
+  }
+  .landing-body .ticket-action-grid .ticket-payment-cta,
+  .landing-body .registration-ready-card { min-height: 70px !important; }
+  .landing-body .registration-ready-copy strong {
+    font-size: clamp(.73rem, 2.3vw, .91rem) !important;
+    line-height: 1.18 !important;
+  }
+  .landing-body .registration-ready-copy p { display: none !important; }
+}
+@media (max-width: 440px) {
+  .landing-body .ticket-action-grid { gap: 7px !important; }
+  .landing-body .ticket-action-grid .ticket-payment-cta {
+    padding: 10px 9px !important;
+    gap: 7px !important;
+    grid-template-columns: minmax(0,1fr) 30px !important;
+  }
+  .landing-body .ticket-action-grid .ticket-payment-cta > b { width:30px !important; height:30px !important; }
+  .landing-body .ticket-action-grid .ticket-payment-cta .registration-cta-copy strong { font-size: .83rem !important; }
+  .landing-body .registration-ready-card { padding: 9px 10px !important; }
+  .landing-body .registration-ready-copy > span { font-size: .42rem !important; }
+  .landing-body .registration-ready-copy strong { font-size: .76rem !important; }
+}
+@media (max-width: 350px) {
+  :is(.landing-body .hero-copy .hero-actions,
+       .landing-body .cta-copy .hero-actions.center-actions,
+       .ticket-detail-body .detail-cta,
+       .success-body .hero-actions,
+       .success-dossier .center-actions) > :is(a,button,.btn) { font-size: .63rem !important; }
+  .landing-body .ticket-action-grid .ticket-payment-cta .registration-cta-copy small { display:none !important; }
+}
+
+/* Final responsive action grouping: keep ticket actions paired even when an
+   older paper-theme rule has a higher-specificity mobile grid override. */
+.ticket-detail-body .important-copy .detail-cta {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: 8px !important;
+}
+.ticket-detail-body .important-copy .detail-cta > .btn {
+  min-width: 0 !important;
+  min-height: 50px !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 9px 11px !important;
+  font-size: .74rem !important;
+  line-height: 1.2 !important;
+}
+/* The success screen has THREE valid actions; no orphaned third button. */
+.success-dossier .center-actions {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+@media (max-width: 760px) {
+  .ticket-detail-body .important-copy .detail-cta {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .ticket-detail-body .important-copy .detail-cta > .btn {
+    min-height: 48px !important;
+    padding: 8px 7px !important;
+    font-size: .68rem !important;
+  }
+  .success-dossier .center-actions { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .success-dossier .center-actions > :is(a,button,.btn) {
+    min-height: 58px !important;
+    padding: 8px 5px !important;
+    font-size: clamp(.58rem, 1.85vw, .72rem) !important;
+  }
+}

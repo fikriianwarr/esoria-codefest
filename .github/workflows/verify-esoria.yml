@@ -1,0 +1,36 @@
+name: Verify ESORIA CodeFest
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm ci --no-fund
+      - run: npm ci --no-fund --prefix functions
+      # Local .env.<projectId> files are ignored by Git; CI uses non-secret
+      # representative flags for source and emulator checks (never live secrets).
+      - name: Prepare non-secret CI environment flags
+        run: |
+          cp functions/.env.example functions/.env.esoria-codefest
+          printf 'ENFORCE_APP_CHECK=false\nREQUIRE_ADMIN_MFA=false\nREQUIRE_RECENT_ADMIN_AUTH=false\nFUNCTIONS_REGION=asia-southeast2\nNOTIFICATION_RETENTION_DAYS=365\n' > functions/.env.demo-esoria-codefest
+      - run: npm run lint
+      - run: npm run check
+      - run: npm run audit:css
+      - run: npm run test
+      - run: npm run test:emulator
+      # No Firebase deploy or credentials in this workflow.

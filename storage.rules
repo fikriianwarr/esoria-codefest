@@ -1,0 +1,121 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() {
+      return request.auth != null
+        && firestore.exists(/databases/(default)/documents/accountSessions/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/accountSessions/$(request.auth.uid)).data.authTime == request.auth.token.auth_time;
+    }
+
+    function verified() {
+      return signedIn() && request.auth.token.email_verified == true;
+    }
+
+    function adminDocument() {
+      return signedIn()
+        && firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/admins/$(request.auth.uid)).data.active == true;
+    }
+
+    function activeAdmin() {
+      return verified() && adminDocument();
+    }
+
+    function activeParticipant(uid) {
+      return verified()
+        && request.auth.uid == uid
+        && !firestore.exists(/databases/(default)/documents/admins/$(uid))
+        && firestore.exists(/databases/(default)/documents/users/$(uid))
+        && firestore.get(/databases/(default)/documents/users/$(uid)).data.archived != true
+        && firestore.get(/databases/(default)/documents/users/$(uid)).data.role != 'admin';
+    }
+
+    function proofIntent() {
+      return firestore.get(/databases/(default)/documents/proofUploadIntents/$(request.resource.metadata.get('uploadId', ''))).data;
+    }
+    match /payment-proofs/{uid}/{registrationId}/{fileName} {
+      allow create: if verified() && request.auth.uid == uid
+        && resource == null
+        && fileName.matches('^[A-Za-z0-9][A-Za-z0-9._-]{0,119}[.]jpg$')
+        && request.resource.size > 0
+        && request.resource.size <= 368640
+        && request.resource.contentType == 'image/jpeg'
+        && request.resource.metadata.get('ownerUid', '') == uid
+        && request.resource.metadata.get('registrationId', '') == registrationId
+        && request.resource.metadata.get('sha256', '').matches('^[a-f0-9]{64}$')
+        && request.resource.metadata.get('uploadId', '').matches('^[a-f0-9-]{36}$')
+        && firestore.exists(/databases/(default)/documents/proofUploadIntents/$(request.resource.metadata.get('uploadId', '')))
+        && proofIntent().ownerUid == uid
+        && proofIntent().registrationId == registrationId
+        && proofIntent().status == 'pending' && proofIntent().expiresAt > request.time
+        && proofIntent().storagePath == 'payment-proofs/' + uid + '/' + registrationId + '/' + fileName
+        && proofIntent().sizeBytes == request.resource.size
+        && proofIntent().sha256 == request.resource.metadata.get('sha256', '');
+
+      allow get: if verified()
+        && firestore.exists(/databases/(default)/documents/registrations/$(registrationId))
+        && firestore.get(/databases/(default)/documents/registrations/$(registrationId)).data.paymentProofAttached == true
+        && firestore.get(/databases/(default)/documents/registrations/$(registrationId)).data.proofStoragePath == 'payment-proofs/' + uid + '/' + registrationId + '/' + fileName
+        && (firestore.get(/databases/(default)/documents/registrations/$(registrationId)).data.get('proofRetentionUntil', null) == null
+          || firestore.get(/databases/(default)/documents/registrations/$(registrationId)).data.proofRetentionUntil > request.time)
+        && ((request.auth.uid == uid
+          && firestore.exists(/databases/(default)/documents/users/$(uid))
+          && firestore.get(/databases/(default)/documents/users/$(uid)).data.archived != true)
+          || (request.auth.uid != uid && activeAdmin()));
+      allow list: if false;
+      allow update, delete: if false;
+    }
+
+    // Immutable candidates prevent a failed replacement from overwriting the
+    // current photo. The API verifies bytes/hash before changing users/{uid}.
+    match /profile-photos/{uid}/{fileName} {
+      allow create: if activeParticipant(uid)
+        && resource == null
+        && fileName.matches('^[A-Za-z0-9-]{20,80}[.]jpg$')
+        && request.resource.size > 0
+        && request.resource.size <= 262144
+        && request.resource.contentType == 'image/jpeg'
+        && request.resource.metadata.get('ownerUid', '') == uid
+        && request.resource.metadata.get('sha256', '').matches('^[a-f0-9]{64}$');
+      allow get: if resource != null
+        && (activeAdmin() || activeParticipant(uid))
+        && resource.metadata.get('ownerUid', '') == uid;
+      allow list, update: if false;
+      allow delete: if resource != null && activeParticipant(uid)
+        && resource.metadata.get('ownerUid', '') == uid
+        && firestore.get(/databases/(default)/documents/users/$(uid)).data.get('photoStoragePath', '')
+          != 'profile-photos/' + uid + '/' + fileName;
+    }
+
+    // Upload intents are issued by the server after ownership, profile and deadline checks.
+    function submissionIntent() {
+      return firestore.get(/databases/(default)/documents/submissionUploads/$(request.resource.metadata.get('uploadId', ''))).data;
+    }
+    match /submission-files/{uid}/{registrationId}/{fileName} {
+      allow create: if verified() && request.auth.uid == uid
+        && resource == null
+        && request.resource.size > 0 && request.resource.size <= 5242880
+        && request.resource.contentType in ['application/pdf', 'image/png', 'image/jpeg']
+        && request.resource.metadata.get('ownerUid', '') == uid
+        && request.resource.metadata.get('registrationId', '') == registrationId
+        && request.resource.metadata.get('sha256', '').matches('^[a-f0-9]{64}$')
+        && request.resource.metadata.get('uploadId', '').matches('^[a-f0-9-]{36}$')
+        && firestore.exists(/databases/(default)/documents/submissionUploads/$(request.resource.metadata.get('uploadId', '')))
+        && submissionIntent().ownerUid == uid
+        && submissionIntent().registrationId == registrationId
+        && submissionIntent().status == 'pending'
+        && submissionIntent().expiresAt > request.time
+        && submissionIntent().storagePath == 'submission-files/' + uid + '/' + registrationId + '/' + fileName
+        && submissionIntent().sizeBytes == request.resource.size
+        && submissionIntent().mimeType == request.resource.contentType
+        && submissionIntent().sha256 == request.resource.metadata.get('sha256', '');
+      allow read, update, delete: if false;
+    }
+    // Only Admin and Member accounts exist. Generated certificates are downloaded through a revocation-aware callable API; direct Storage reads stay denied.
+    match /certificates/{all=**} { allow read, write: if false; }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

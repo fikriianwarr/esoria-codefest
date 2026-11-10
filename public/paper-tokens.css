@@ -1,0 +1,20 @@
+:root {
+  --esoria-paper: #f4efdf;
+  --esoria-sheet: #fffdf5;
+  --esoria-ink: #172c3c;
+  --esoria-muted: #51616b;
+  --esoria-red: #9e3430;
+  --esoria-green: #245d4d;
+  --esoria-line: #b9b4a5;
+  --esoria-focus: #145a81;
+  --esoria-shadow: 0 3px 0 #172c3c, 0 9px 23px #172c3c0d;
+  --esoria-touch: 44px;
+  color-scheme: light;
+}
+:where(button, a, input, select, textarea, summary):focus-visible {outline: 3px solid var(--esoria-focus); outline-offset: 4px;}
+:where(button, input, select, textarea):disabled {cursor: not-allowed;}
+:where([hidden]) {display: none !important;}
+:where(.ticket-participant-note, .participant-notes, .form-note, .profile-lock-banner) {word-break: normal; overflow-wrap: break-word; hyphens: none;}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important;}
+}

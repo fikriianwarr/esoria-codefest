@@ -1,0 +1,28 @@
+.profile-body .profile-avatar{position:relative;isolation:isolate;overflow:hidden;transform:none!important}
+.profile-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.profile-avatar img[hidden],.profile-avatar span[hidden],.profile-photo-controls [hidden]{display:none!important}
+.profile-avatar > span{display:grid;place-items:center;width:100%;height:100%}
+.profile-body .profile-identity-head{grid-template-columns:58px minmax(0,1fr) auto!important;gap:12px!important;align-items:center}
+.profile-body .profile-identity-copy h1{font-size:clamp(1.25rem,2.5vw,1.8rem)!important;line-height:1.1!important;overflow-wrap:anywhere}
+.profile-body .profile-identity-copy p{font-size:.76rem!important;line-height:1.45!important;overflow-wrap:anywhere}
+.profile-body .profile-avatar{width:58px!important;height:58px!important}
+.profile-photo-controls{display:grid;gap:8px;min-width:0;margin-top:0}
+.profile-photo-actions{display:flex;flex-wrap:wrap;gap:8px}
+.profile-photo-actions[hidden]{display:none}
+.profile-photo-picker,.profile-photo-actions button{min-height:40px;padding:8px 12px;border:1px solid rgba(230,211,167,.6);background:rgba(255,255,255,.07);color:#fcf7ec;font:800 .7rem/1.3 var(--sans,Arial,sans-serif);cursor:pointer;box-shadow:none}
+.profile-photo-picker{justify-self:end;max-width:100%;white-space:nowrap}
+.profile-photo-actions button[data-primary]{background:#f3ebdd;color:#15283a;border-color:#f3ebdd}
+.profile-photo-picker:focus-visible,.profile-photo-actions button:focus-visible{outline:3px solid #dfc581;outline-offset:3px}
+.profile-photo-picker:disabled,.profile-photo-actions button:disabled{opacity:.55;cursor:wait}
+.profile-photo-status{margin:0!important;max-width:48ch;color:#ded5c4!important;font-size:.72rem!important;line-height:1.6!important;overflow-wrap:anywhere}
+.profile-photo-status[data-state="error"]{color:#ffd0c9!important}
+.profile-photo-status[data-state="success"]{color:#b9efd4!important}
+@media(max-width:400px){
+ .profile-body .profile-identity-head{grid-template-columns:48px minmax(0,1fr) auto!important;gap:9px!important}
+ .profile-body .profile-avatar{width:48px!important;height:48px!important}
+ .profile-body .profile-identity-copy h1{font-size:1.2rem!important}
+ .profile-body .profile-identity-copy p{font-size:.71rem!important}
+ .profile-photo-picker{padding:8px;font-size:.65rem}
+ .profile-photo-status{font-size:.7rem!important}
+}
+

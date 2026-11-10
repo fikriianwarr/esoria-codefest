@@ -1,0 +1,11 @@
+[
+  {
+    "origin": [
+      "https://esoria-codefest.web.app",
+      "https://esoria-codefest.firebaseapp.com"
+    ],
+    "method": ["GET", "HEAD"],
+    "responseHeader": ["Content-Type", "Content-Length", "Cache-Control"],
+    "maxAgeSeconds": 3600
+  }
+]

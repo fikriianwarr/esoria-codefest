@@ -1,0 +1,102 @@
+/* ESORIA Paper UI — navigation/layout alignment (20 October 2026). */
+:root{--ec-nav-ink:#173549;--ec-nav-cream:#f5ecd9;--ec-nav-line:#bdae93;--ec-nav-red:#b12d36}
+/* Keep workspace navigation a real editorial paper band, including Submission. */
+body[data-workspace="submission"] .cf-header{gap:10px;min-width:0}
+body[data-workspace="submission"] .cf-header>.cf-brand{min-width:0}
+body[data-workspace="submission"] .cf-header>nav.cf-nav{display:flex;flex-wrap:wrap;gap:6px;min-width:0;padding:6px;border:1px solid var(--ec-nav-line);background:#ede4d1;box-shadow:3px 4px 0 #d6c7ad}
+body[data-workspace="submission"] .cf-header>nav.cf-nav>:is(a,button):not([hidden]){box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:44px;min-width:0;padding:8px 12px;background:#fff9ed;border:1px solid #c4b498;color:var(--ec-nav-ink);text-decoration:none;font-weight:750;box-shadow:inset 0 -3px #e4d6bd;transition:background .16s ease,transform .16s ease}
+body[data-workspace="submission"] .cf-header>nav.cf-nav>:is(a,button):hover{background:#f4e7ce;transform:translateY(-1px)}
+body[data-workspace="submission"] .cf-header>nav.cf-nav>a[aria-current="page"]{background:var(--ec-nav-ink);color:#fff9eb;box-shadow:inset 0 -3px var(--ec-nav-red)}
+body[data-workspace="submission"] .cf-header>nav.cf-nav>button[data-logout]:not([hidden]){color:#8e252e;background:#f9e5dd;border-color:#bf716a;box-shadow:inset 0 -3px #be4a4b}
+body[data-workspace="submission"] .cf-header>nav.cf-nav>:is(a,button)[hidden]{display:none!important}
+@media(max-width:720px){
+  /* Navigation is a compact grid, not a horizontally scrolling desktop row. */
+  body[data-workspace="submission"] .cf-header{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding-block:13px}
+  body[data-workspace="submission"] .cf-header>.cf-brand{max-width:100%;width:100%;font-size:clamp(13px,3vw,17px)}
+  body[data-workspace="submission"] .cf-header>nav.cf-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px!important;width:100%;max-width:100%;overflow-x:clip;padding:5px}
+  body[data-workspace="submission"] .cf-header>nav.cf-nav:has(>button[data-logout]:not([hidden])){grid-template-columns:repeat(6,minmax(0,1fr))}
+  body[data-workspace="submission"] .cf-header>nav.cf-nav>:is(a,button):not([hidden]){min-height:44px;max-width:100%;padding:7px 2px;font-size:clamp(9px,2.25vw,11px);letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:clip;line-height:1.15;box-shadow:inset 0 -3px #e0d1b5}
+  body[data-workspace="submission"] .cf-header>nav.cf-nav>:is(a,button):focus-visible{outline:3px solid #bd9149;outline-offset:1px}
+  body[data-workspace="submission"] .cf-header>nav.cf-nav>button[data-logout]:not([hidden]){box-shadow:inset 0 -3px #bf4e4e}
+}
+/* Results & staff paper popup: two-column tabs prevent giant vertical menus. */
+@media(max-width:720px){
+  body.cf-paper-menu-ready:is([data-workspace="results"],[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced].is-paper-menu-open:not([hidden]){
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:5px!important;width:min(308px,calc(100vw - 28px))!important;
+    max-height:min(68dvh,340px);padding:9px!important;align-items:stretch;
+  }
+  body.cf-paper-menu-ready:is([data-workspace="results"],[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced] :is(a,button):not([hidden]){
+    justify-content:center!important;text-align:center!important;min-height:44px!important;
+    font-size:clamp(10px,2.5vw,12px)!important;padding:7px 5px!important;
+    white-space:normal!important;overflow-wrap:normal;line-height:1.16!important;
+    background:#fffaf0;border:1px solid #c9bba2;box-shadow:inset 0 -2px #e4d8c7;
+  }
+  body.cf-paper-menu-ready:is([data-workspace="results"],[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced] [aria-current="page"]:not([hidden]){
+    background:#19394d;color:white;box-shadow:inset 0 -3px #b6303c;
+  }
+  body.cf-paper-menu-ready:is([data-workspace="results"],[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced] button[data-logout]:not([hidden]){
+    grid-column:auto;margin:0!important;color:#8b2b2c;background:#fae6df;border-color:#c27872;
+  }
+  /* Never expose hidden staff/nav links while Firebase checks the role. */
+  body.cf-paper-menu-ready .cf-header nav.cf-nav[hidden],
+  body.cf-paper-menu-ready .cf-header nav.cf-nav :is(a,button)[hidden]{display:none!important}
+  /* During session restoration, brand gets full width. Indicator and menu
+     occupy their own compact row instead of crushing the ESORIA wordmark. */
+  html.esoria-context-pending body[data-workspace="results"].cf-paper-menu-ready .cf-header{
+    display:grid!important;grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:auto auto;gap:8px;align-items:center;
+  }
+  html.esoria-context-pending body[data-workspace="results"].cf-paper-menu-ready .cf-header>.cf-brand{
+    grid-column:1/-1;grid-row:1;max-width:100%!important;min-width:0;width:100%;
+  }
+  html.esoria-context-pending body[data-workspace="results"].cf-paper-menu-ready .cf-header>nav.cf-nav-pending{
+    grid-column:1;grid-row:2;position:static;display:flex!important;
+    width:100%!important;min-width:0!important;max-width:none!important;
+    flex:auto!important;margin:0!important;min-height:42px!important;max-height:48px;
+    padding:7px 10px!important;overflow:hidden;
+  }
+  html.esoria-context-pending body[data-workspace="results"].cf-paper-menu-ready .cf-header>.cf-paper-menu-toggle:not([hidden]){
+    grid-column:2;grid-row:2;min-height:42px;margin:0;min-width:93px;
+  }
+  html.esoria-context-pending body[data-workspace="results"].cf-paper-menu-ready .cf-header>nav.cf-nav-pending span{
+    display:block;width:100%;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+}
+@media(prefers-reduced-motion:reduce){body[data-workspace="submission"] .cf-header>nav.cf-nav>:is(a,button){transition:none!important}}
+
+/* Staff auth-pending navigation: never overlap brand, never create mobile menu before claims are ready. */
+@media(max-width:720px){
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-header{
+    display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+    gap:10px!important;align-items:stretch!important;
+  }
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-header>.cf-brand{
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    margin:0!important;position:static!important;
+  }
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-header>.cf-nav-verifying{
+    position:static!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+    width:100%!important;max-width:100%!important;min-width:0!important;
+    padding:7px!important;gap:6px!important;margin:0!important;
+    overflow:visible!important;box-sizing:border-box!important;
+  }
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-nav-verifying>span:not(.cf-nav-pending-status){display:none!important}
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-nav-verifying>.cf-nav-pending-status{
+    display:flex!important;grid-column:1!important;grid-row:1!important;
+    min-width:0!important;min-height:42px!important;justify-content:center!important;
+    text-align:center!important;font-size:12px!important;line-height:1.3!important;
+    white-space:normal!important;
+  }
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-nav-verifying>a[href="results.html"]{
+    grid-column:2!important;grid-row:1!important;display:flex!important;
+    padding:7px 9px!important;min-height:42px!important;font-size:11px!important;
+    white-space:nowrap!important;background:#fff9ea!important;border:1px solid #baa789!important;
+  }
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-nav-verifying>button[data-logout]:not([hidden]){
+    grid-column:1/-1!important;grid-row:2!important;min-height:40px!important;
+  }
+  body:is([data-workspace="operations"],[data-workspace="jury"]).auth-pending .cf-header>.cf-paper-menu-toggle{
+    display:none!important;
+  }
+}

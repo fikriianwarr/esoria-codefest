@@ -1,0 +1,254 @@
+/* ESORIA role-safe compact UI. Loaded LAST on public results and staff workspaces. */
+:where(body.esoria-dossier-page, body[data-workspace="jury"], body[data-workspace="operations"]) .cf-nav [hidden],
+:where(body.esoria-dossier-page, body[data-workspace="jury"], body[data-workspace="operations"]) .cf-nav[hidden],
+.cf-paper-month-panel[hidden] {display:none!important}
+.cf-paper-month {position:relative;min-width:0}
+.cf-paper-month-native {position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important;pointer-events:none!important}
+.cf-paper-month-trigger {box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:9px 12px!important;text-align:left;font-size:14px!important;color:#153346;background:#fffdf5;border:1px solid #887d6a;border-radius:0;box-shadow:2px 3px 0 #ded1b7;cursor:pointer}
+.cf-paper-month-trigger:focus-visible,.cf-paper-month-panel button:focus-visible{outline:3px solid #a57226;outline-offset:2px}
+.cf-paper-month-trigger>span:last-child{font-size:21px;color:#17364a}
+.cf-paper-month.is-open{z-index:80}
+.cf-paper-month-panel {position:absolute;top:calc(100% + 7px);left:0;z-index:90;box-sizing:border-box;width:min(320px,calc(100vw - 36px));max-height:min(365px,calc(100dvh - 35px));padding:12px;background:#fffaf0;border:1px solid #1a3546;box-shadow:5px 6px 0 #d3c5ab;overflow-y:auto;color:#173246}
+.cf-paper-month-header,.cf-paper-month-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cf-paper-month-header{border-bottom:1px dashed #c5b89e;padding-bottom:8px}
+.cf-paper-month-panel button{border:1px solid #c6b79d;background:#fffdfa;color:#173246;font-weight:650;cursor:pointer;min-height:42px;min-width:42px;padding:6px 9px}
+.cf-paper-month-panel button:hover{background:#eee4d3}
+.cf-paper-month-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:12px 0}
+.cf-paper-month-grid button{min-width:0;min-height:48px}
+.cf-paper-month-grid button[aria-pressed=true]{background:#19374a;color:white;border-color:#19374a;box-shadow:inset 0 -3px #b63338}
+.cf-paper-month-footer{border-top:1px dashed #c5b89e;padding-top:10px}
+.cf-context-state .cf-context-retry{min-height:44px;padding:9px 12px;border:1px solid #173246;background:#173246;color:#fff9ee;cursor:pointer;font-weight:700}
+/* A custom listbox, unlike native <select>, stays within the paper panel on small screens. */
+.cf-paper-dropdown-menu{box-sizing:border-box;max-width:min(100%,340px);min-width:0;overflow-wrap:anywhere;z-index:80}
+.cf-paper-dropdown-option{white-space:normal;line-height:1.4;min-height:44px}
+@media(max-width:820px){
+ body.esoria-dossier-page .cf-header,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-header{display:flex;flex-wrap:wrap;gap:12px;min-width:0}
+ body.esoria-dossier-page .cf-nav,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav {box-sizing:border-box;width:100%;max-width:100%;min-width:0;margin-left:0;flex:0 0 100%}
+}
+@media(max-width:590px){
+ /* Paper tabs: two rows at narrow widths, legible size, no clipped horizontal scroll. */
+ body.esoria-dossier-page .cf-nav,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px!important;padding:5px!important;overflow:visible!important;scroll-snap-type:none!important}
+ body.esoria-dossier-page .cf-nav a,body.esoria-dossier-page .cf-nav button,body.esoria-dossier-page .cf-nav-staff a,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav a,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav button {box-sizing:border-box;display:flex;min-width:0!important;min-height:44px!important;max-width:none;padding:8px 6px!important;font-size:12px!important;line-height:1.3;white-space:normal!important;text-align:center;overflow-wrap:anywhere;flex:none;justify-content:center}
+ body.esoria-dossier-page .cf-nav-staff .cf-nav-back{min-width:0!important}
+ body.esoria-dossier-page .cf-toolbar,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+ body.esoria-dossier-page .cf-toolbar>.cf-button,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar>.cf-button{grid-column:1/-1;min-height:44px!important;justify-self:stretch;width:100%}
+ body.esoria-dossier-page .cf-toolbar .cf-field>span,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar .cf-field>span {font-size:11px!important}
+ body.esoria-dossier-page .cf-toolbar .cf-field :is(input,select),body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar .cf-field :is(input,select),
+ body.esoria-dossier-page .cf-paper-dropdown-trigger,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-paper-dropdown-trigger {min-height:44px!important;font-size:12px!important;padding:8px!important}
+ body.esoria-dossier-page .cf-paper-month-trigger,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-paper-month-trigger {min-height:44px!important;padding:9px 7px!important;font-size:12px!important}
+ body.esoria-dossier-page .cf-paper-month-panel,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-paper-month-panel {max-width:calc(100vw - 28px)}
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-filter-bar {grid-template-columns:1fr}
+}
+@media(max-width:350px){
+ body.esoria-dossier-page .cf-nav a,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav a {font-size:11px!important}
+ body.esoria-dossier-page .cf-toolbar,body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar{gap:8px!important}
+}
+
+/* Unavailable choices remain visible but cannot be activated by paper controls. */
+.cf-paper-dropdown-trigger:disabled,.cf-paper-month-trigger:disabled {opacity:.65;cursor:not-allowed;box-shadow:none}
+.cf-paper-dropdown-option[aria-disabled="true"] {opacity:.48;cursor:not-allowed;background:#eee9de;color:#665e55}
+.cf-paper-month-panel button:disabled {opacity:.45;cursor:not-allowed;background:#eee9de;color:#665e55}
+
+/* Security-sensitive visibility wins over compact mobile grid/flex rules.
+   A role link or whole staff nav with hidden must never be displayed. */
+body.esoria-dossier-page .cf-nav[hidden],
+body.esoria-dossier-page .cf-nav :is(a,button)[hidden],
+body[data-workspace="jury"] .cf-nav[hidden],
+body[data-workspace="jury"] .cf-nav :is(a,button)[hidden],
+body[data-workspace="operations"] .cf-nav[hidden],
+body[data-workspace="operations"] .cf-nav :is(a,button)[hidden] {
+  display: none !important;
+}
+
+/* Buttons in the staff workflow must obey native hidden state as well.
+   Otherwise disabled workflow steps may visually appear available. */
+body[data-workspace="jury"] button[hidden],
+body[data-workspace="operations"] button[hidden] {
+  display: none !important;
+}
+
+/* Paper period/select filters: equal box heights and bottom alignment. */
+/* All four filter columns share a single bottom alignment and height. */
+body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar{align-items:end;column-gap:12px;row-gap:10px}
+body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar>.cf-field{display:flex;flex-direction:column;justify-content:flex-end;min-width:0;gap:7px;margin:0;height:100%;box-sizing:border-box}
+body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar .cf-field>span{margin:0;line-height:1.3;font-size:12px}
+body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar :is(.cf-paper-month,.cf-paper-dropdown){width:100%;min-width:0}
+body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar :is(.cf-paper-month-trigger,.cf-paper-dropdown-trigger,select,input[type="month"]){box-sizing:border-box;height:46px;min-height:46px;max-height:46px;margin:0;width:100%;align-items:center}
+body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar>.cf-button{box-sizing:border-box;height:46px;min-height:46px;max-height:46px;align-self:end;padding:9px 14px;white-space:nowrap}
+body.esoria-dossier-page .cf-result-dossier{padding-block:18px}
+body.esoria-dossier-page .cf-filter-heading{margin-bottom:14px;padding-bottom:12px}
+body.esoria-dossier-page .cf-filter-heading h2{line-height:1.15}
+
+@media(max-width:590px){
+ body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar>.cf-button{grid-column:1/-1;width:100%}
+}
+
+
+/* 2026-10-19: session/public-results compact fit + aligned paper fields */
+body[data-workspace="jury"] .cf-filter-bar,
+body[data-workspace="operations"] .cf-filter-bar{
+  align-items:end;
+  gap:14px;
+  padding:16px 18px;
+  border:1px solid #c8b89e;
+  background:#f8f2e6;
+  box-shadow:2px 3px 0 #ded1ba;
+}
+body[data-workspace="jury"] .cf-filter-bar .cf-field,
+body[data-workspace="operations"] .cf-filter-bar .cf-field{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:7px;
+  min-width:0;
+}
+body[data-workspace="jury"] .cf-filter-bar .cf-field>span,
+body[data-workspace="operations"] .cf-filter-bar .cf-field>span{
+  margin:0;
+  line-height:1.25;
+}
+body[data-workspace="jury"] .cf-filter-bar .cf-field :is(input,select),
+body[data-workspace="operations"] .cf-filter-bar .cf-field :is(input,select),
+body[data-workspace="operations"] .cf-form .cf-field :is(input,select):not([type="checkbox"]),
+body[data-workspace="jury"] .cf-form .cf-field :is(input,select):not([type="checkbox"]){
+  box-sizing:border-box;
+  width:100%;
+  min-height:46px;
+  height:46px;
+  max-height:46px;
+  padding:10px 13px;
+  border:1px solid #8b7d67;
+  background:#fffdf6;
+  box-shadow:2px 3px 0 #dfd1b9;
+}
+body[data-workspace="operations"] .cf-form .cf-field textarea,
+body[data-workspace="jury"] .cf-form .cf-field textarea{
+  border:1px solid #8b7d67;
+  background:#fffdf6;
+  box-shadow:2px 3px 0 #dfd1b9;
+}
+body[data-workspace="operations"] .cf-form,
+body[data-workspace="jury"] .cf-form{
+  gap:14px 16px;
+}
+body[data-workspace="operations"] .cf-check{
+  align-items:center;
+  padding:2px 2px 0;
+}
+body[data-workspace="operations"] .cf-check input{
+  width:22px;
+  min-width:22px;
+  height:22px;
+  min-height:22px;
+  padding:0;
+  margin-top:0;
+  box-shadow:none;
+}
+body.esoria-dossier-page .cf-filter-heading{
+  align-items:start;
+  gap:14px;
+}
+body.esoria-dossier-page .cf-filter-seal{
+  align-self:start;
+  margin-top:2px;
+}
+@media(max-width:900px){
+  body[data-workspace="jury"] .cf-filter-bar,
+  body[data-workspace="operations"] .cf-filter-bar{grid-template-columns:minmax(0,1fr) minmax(220px,290px)}
+}
+@media(max-width:590px){
+  body[data-workspace="jury"] .cf-filter-bar,
+  body[data-workspace="operations"] .cf-filter-bar{grid-template-columns:1fr;gap:10px;padding:14px}
+  body[data-workspace="jury"] .cf-filter-bar .cf-field :is(input,select),
+  body[data-workspace="operations"] .cf-filter-bar .cf-field :is(input,select),
+  body[data-workspace="operations"] .cf-form .cf-field :is(input,select):not([type="checkbox"]),
+  body[data-workspace="jury"] .cf-form .cf-field :is(input,select):not([type="checkbox"]),
+  body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar :is(.cf-paper-month-trigger,.cf-paper-dropdown-trigger,select,input[type="month"]),
+  body:is(.esoria-dossier-page,[data-workspace="operations"],[data-workspace="jury"]) .cf-toolbar>.cf-button{min-height:44px;height:44px;max-height:44px}
+  body.esoria-dossier-page .cf-filter-seal{display:none}
+}
+
+/* Two-role admin and public context refinements */
+/* Two-account ESORIA release: compact paper navigation and profile. */
+:where(.cf-nav,.profile-nav-actions) [aria-current="page"]:not([hidden]),
+.profile-current-tab[aria-current="page"]{background:#183649!important;color:#fffaf0!important;border:1px solid #183649!important;box-shadow:inset 0 -3px #b33135!important;text-decoration:none!important;}
+.profile-current-tab{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 15px;border:1px solid #c4b79c;color:#183649;font-weight:800;font-size:12px;text-decoration:none;}
+.profile-form-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fffaf0;border-bottom:1px solid #d0c1a6;padding:12px 17px!important;min-height:0!important;}
+.profile-form-top>*{margin:0!important;min-width:0}
+.profile-ready-paper.profile-continue{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 12px;margin-top:12px;background:#e9efe7;border:1px solid #287359;border-left:4px solid #287359;box-shadow:3px 3px #cad8ce;color:#1e4a40;}
+.profile-ready-paper.profile-continue[hidden]{display:none!important}
+.profile-ready-paper.profile-continue span{font-size:12px;letter-spacing:.035em;line-height:1.3}
+.profile-ready-paper.profile-continue .btn{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:0;min-height:40px;padding:9px 14px;font-size:12px;background:#fffdf7;color:#153346;border:1px solid #a9bcb0;box-shadow:2px 2px #c7d2c6;}
+.admin-competition-links a{justify-content:center!important;}
+body[data-workspace="operations"] .cf-details[data-full-admin]>.cf-help{margin:6px 0 17px;padding:13px 15px;background:#e8eee8;border:1px solid #b7cabd;border-left:4px solid #237253;font-size:13px;line-height:1.6;}
+body[data-workspace="operations"] #revoke-certificate-form{padding-top:12px;border-top:1px dashed #c8baa2;}
+body[data-workspace="jury"] .cf-filter-bar .cf-field input,
+body[data-workspace="jury"] .cf-filter-bar .cf-field select,
+body[data-workspace="operations"] .cf-form input:not([type="checkbox"]),
+body[data-workspace="operations"] .cf-form select{min-height:44px;height:44px;box-sizing:border-box;}
+@media(max-width:650px){
+ .profile-form-top{flex-direction:row!important;align-items:center!important;gap:8px!important}
+ .profile-form-top p{margin-left:auto!important;font-size:10px!important;text-align:right!important}
+ .profile-ready-paper.profile-continue{flex-direction:row!important;align-items:center!important;justify-content:space-between!important}
+ .profile-ready-paper.profile-continue span{font-size:11px;flex:1 1 110px}
+ .profile-ready-paper.profile-continue .btn{width:auto!important;max-width:100%;flex:0 1 auto;font-size:11px;padding-inline:9px}
+ .profile-nav-actions{flex-wrap:wrap;gap:6px}
+ .profile-current-tab{min-height:40px;padding:8px 10px}
+}
+@media(max-width:360px){.profile-ready-paper.profile-continue .btn{font-size:10px;padding-inline:7px}}
+@media(prefers-reduced-motion:reduce){.profile-ready-paper *{transition:none!important}}
+
+
+
+/* ESORIA: right-hand paper hamburger for staff workspaces and public results.
+   Only the existing verified nav is enhanced; [hidden] permission state wins. */
+.cf-paper-menu-toggle{display:none;box-sizing:border-box;align-items:center;justify-content:center;gap:9px;min-width:94px;min-height:44px;padding:8px 11px;cursor:pointer;border:1px solid #827259;border-bottom:3px solid #a53333;border-radius:0;background:#fffaf0;color:#183548;box-shadow:3px 3px 0 #c7b89d;font:800 12px/1.15 Arial,sans-serif;letter-spacing:.04em;transition:background-color .17s ease,transform .17s ease,box-shadow .17s ease}
+.cf-paper-menu-toggle[hidden]{display:none!important}
+.cf-paper-menu-toggle:hover{background:#ede1cf;transform:translateY(-1px);box-shadow:3px 4px 0 #c7b89d}
+.cf-paper-menu-toggle:focus-visible{outline:3px solid #b88d4b;outline-offset:3px}
+.cf-paper-menu-lines{display:grid;gap:4px;width:18px;flex:0 0 18px}
+.cf-paper-menu-lines i{height:2px;width:100%;background:#183548;border-radius:2px;transition:transform .17s ease,opacity .17s ease}
+.cf-paper-menu-toggle[aria-expanded="true"] .cf-paper-menu-lines i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.cf-paper-menu-toggle[aria-expanded="true"] .cf-paper-menu-lines i:nth-child(2){opacity:0}
+.cf-paper-menu-toggle[aria-expanded="true"] .cf-paper-menu-lines i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+/* Signing out remains an explicit user action, visually distinct from navigation. */
+body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav button[data-logout]{border:1px solid #b95248!important;background:#fff0e9!important;color:#8a2b29!important;box-shadow:inset 0 -2px 0 #c35b50,2px 2px 0 #d6c5b5!important;font-weight:850!important;transition:transform .17s ease,background-color .17s ease,box-shadow .17s ease}
+body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav button[data-logout]:hover{transform:translateY(-1px);background:#fbe1d5!important;box-shadow:inset 0 -2px 0 #ad453d,2px 4px 0 #cdbca9!important}
+body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav button[data-logout]:focus-visible{outline:3px solid #b88d4b;outline-offset:3px}
+@media(max-width:720px){
+  /* Header must be a stacking layer ABOVE the hero. A high z-index on the
+     dropdown alone is insufficient when the header stacks below a positioned
+     sibling (.cf-hero); that was hiding the open menu behind the paper sheet. */
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header{position:relative;z-index:90;display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;min-width:0;isolation:isolate}
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header>.cf-brand{flex:0 1 auto;min-width:0;max-width:calc(100% - 102px)}
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header .cf-paper-menu-toggle:not([hidden]){display:inline-flex!important;flex:0 0 auto;margin-left:auto;z-index:62}
+  /* Higher specificity than legacy mobile .cf-nav display:grid!important. */
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced]{box-sizing:border-box;position:absolute;inset:auto 0 auto auto;top:calc(100% + 8px);z-index:61;display:none!important;grid-template-columns:1fr!important;align-items:stretch;width:min(282px,calc(100vw - 30px))!important;max-width:100%!important;max-height:min(70dvh,360px);min-width:0;margin:0!important;padding:8px!important;gap:4px!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;flex:none!important;border:1px solid #85755f;border-top:4px solid #183548;background:#f8f0df;box-shadow:5px 6px 0 #c9b89d;animation:cf-paper-menu-in .18s ease-out both}
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced].is-paper-menu-open:not([hidden]){display:grid!important}
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced] :is(a,button):not([hidden]){box-sizing:border-box;display:flex!important;justify-content:flex-start;align-items:center;min-width:0!important;max-width:none;width:100%;min-height:43px!important;padding:9px 12px!important;font-size:12px!important;text-align:left;line-height:1.35!important;white-space:normal!important;border:1px solid transparent;flex:none!important;box-shadow:none;transition:background-color .15s ease,transform .15s ease}
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced] a:hover{background:#e5d7c1;color:#142e40;transform:translateX(2px)}
+  body.cf-paper-menu-ready:is([data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[data-paper-menu-enhanced] button[data-logout]:not([hidden]){justify-content:center;margin-top:6px;border:1px solid #b95248!important;font-weight:850;min-height:44px!important}
+  /* Unverified or revoked roles are never disclosed through menu styles. */
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav[hidden],
+  body.cf-paper-menu-ready:is(.esoria-dossier-page,[data-workspace="jury"],[data-workspace="operations"]) .cf-header nav.cf-nav :is(a,button)[hidden]{display:none!important}
+}
+@keyframes cf-paper-menu-in{from{transform:translateY(-5px) scale(.985)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){.cf-paper-menu-toggle,.cf-paper-menu-lines i,body .cf-header nav.cf-nav[data-paper-menu-enhanced]{animation:none!important;transition:none!important}}
+
+
+/* Public archive filter: two balanced rows on small phones (period/category,
+   wave/submit). Never strand the submit button across a third row. */
+@media (min-width:361px) and (max-width:590px){
+  body.esoria-dossier-page .cf-result-dossier #scope-form.cf-toolbar>.cf-button{
+    grid-column:auto!important;
+    align-self:end;
+    justify-self:stretch;
+    width:100%;
+  }
+}
+@media (max-width:360px){
+  body.esoria-dossier-page .cf-result-dossier #scope-form.cf-toolbar{grid-template-columns:minmax(0,1fr)!important;}
+  body.esoria-dossier-page .cf-result-dossier #scope-form.cf-toolbar>.cf-button{grid-column:1/-1!important;}
+}

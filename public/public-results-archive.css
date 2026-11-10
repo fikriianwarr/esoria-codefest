@@ -1,0 +1,12 @@
+/* Daftar hasil yang sudah tersedia; mudah dipilih di desktop dan ponsel. */
+.cf-public-archive{margin:18px 0 24px}
+.cf-archive-heading{font-weight:800;font-size:1.2rem;margin:0 0 12px;color:#142e40}
+.cf-archive-help{margin:0 0 12px;color:#526370;font-size:.92rem}
+.cf-archive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.cf-archive-scope{display:flex;flex-direction:column;gap:5px;align-items:flex-start;width:100%;padding:14px 16px;background:#f7f1e6;color:#0c263d;border:2px solid #ccb980;font:inherit;cursor:pointer;text-align:left;min-height:76px}
+.cf-archive-scope span{font-size:.8rem;letter-spacing:.035em}
+.cf-archive-scope strong{font-size:.95rem}
+.cf-archive-scope:hover,.cf-archive-scope:focus-visible{border-color:#0c9170;outline:2px solid transparent}
+.cf-archive-scope[aria-pressed=true]{background:#e2d08f;border-color:#065c49}
+.cf-archive-note{margin:10px 0 0;font-size:.78rem;color:#526370}
+@media(max-width:520px){.cf-archive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cf-archive-scope{padding:10px;min-height:72px}}

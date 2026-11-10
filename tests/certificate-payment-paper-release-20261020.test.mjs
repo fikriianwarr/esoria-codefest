@@ -1,0 +1,44 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const read = (file) => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+test('certificate artwork is real server-generated vector PDF and remains verifiable', () => {
+  const artwork = read('functions/certificate-artwork.js');
+  const server = read('functions/competition.js');
+  assert.match(artwork, /pdf\.addPage\(\[842, 595\]\)/);
+  assert.match(artwork, /page\.drawCircle/);
+  assert.match(artwork, /E-SERTIFIKAT/);
+  assert.match(artwork, /pdf\.embedPng\(await QRCode\.toBuffer\(verificationUrl/);
+  assert.doesNotMatch(artwork, /ALEXANDRA|RIZKY MAULANA|15 Juni 2025|esoria\.id\/verify/);
+  assert.match(server, /if \(!state\.valid\) fail/);
+  assert.match(server, /if \(state\.data\.ownerUid !== user\.uid\) await requireAdmin\(request\)/);
+  assert.match(server, /await drawEsoriaCertificate\(/);
+});
+test('bank picker is enhanced without changing backend senderInstitution payload or native required validation', () => {
+  const html = read('public/form-pendaftaran.html');
+  const js = read('public/paper-dropdown.js');
+  const reg = read('public/registration.js');
+  assert.match(html, /<select name="bank_pengirim" required/);
+  assert.match(html, /<option value="" disabled selected>Pilih bank atau e-wallet<\/option>/);
+  assert.match(html, /<optgroup label="Bank &amp; bank digital">/);
+  assert.match(html, /<optgroup label="Dompet digital">/);
+  assert.match(html, /src="paper-select-init\.js\?v=/);
+  assert.match(js, /select\[name="bank_pengirim"\]/);
+  assert.match(js, /group\.label/);
+  assert.match(js, /new Event\('change', \{bubbles:true\}\)/);
+  assert.match(js, /option\.disabled \|\| option\.parentElement\?\.disabled/);
+  assert.match(reg, /senderInstitution: String\(data\.get\('bank_pengirim'\)/);
+  assert.match(reg, /esoria:paper-select-sync/);
+  assert.match(js, /esoria:paper-select-sync/);
+});
+test('paper bank dropdown has bounded scrolling, keyboard focus and reduced motion', () => {
+  const css = read('public/payment-institution-paper.css');
+  const js = read('public/paper-dropdown.js');
+  assert.match(css, /\.cf-payment-bank-menu/);
+  assert.match(css, /overscroll-behavior:contain/);
+  assert.match(css, /prefers-reduced-motion:reduce/);
+  assert.match(css, /aria-selected=true/);
+  assert.match(js, /event\.key === 'ArrowDown'/);
+  assert.match(js, /event\.key === 'Escape'/);
+  assert.match(js, /window\.innerHeight - bounds\.bottom/);
+});

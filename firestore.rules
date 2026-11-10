@@ -1,0 +1,177 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/accountSessions/$(request.auth.uid))
+        && get(/databases/$(database)/documents/accountSessions/$(request.auth.uid)).data.authTime == request.auth.token.auth_time;
+    }
+
+    function verified() {
+      return signedIn() && request.auth.token.email_verified == true;
+    }
+
+    function owner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function adminDocument() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.active == true;
+    }
+
+    function admin() {
+      return verified() && adminDocument();
+    }
+
+    // Seluruh write bisnis diproses Cloud Functions menggunakan Admin SDK.
+    // Setiap admin aktif mempunyai akses penuh yang sama di panel admin.
+
+    // Login metadata is readable only by its owner, and writable only by the API.
+    // This separate ACL allows a replaced device to detect and exit its session.
+    match /accountSessions/{uid} {
+      allow get: if request.auth != null && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
+    match /admins/{uid} {
+      allow read: if owner(uid) || admin();
+      allow write: if false;
+    }
+
+    match /users/{uid} {
+      allow read: if owner(uid) || admin();
+      allow create, update, delete: if false;
+
+      match /notifications/{notificationId} {
+        allow read: if owner(uid) || admin();
+        allow update: if verified() && owner(uid)
+          && resource.data.userId == uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt'])
+          && request.resource.data.read == true
+          && request.resource.data.readAt is timestamp
+          && request.resource.data.readAt == request.time
+          && request.resource.data.userId == resource.data.userId
+          && request.resource.data.createdAt == resource.data.createdAt;
+        allow delete: if owner(uid) || admin();
+        allow create: if false;
+      }
+    }
+
+    // Token perangkat dan kepemilikan token hanya diakses Cloud Functions.
+    match /users/{uid}/pushTokens/{tokenId} {
+      allow read, write: if false;
+    }
+
+    // Server receipts prevent reactivating a replaced/deleted photo candidate.
+    match /users/{uid}/profilePhotoUploads/{uploadId} {
+      allow read, write: if false;
+    }
+
+    match /pushTokenOwners/{tokenId} {
+      allow read, write: if false;
+    }
+
+    match /registrations/{registrationId} {
+      allow read: if admin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /paymentProofs/{registrationId} {
+      allow read: if admin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow write: if false;
+    }
+
+    match /profileEditRequests/{requestId} {
+      // Kepemilikan diverifikasi terhadap data dokumen, bukan hanya ID URL.
+      allow read: if admin()
+        || (signedIn() && resource.data.userId == request.auth.uid);
+      allow write: if false;
+    }
+
+    // Bulan YYYY-MM unik berdasarkan ID dokumen. Create/update/delete hanya
+    // Cloud Functions dengan validasi admin, mode edit dan versi revisi.
+    match /periods/{periodId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /periodSlots/{slotId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /system/registration {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /system/dashboard {
+      allow read: if admin();
+      allow write: if false;
+    }
+
+    match /system/security {
+      allow read: if admin();
+      allow write: if false;
+    }
+
+    // Server-only security counters & MFA state; never accessible from a browser.
+    match /securityRateLimits/{bucketId} {
+      allow read, write: if false;
+    }
+
+    match /adminSecurityMeta/{uid} {
+      allow read, write: if false;
+    }
+
+    match /auditLogs/{logId} {
+      allow read: if admin();
+      allow write: if false;
+    }
+
+    match /ticketNumbers/{ticketNumber} {
+      allow read: if admin();
+      allow write: if false;
+    }
+
+    // New workflow documents: private by default; service projects only safe fields.
+    // Legacy staff records are retired. Preserve data for audit/migration; deny browser access.
+    match /staff/{uid} { allow read, write: if false; }
+    match /registrationDrafts/{uid} {
+      allow get: if verified() && owner(uid);
+      allow list, write: if false;
+    }
+    match /teams/{registrationId} {
+      allow read: if admin() || (verified() && request.auth.uid in resource.data.memberUids);
+      allow write: if false;
+    }
+    match /submissions/{registrationId} {
+      allow read: if admin() || (verified() && (resource.data.ownerUid == request.auth.uid || request.auth.uid in resource.data.memberUids));
+      allow write: if false;
+    }
+    // No direct reads of grades, results, flags, uploads or certificates, including
+    // for jurors. Callable services check assignment/publication/revocation first.
+    match /submissionRevisions/{registrationId}/{document=**} { allow read, write: if false; }
+    match /ctfSecrets/{document=**} { allow read, write: if false; }
+    match /flagSolves/{document=**} { allow read, write: if false; }
+    match /juryAssignments/{id} { allow read, write: if false; }
+    match /juryGrades/{id} { allow read, write: if false; }
+    match /results/{id} { allow read, write: if false; }
+    match /resultDrafts/{id} { allow read, write: if false; }
+    match /competitionConfigs/{id} { allow read, write: if false; }
+    match /competitionDecisions/{id} { allow read, write: if false; }
+    match /submissionUploads/{id} { allow read, write: if false; }
+    match /appeals/{id} { allow read, write: if false; }
+    match /certificates/{id} { allow read, write: if false; }
+    match /certificateEntitlements/{id} { allow read, write: if false; }
+    match /prizePayments/{id} { allow read, write: if false; }
+    match /proofUploadIntents/{id} { allow read, write: if false; }
+    match /proofDigests/{id} { allow read, write: if false; }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

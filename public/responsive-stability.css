@@ -1,0 +1,113 @@
+/* ESORIA responsive & auth stabilization - targeted patch, no external fonts/assets. */
+:root { --ec-safe-side: clamp(12px,3vw,22px); }
+/* Modal auth is a full-screen state: do not allow scrolling through unfinished pages. */
+html:has(body.auth-pending), html:has(body.auth-error) {overflow:hidden!important;height:100%; overscroll-behavior:none;}
+body.auth-pending, body.auth-error {position:fixed!important; inset:0!important; width:100%!important; height:100dvh!important; overflow:hidden!important; overscroll-behavior:none!important;}
+body.auth-pending .auth-gate, body.auth-error .auth-gate.auth-gate-failed {inset:0; width:100%; min-height:100dvh; max-height:100dvh; overscroll-behavior:contain;}
+body.auth-pending .auth-gate {touch-action:none;}
+body.auth-error .auth-gate.auth-gate-failed {touch-action:auto;overflow-y:auto!important;}
+/* Avoid content wider than the viewport when mobile text or inputs are long. */
+.profile-body :is(.profile-nav,.profile-nav-actions,.profile-identity-card,.profile-identity-head,.profile-identity-copy,.profile-intro,.profile-workspace),
+.registration-body :is(.registration-nav,.registration-nav-actions,.registration-intro,.registration-workspace) {min-width:0;}
+.profile-body :is(#profile-user-name,#profile-user-email), .registration-body .registration-intro h1 {overflow-wrap:anywhere;}
+@media (max-width: 760px) {
+  /* Top band is deliberately two rows; four actions remain one aligned row. */
+  .profile-body .profile-header {position:relative; top:auto;}
+  .profile-body .profile-nav {display:grid!important; grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto; gap:10px!important; padding:10px 0 13px; min-height:0!important;}
+  .profile-body .profile-nav > .brand {grid-column:1; justify-self:start; width:max-content; max-width:100%; gap:9px;}
+  .profile-body .profile-nav .brand-copy {display:grid!important; min-width:0;}
+  .profile-body .profile-nav .brand-copy strong {font-size:.78rem;}
+  .profile-body .profile-nav .brand-copy small {display:none;}
+  .profile-body .profile-nav .brand-mark {width:42px!important; height:42px!important; flex-basis:42px!important; overflow:hidden;}
+  .profile-body .profile-nav .brand-mark img {width:76px!important; height:76px!important; max-width:none;}
+  .profile-body .profile-nav-actions {grid-column:1; display:grid!important; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px!important; width:100%!important; min-width:0; padding:0; margin:0; align-items:stretch;}
+  .profile-body .profile-nav-actions > :is(button,a) {box-sizing:border-box; display:flex!important; flex:none!important; width:100%!important; min-width:0!important; height:48px!important; min-height:48px!important; padding:5px 4px!important; gap:5px!important; justify-content:center; align-items:center; font-size:.67rem!important; line-height:1.1; letter-spacing:0; text-align:center; white-space:normal!important; overflow:visible; box-shadow:2px 3px 0 rgba(17,27,45,.10);}
+  .profile-body .profile-nav-actions > :is(button,a) :is(i,b) {flex:0 0 auto;}
+  .profile-body .profile-notification-button {grid-template-columns:auto auto;}
+  .profile-body .profile-notification-button > i {width:13px; height:14px;}
+  .profile-body .profile-notification-button > i::before {left:4px;}
+  .profile-body .profile-main {padding-top:22px;}
+  /* Profile card remains compact, initials sit beside the name. */
+  .profile-body .profile-hero {display:grid;grid-template-columns:minmax(0,1fr);gap:17px;}
+  .profile-body .profile-identity-card {min-height:0!important; padding:20px 18px 22px!important; gap:12px!important;}
+  .profile-body .profile-identity-head {display:grid!important;grid-template-columns:58px minmax(0,1fr)!important;gap:13px!important; align-items:center;justify-items:stretch!important;}
+  .profile-body .profile-avatar {width:58px!important;height:58px!important;margin:0!important;font-size:1.35rem!important;}
+  .profile-body .profile-identity-copy {min-width:0;gap:5px!important;}
+  .profile-body .profile-identity-card h1 {font-size:clamp(1.62rem,6.2vw,2.4rem)!important;line-height:1.05!important;}
+  .profile-body .profile-identity-copy p {font-size:.81rem!important;overflow-wrap:anywhere;}
+  .profile-body .profile-skill-strip {grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);}
+  .profile-body .profile-skill-strip b {white-space:normal;overflow-wrap:anywhere;line-height:1.4;}
+.profile-body .profile-access-grid {grid-template-columns:repeat(3,minmax(0,1fr));}
+  .profile-body .profile-access-grid span {min-width:0;padding:9px 6px;}
+  .profile-body .profile-primary-actions {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .profile-body .profile-primary-actions > * {min-width:0;justify-content:center;text-align:center;}
+  .profile-body .profile-intro {padding:24px 20px!important;gap:14px!important;}
+  .profile-body .profile-intro h2 {font-size:clamp(2rem,8vw,3.1rem)!important;line-height:1.02!important;}
+  .profile-body .profile-intro .profile-welcome-copy > p {font-size:.87rem!important;line-height:1.6!important;}
+  /* Registration page: remove fixed tall hero and huge mobile headline. */
+  .registration-body .registration-main {padding:26px 0 58px!important;}
+  .registration-body .registration-hero {grid-template-columns:minmax(0,1fr);gap:20px;}
+  .registration-body .registration-intro {display:flex;flex-direction:column;gap:14px;min-height:0!important;padding:24px 20px!important;}
+  .registration-body .registration-intro h1 {max-width:100%;margin:0!important;font-size:clamp(2.05rem,8.5vw,3.15rem)!important;line-height:1.01;letter-spacing:-.045em;}
+  .registration-body .registration-intro > p {margin:0!important;font-size:.88rem;line-height:1.65;}
+  .registration-body .registration-intro .detail-tag {align-self:flex-start;max-width:100%;font-size:.56rem;line-height:1.5;padding:9px 11px;overflow-wrap:anywhere;}
+  .registration-body .registration-intro::after {right:20px;bottom:92px;width:50px;height:50px;}
+  .registration-body .registration-flow-mini {position:static!important;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:4px!important;gap:0;inset:auto; width:100%;}
+  .registration-body .registration-flow-mini span {padding:10px 8px;min-width:0;font-size:.54rem;overflow-wrap:anywhere;}
+  .registration-body .registration-nav {min-height:72px!important;gap:10px!important;padding:9px 0;}
+  .registration-body .registration-nav .brand {min-width:0;flex:0 0 58px;}
+  .registration-body .registration-nav .brand-mark {width:52px!important;height:48px!important;flex-basis:52px!important;}
+  .registration-body .registration-nav .brand-mark img {width:96px!important;height:96px!important;}
+  .registration-body .registration-nav-actions {min-width:0;gap:8px!important;}
+  .registration-body .registration-back {min-width:0;white-space:normal;line-height:1.2;font-size:.57rem!important;text-align:center;}
+  .registration-body .registration-logout {font-size:.59rem!important;min-height:42px;padding:9px 12px!important;}
+}
+@media (max-width: 460px) {
+  .profile-body .profile-nav-actions > :is(button,a) {font-size:.58rem!important;}
+  .profile-body .profile-nav-actions .profile-notification-button > span {font-size:0;}
+  .profile-body .profile-nav-actions .profile-notification-button > span::after {content:'Notif';font-size:.65rem;}
+  .profile-body .profile-nav-actions [data-push-label] {font-size:0;}
+  .profile-body .profile-nav-actions [data-push-label]::after {content:'Push';font-size:.65rem;}
+  .profile-body .profile-nav-actions .profile-push-button[aria-pressed="true"] [data-push-label]::after {content:'Push ON';}
+  .profile-body .profile-nav-actions .profile-push-button[aria-busy="true"] [data-push-label]::after {content:'Tunggu';}
+  .profile-body .profile-nav-actions .profile-home-link b,.profile-body .profile-nav-actions .profile-logout b {font-size:.7rem;}
+  .registration-body .registration-intro {padding:20px 17px!important;}
+  .registration-body .registration-intro h1 {font-size:clamp(1.9rem,8.7vw,2.65rem)!important;}
+  .registration-body .registration-intro .detail-tag {font-size:.51rem;}
+}
+@media (max-width: 355px) {
+ .profile-body .profile-nav-actions {gap:4px!important;}
+ .profile-body .profile-nav-actions > :is(button,a) {font-size:.51rem!important;}
+ .registration-body .registration-intro h1 {font-size:1.95rem!important;}
+}
+
+
+/* Keep banking seal and other decorative pieces from widening mobile viewport. */
+.registration-body { overflow-x:clip; }
+@media (max-width: 960px) and (min-width: 761px) {
+ .profile-body .profile-nav { display:grid!important; grid-template-columns:minmax(0,1fr); grid-template-rows:auto auto; gap:10px!important; min-height:0!important; padding:10px 0 13px; }
+ .profile-body .profile-nav > .brand { grid-column:1; justify-self:start; }
+ .profile-body .profile-nav-actions { grid-column:1; display:grid!important; grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px!important; width:100%!important; }
+ .profile-body .profile-nav-actions > :is(a,button) { box-sizing:border-box; flex:none!important; min-width:0!important; width:100%!important; height:48px!important; min-height:48px!important; padding:8px 12px!important; text-align:center; justify-content:center; }
+}
+@media(max-width:760px){
+ /* The original logo is a full-square design; show the entire mark, not a cropped corner. */
+ .profile-body .profile-nav .brand-mark img,
+ .registration-body .registration-nav .brand-mark img {
+   width:100%!important; height:100%!important; inset:0!important; left:0!important; top:0!important;
+   object-fit:contain!important; transform:none!important;
+ }
+ .registration-body .payment-bank-card { width:100%; min-width:0; max-width:100%; }
+ .registration-body .bank-account-line strong {min-width:0;overflow-wrap:anywhere;word-break:break-word;}
+ .registration-body .payment-bank-card::before {right:-20px;width:180px;height:180px;}
+ .registration-body .payment-bank-card::after {display:none;}
+}
+@media(max-width: 960px) {
+  .registration-body .form-progress-panel::after {display:none;}
+}
+/* The legacy notification stylesheet hides both action labels on phones.
+   Restore them so all four controls remain identifiable. */
+@media (max-width: 960px) {
+ .profile-body .profile-nav-actions .profile-push-button [data-push-label],
+ .profile-body .profile-nav-actions .profile-notification-button > span:not([data-notification-count]) {display:inline!important;min-width:0;overflow-wrap:anywhere;}
+}

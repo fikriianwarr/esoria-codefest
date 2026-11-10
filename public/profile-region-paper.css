@@ -1,0 +1,46 @@
+/* ESORIA PROFILE — DOMISILI / PAPER REGION SELECT */
+.profile-body .region-field {position:relative; min-width:0;}
+.profile-body .region-select {isolation:isolate;}
+.profile-body .region-field:has(.region-select.open) {z-index:80;}
+.profile-body .region-select .custom-select-trigger {min-height:62px; border:1px solid #273a46; background:linear-gradient(115deg,#e9e1cf,#fffdf7 54%); box-shadow:4px 5px 0 #d5c8b2;}
+.profile-body .region-select .custom-select-trigger>b {font-size:.52rem; letter-spacing:0; padding:0 4px;}
+.profile-body .region-select .custom-select-trigger:disabled {cursor:not-allowed; opacity:.72;}
+.profile-body .region-select .custom-options {max-height:min(365px,53dvh); padding:9px; border:1px solid #283c4b; background-color:#fffcf4;}
+.profile-body .region-select .custom-options [role=option] {min-height:58px;}
+.profile-body .region-select .custom-options [role=option]>strong {font-size:.78rem;}
+.profile-body .region-hint {display:block; margin:9px 2px 0; font-family:var(--mono,monospace); font-size:.56rem; line-height:1.7; color:#59636a;}
+.profile-body .region-hint[data-state=error] {color:#a12c30; font-weight:800;}
+.profile-body .region-hint[data-state=ready] {color:#136349;}
+.profile-body .region-select .custom-select-trigger:focus-visible {outline:3px solid #bd9c54; outline-offset:3px;}
+@media(max-width:560px) {.profile-body .region-select .custom-options {max-height:min(310px,48dvh);}.profile-body .region-select .custom-select-trigger {min-height:58px;}}
+
+/* Two-role profile enhancements */
+/* Two-account ESORIA release: compact paper navigation and profile. */
+:where(.cf-nav,.profile-nav-actions) [aria-current="page"]:not([hidden]),
+.profile-current-tab[aria-current="page"]{background:#183649!important;color:#fffaf0!important;border:1px solid #183649!important;box-shadow:inset 0 -3px #b33135!important;text-decoration:none!important;}
+.profile-current-tab{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 15px;border:1px solid #c4b79c;color:#183649;font-weight:800;font-size:12px;text-decoration:none;}
+.profile-form-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fffaf0;border-bottom:1px solid #d0c1a6;padding:12px 17px!important;min-height:0!important;}
+.profile-form-top>*{margin:0!important;min-width:0}
+.profile-ready-paper.profile-continue{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 12px;margin-top:12px;background:#e9efe7;border:1px solid #287359;border-left:4px solid #287359;box-shadow:3px 3px #cad8ce;color:#1e4a40;}
+.profile-ready-paper.profile-continue[hidden]{display:none!important}
+.profile-ready-paper.profile-continue span{font-size:12px;letter-spacing:.035em;line-height:1.3}
+.profile-ready-paper.profile-continue .btn{display:inline-flex;align-items:center;justify-content:center;width:auto;min-width:0;min-height:40px;padding:9px 14px;font-size:12px;background:#fffdf7;color:#153346;border:1px solid #a9bcb0;box-shadow:2px 2px #c7d2c6;}
+.admin-competition-links a{justify-content:center!important;}
+body[data-workspace="operations"] .cf-details[data-full-admin]>.cf-help{margin:6px 0 17px;padding:13px 15px;background:#e8eee8;border:1px solid #b7cabd;border-left:4px solid #237253;font-size:13px;line-height:1.6;}
+body[data-workspace="operations"] #revoke-certificate-form{padding-top:12px;border-top:1px dashed #c8baa2;}
+body[data-workspace="jury"] .cf-filter-bar .cf-field input,
+body[data-workspace="jury"] .cf-filter-bar .cf-field select,
+body[data-workspace="operations"] .cf-form input:not([type="checkbox"]),
+body[data-workspace="operations"] .cf-form select{min-height:44px;height:44px;box-sizing:border-box;}
+@media(max-width:650px){
+ .profile-form-top{flex-direction:row!important;align-items:center!important;gap:8px!important}
+ .profile-form-top p{margin-left:auto!important;font-size:10px!important;text-align:right!important}
+ .profile-ready-paper.profile-continue{flex-direction:row!important;align-items:center!important;justify-content:space-between!important}
+ .profile-ready-paper.profile-continue span{font-size:11px;flex:1 1 110px}
+ .profile-ready-paper.profile-continue .btn{width:auto!important;max-width:100%;flex:0 1 auto;font-size:11px;padding-inline:9px}
+ .profile-nav-actions{flex-wrap:wrap;gap:6px}
+ .profile-current-tab{min-height:40px;padding:8px 10px}
+}
+@media(max-width:360px){.profile-ready-paper.profile-continue .btn{font-size:10px;padding-inline:7px}}
+@media(prefers-reduced-motion:reduce){.profile-ready-paper *{transition:none!important}}
+

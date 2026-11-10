@@ -1,0 +1,65 @@
+# Dependency installs and Firebase transient cache
+node_modules/
+functions/node_modules/
+.firebase/
+
+# Diagnostics and generated test artifacts
+*.log
+*.log.*
+playwright-report/
+test-results/
+coverage/
+.nyc_output/
+release-reports/
+.esoria-emulator-*.json
+
+# Temporary files and editor/OS residue
+*.local
+*.tmp
+*.bak
+*.orig
+*.swp
+*.swo
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Private operator files and diagnostics
+*.credentials.csv
+*.auth.json
+
+# Secret/local environment settings: never publish to source repositories.
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+**/.secret
+**/.secret.*
+**/service-account*.json
+**/service_account*.json
+**/credentials.json
+**/*private-key*
+**/*private_key*
+*.pem
+*.p12
+*.pfx
+*.key
+*.sqlite
+*.db
+
+# Local archives / generated exports / authentication artifacts.
+/*.zip
+/*.7z
+/*.rar
+/*.tar
+/*.tar.gz
+firebase-debug.log
+firebase-debug.*.log
+firebase-export-*/
+.gcloud/

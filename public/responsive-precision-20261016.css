@@ -1,0 +1,167 @@
+/* ESORIA mobile precision fixes: scoped overrides, no backend permission changes. */
+@media (max-width: 760px) {
+  /* Paired homepage CTAs must be equally sized, on the same row. */
+  .landing-body .hero-copy .hero-actions,
+  .landing-body .cta-copy .hero-actions.center-actions {
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    align-items:stretch!important;
+    gap:10px!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .landing-body .hero-copy .hero-actions > a,
+  .landing-body .cta-copy .hero-actions.center-actions > a {
+    box-sizing:border-box;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:64px!important;
+    min-height:64px!important;
+    max-height:64px!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:8px 10px!important;
+    gap:5px!important;
+    font-size:clamp(.66rem,2.4vw,.91rem)!important;
+    line-height:1.12!important;
+    text-align:center!important;
+    white-space:normal!important;
+    overflow-wrap:normal!important;
+  }
+  .landing-body .hero-copy .hero-actions > a > span,
+  .landing-body .cta-copy .hero-actions.center-actions > a > span {min-width:0; text-align:center;}
+  .landing-body .hero-copy .hero-actions > a > b,
+  .landing-body .cta-copy .hero-actions.center-actions > a > b {flex:0 0 auto;}
+  /* Ticket carousel controls: compact identical arrow pads. */
+  .landing-body .ticket-toolbar.is-visible {display:grid!important;grid-template-columns:52px 52px!important;gap:12px!important;justify-content:center!important;align-items:center!important;padding:8px!important;}
+  .landing-body .ticket-toolbar > span {display:none!important;}
+  .landing-body .ticket-toolbar .slide-btn {width:52px!important;height:52px!important;min-height:52px!important;max-height:52px!important;font-size:1.14rem!important;padding:0!important;}
+  .landing-body .ticket-carousel {scroll-snap-type:x proximity!important;scroll-behavior:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y;}
+  .landing-body .ticket-card {scroll-snap-align:center;scroll-snap-stop:normal;}
+  /* Profile action pair: short and equal heights. */
+  .profile-body .profile-primary-actions {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;align-items:stretch!important;}
+  .profile-body .profile-primary-actions > .profile-edit-button,
+  .profile-body .profile-primary-actions > .btn {height:54px!important;min-height:54px!important;max-height:54px!important;width:100%!important;min-width:0!important;margin:0!important;padding:0 9px!important;display:flex!important;justify-content:center!important;align-items:center!important;gap:8px!important;font-size:.7rem!important;line-height:1.1!important;}
+  .profile-body .profile-primary-actions .profile-edit-button > span {display:block!important;min-width:0!important;flex:1 1 auto!important;padding:0!important;overflow:visible!important;text-overflow:clip!important;white-space:normal!important;font-size:.7rem!important;line-height:1.2!important;}
+  .profile-body .profile-primary-actions .profile-edit-button > b {display:grid!important;place-items:center!important;position:static!important;width:26px!important;min-width:26px!important;height:30px!important;min-height:0!important;flex:0 0 26px!important;padding:0!important;border:0!important;box-shadow:none!important;}
+  /* Admin compact live-data status. */
+  .admin-body .admin-live-note {display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:10px!important;min-height:0!important;padding:12px!important;}
+  .admin-body .admin-live-note > span {flex:1 1 180px!important;min-width:0!important;font-size:.61rem!important;line-height:1.5!important;letter-spacing:.02em!important;overflow-wrap:break-word!important;}
+  .admin-body .admin-live-note > b {flex:0 1 auto;min-width:0;font-size:.61rem!important;line-height:1.45!important;}
+  .admin-body .admin-live-note > button {margin-left:auto;padding:8px 10px!important;font-size:.61rem!important;}
+  /* Data Peserta: three equal stats on row one, three controls on row two. */
+  .admin-body .admin-user-card {display:grid!important;grid-template-columns:56px minmax(0,1fr)!important;gap:10px!important;padding:14px!important;}
+  .admin-body .admin-user-card > .admin-user-avatar {grid-column:1!important;grid-row:1!important;align-self:start!important;}
+  .admin-body .admin-user-card > .admin-user-main {grid-column:2!important;grid-row:1!important;min-width:0!important;}
+  .admin-body .admin-user-card > .admin-user-meta {grid-column:1/-1!important;grid-row:2!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;width:100%!important;min-width:0!important;}
+  .admin-body .admin-user-card > .admin-user-meta > span {padding:10px 6px!important;min-width:0!important;min-height:68px;}
+  .admin-body .admin-user-card > .admin-user-meta small {font-size:.49rem!important;letter-spacing:.02em!important;overflow-wrap:anywhere!important;}
+  .admin-body .admin-user-card > .admin-user-meta b {font-size:clamp(.73rem,2.8vw,.96rem)!important;overflow-wrap:anywhere!important;}
+  .admin-body .admin-user-card > .admin-card-actions {grid-column:1/-1!important;grid-row:3!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important;width:100%!important;min-width:0!important;}
+  .admin-body .admin-user-card > .admin-card-actions button {min-width:0!important;width:100%!important;height:46px!important;min-height:46px!important;max-height:46px!important;padding:5px 3px!important;font-size:.66rem!important;line-height:1.1!important;}
+  /* Filter and sorting retain two columns; Export and Reset share the following row. */
+  .admin-body .admin-toolbar-actions {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important;}
+  .admin-body .admin-toolbar-actions > * {min-width:0!important;width:100%!important;}
+  .admin-body .admin-toolbar-actions > .admin-tool-button {min-height:48px!important;max-height:52px!important;padding:9px!important;font-size:.67rem!important;}
+  .admin-body #admin-confirm-dialog > div:last-child {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+  .admin-body #admin-confirm-dialog > div:last-child button {height:50px!important;min-height:50px!important;max-height:50px!important;margin:0!important;padding:9px!important;font-size:.7rem!important;}
+  /* Notification overflow menu remains within the panel at narrow widths. */
+  .profile-body .ec-notification-panel {max-width:calc(100vw - 20px)!important;min-width:0!important;right:10px!important;left:auto!important;}
+  .profile-body .ec-notification-item {grid-template-columns:38px minmax(0,1fr) 34px!important;gap:8px!important;padding:12px 9px!important;}
+  .profile-body .ec-notification-item-icon {width:36px!important;height:36px!important;}
+  .profile-body .ec-notification-item-copy {min-width:0!important;}
+  .profile-body .ec-notification-item-copy h3 {font-size:.87rem!important;overflow-wrap:anywhere!important;}
+  .profile-body .ec-notification-item-copy p {font-size:.71rem!important;overflow-wrap:anywhere!important;}
+  .profile-body .ec-notification-item-controls {min-width:0!important;}
+  .profile-body .ec-notification-item-controls > button {width:34px!important;height:34px!important;padding:0!important;letter-spacing:0!important;justify-self:end!important;}
+  .profile-body .ec-notification-item-menu {right:0!important;left:auto!important;width:min(142px,62vw)!important;}
+  /* Keep the wave selection sheet stable while scrolling and tapping. */
+  .registration-body #wave-options {position:relative!important;top:auto!important;left:auto!important;right:auto!important;max-height:none!important;overflow:visible!important;margin-top:7px;transform:none!important;animation:none!important;}
+  .registration-body #wave-options[hidden] {display:none!important;}
+  .registration-body #wave-options [role="option"] {opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;min-height:67px!important;margin:0!important;}
+  .registration-body #wave-options [role="option"]:disabled {opacity:.72!important;color:#39495c!important;-webkit-text-fill-color:#39495c!important;background:#f1eee6!important;}
+  .registration-body #wave-options [role="option"]:disabled strong,
+  .registration-body #wave-options [role="option"]:disabled small {color:#39495c!important;opacity:1!important;}
+}
+@media (max-width: 420px) {
+  .landing-body .hero-copy .hero-actions > a,
+  .landing-body .cta-copy .hero-actions.center-actions > a {height:58px!important;min-height:58px!important;max-height:58px!important;padding:6px!important;font-size:clamp(.63rem,2.6vw,.78rem)!important;}
+}
+/* Modal controls stay paired even in very narrow mobile screens. */
+@media (max-width: 500px) {
+ .esoria-paper-confirm-card > footer {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;}
+ .esoria-paper-confirm-card > footer button {width:100%!important;min-width:0!important;min-height:49px!important;max-height:54px!important;margin:0!important;padding:7px!important;font-size:.74rem!important;white-space:normal!important;}
+}
+@media (max-width: 1240px) {
+ /* Legal navigation sheet aligns to the right edge just like the landing menu. */
+ .legal-body .site-header .nav-links,
+ body:has(.legal-hero) .site-header .nav-links {
+   left:auto!important;right:0!important;
+   width:min(400px,calc(100vw - 24px))!important;
+   max-width:calc(100vw - 24px)!important;
+   box-sizing:border-box!important;
+ }
+}
+@media (prefers-reduced-motion:reduce){
+ .landing-body .ticket-carousel {scroll-behavior:auto!important;}
+}
+
+/* Consistent paper controls; no oversized decorative click areas. */
+@media(max-width:760px){
+ .profile-body .profile-primary-actions .profile-edit-button::before,
+ .profile-body .profile-primary-actions .profile-edit-button::after {display:none!important;}
+ .profile-body .ec-notification-item:last-child .ec-notification-item-menu {top:auto!important;bottom:36px!important;}
+ .registration-body #wave-options [role="option"]:disabled {pointer-events:auto!important;cursor:not-allowed!important;}
+}
+
+
+/* 2026-10-16 Paper ticket CTA: small hand-drawn arrow, never covering the title. */
+.ticket-action-grid .ticket-payment-cta {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:clamp(10px,2vw,20px)!important;
+  min-width:0!important;
+  overflow:hidden!important;
+}
+.ticket-action-grid .ticket-payment-cta .registration-cta-copy {
+  min-width:0!important; max-width:100%!important;
+  overflow-wrap:normal!important;
+}
+.ticket-action-grid .ticket-payment-cta .registration-cta-copy strong {
+  max-width:100%!important;
+  font-size:clamp(1.2rem,2.2vw,2rem)!important;
+  line-height:1.08!important;
+  text-wrap:balance;
+}
+.ticket-action-grid .ticket-payment-cta > b {
+  width:clamp(38px,5.8vw,54px)!important;
+  height:clamp(38px,5.8vw,54px)!important;
+  flex:none!important;
+  font:700 clamp(1.1rem,2vw,1.5rem)/1 var(--serif,serif)!important;
+  background:#f3df9e!important;
+  color:#142e25!important;
+  border:1px solid #d7b968!important;
+  border-radius:3px!important;
+  font-style:italic!important;
+  box-shadow:3px 4px 0 rgba(4,38,29,.2)!important;
+  transform:none!important;
+}
+.ticket-action-grid .ticket-payment-cta:hover > b,
+.ticket-action-grid .ticket-payment-cta:focus-visible > b {
+  animation:none!important;transform:none!important;
+  box-shadow:3px 4px 0 rgba(4,38,29,.2)!important;
+}
+@media(max-width:700px){
+  .ticket-action-grid .ticket-payment-cta {padding:14px 15px!important; gap:9px!important; min-height:112px!important;}
+  .ticket-action-grid .ticket-payment-cta .registration-cta-copy strong {font-size:clamp(1.08rem,4.7vw,1.55rem)!important;}
+  .ticket-action-grid .ticket-payment-cta .registration-cta-copy small {font-size:.52rem!important;letter-spacing:.09em!important;}
+  .ticket-action-grid .ticket-payment-cta > b {width:40px!important;height:40px!important;font-size:1.2rem!important;}
+  .ticket-action-grid .ticket-payment-cta::after {display:none!important;}
+}
+@media(max-width:360px){
+  .ticket-action-grid .ticket-payment-cta {grid-template-columns:minmax(0,1fr) 36px!important;}
+  .ticket-action-grid .ticket-payment-cta > b {width:36px!important;height:36px!important;}
+}

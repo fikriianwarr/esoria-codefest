@@ -1,0 +1,18 @@
+/* ECF paper confirmation: keyboard-accessible native dialog, consistent on all pages. */
+.esoria-paper-confirm{padding:0;border:0;background:transparent;color:#112238;max-width:min(530px,calc(100vw - 28px));width:100%;max-height:calc(100dvh - 24px);overflow:auto;box-shadow:none;color-scheme:light}
+.esoria-paper-confirm::backdrop{background:rgba(5,14,28,.76);backdrop-filter:blur(3px)}
+.esoria-paper-confirm-card{border:1px solid #17334d;border-top:7px solid #b92e37;background:#f7f0e0;background-image:linear-gradient(90deg,rgba(16,49,75,.05) 1px,transparent 1px),linear-gradient(rgba(16,49,75,.05) 1px,transparent 1px);background-size:25px 25px;box-shadow:12px 13px 0 rgba(0,0,0,.36)}
+.esoria-paper-confirm-card>header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 24px;border-bottom:1px solid #cfc4ad}
+.esoria-paper-confirm-kicker,.esoria-paper-confirm-stamp{font:800 10px/1.3 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.16em;color:#a62c35}
+.esoria-paper-confirm-x{width:37px;height:37px;border:1px solid #34495d;color:#152b41;background:transparent;font-size:23px;cursor:pointer}
+.esoria-paper-confirm-content{padding:26px 30px 30px}
+.esoria-paper-confirm-content h2{color:#0a1c32;font:700 clamp(26px,4.5vw,40px)/1.15 Georgia,'Times New Roman',serif;margin:10px 0 12px}
+.esoria-paper-confirm-content p{font:400 15px/1.65 system-ui,-apple-system,'Segoe UI',sans-serif;color:#4c5360;margin:0}
+.esoria-paper-confirm-card>footer{padding:16px 24px;display:flex;justify-content:flex-end;flex-wrap:wrap;gap:12px;border-top:1px solid #cfc4ad;background:rgba(255,255,255,.36)}
+.esoria-paper-confirm-card>footer button{min-height:46px;padding:11px 19px;font:800 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;border:1px solid #112d43;cursor:pointer;flex:0 1 auto}
+.esoria-paper-confirm-cancel{color:#10243a;background:#fffaf0}
+.esoria-paper-confirm-accept{color:#fff;background:#18466b;box-shadow:4px 4px 0 rgba(16,35,57,.19)}
+.esoria-paper-confirm[data-danger='true'] .esoria-paper-confirm-accept{background:#a82c33;border-color:#79222b}
+.esoria-paper-confirm button:focus-visible{outline:3px solid #d19c28;outline-offset:3px}
+@media(max-width:500px){.esoria-paper-confirm-card>header{padding:12px 16px}.esoria-paper-confirm-content{padding:22px 19px}.esoria-paper-confirm-card>footer{padding:13px 16px}.esoria-paper-confirm-card>footer button{flex:1 1 125px}}
+@media(prefers-reduced-motion:reduce){.esoria-paper-confirm::backdrop{backdrop-filter:none}}

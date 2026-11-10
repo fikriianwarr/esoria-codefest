@@ -1,0 +1,119 @@
+.live-registration-badge {
+  display: grid;
+  grid-template-columns: 13px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding: 13px 15px;
+  color: #0c1728;
+  background: rgba(255, 250, 240, 0.92);
+  border: 1px solid currentColor;
+  border-left: 6px solid #17476f;
+  box-shadow: 5px 6px 0 rgba(12, 23, 40, 0.12);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.live-registration-badge > i {
+  width: 11px;
+  height: 11px;
+  background: #17476f;
+  border: 2px solid #fffaf0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+.live-registration-badge span { min-width: 0; }
+.live-registration-badge b {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+}
+.live-registration-badge small {
+  display: block;
+  margin-top: 3px;
+  color: #5e5a53;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.live-registration-badge[data-state="open"] { border-left-color: #176a4d; }
+.live-registration-badge[data-state="open"] > i { color: #176a4d; background: #176a4d; animation: liveStatusPulse 1.8s ease-in-out 3; }
+.live-registration-badge[data-state="upcoming"] { border-left-color: #d2a934; }
+.live-registration-badge[data-state="upcoming"] > i { color: #d2a934; background: #d2a934; }
+.live-registration-badge[data-state="full"],
+.live-registration-badge[data-state="closed"] { border-left-color: #b52a31; }
+.live-registration-badge[data-state="full"] > i,
+.live-registration-badge[data-state="closed"] > i { color: #b52a31; background: #b52a31; }
+
+.registration-status-note[data-state="open"] { border-left-color: #176a4d; }
+.registration-status-note[data-state="closed"],
+.registration-status-note[data-state="full"] { border-left-color: #b52a31; }
+
+.registration-link-disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+@keyframes liveStatusPulse {
+  0%, 100% { box-shadow: 0 0 0 2px currentColor, 0 0 0 0 rgba(23, 106, 77, 0.35); }
+  50% { box-shadow: 0 0 0 2px currentColor, 0 0 0 8px rgba(23, 106, 77, 0); }
+}
+
+
+/* Realtime state accents for the registration calendar. */
+
+
+
+
+
+
+.ticket-card[data-registration-state="open"] {
+  box-shadow: 0 0 0 2px rgba(23, 106, 77, 0.34), 8px 9px 0 rgba(12, 23, 40, 0.13);
+}
+.ticket-card[data-registration-state="open"] .ticket-close-chip {
+  color: #f8fff9;
+  background: #176a4d;
+  border-color: #0d5139;
+}
+.ticket-card[data-registration-state="upcoming"] .ticket-close-chip {
+  color: #0c1728;
+  background: #f2d875;
+  border-color: #9c7413;
+}
+.ticket-card[data-registration-state="full"] .ticket-close-chip,
+.ticket-card[data-registration-state="closed"] .ticket-close-chip {
+  color: #fffaf0;
+  background: #b52a31;
+  border-color: #76171d;
+}
+.ticket-close-chip[data-live-ticket-status] b {
+  overflow-wrap: anywhere;
+}
+
+.important-dossier[data-state="open"] { border-left-color: #176a4d; }
+.important-dossier[data-state="open"] .important-dossier-top { color: #9fe0c8; }
+.important-dossier[data-state="upcoming"] .important-dossier-top { color: #f0d76d; }
+.important-dossier[data-state="full"] .important-dossier-top,
+.important-dossier[data-state="closed"] .important-dossier-top { color: #f2b4b7; }
+.important-deadline[data-state="open"] { background: rgba(23, 106, 77, 0.16); }
+.important-deadline[data-state="upcoming"] { background: rgba(210, 169, 52, 0.1); }
+
+.registration-next-action{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-left:8px;
+  color:#17486a;
+  font-weight:850;
+  text-underline-offset:3px;
+}
+.registration-next-action[hidden]{display:none!important;}
+.registration-next-action:hover{color:#126c53;}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-registration-badge[data-state="open"] > i { animation: none; }
+}

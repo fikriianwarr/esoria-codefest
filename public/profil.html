@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Profil peserta dan riwayat tiket Esoria CodeFest." name="description">
+  <meta content="#f1e8d5" name="theme-color">
+  <title>Profil Peserta | ESORIA CodeFest</title>
+  <link rel="canonical" href="https://esoria-codefest.web.app/profil.html">
+  <meta name="robots" content="noindex,nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ESORIA CodeFest">
+  <meta property="og:title" content="Profil Peserta | ESORIA CodeFest">
+  <meta property="og:description" content="Profil peserta dan riwayat tiket Esoria CodeFest.">
+  <meta property="og:url" content="https://esoria-codefest.web.app/profil.html">
+  <meta property="og:image" content="https://esoria-codefest.web.app/assets/logo_esoria.png">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=20261015-r7">
+  <script src="/runtime-config.js"></script>
+  <link href="styles.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="cookie-consent.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="notification-center.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="paper-confirm.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="refinement.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="esoria-ui-final.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="responsive-stability.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="responsive-precision-20261016.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="profile-photo.css?v=b74586eaa5ef6110" rel="stylesheet">
+  <link href="paper-theme.css?v=b74586eaa5ef6110" rel="stylesheet">
+<link rel="stylesheet" href="paper-tokens.css?v=b74586eaa5ef6110">
+<link rel="stylesheet" href="profile-region-paper.css?v=b74586eaa5ef6110">
+  <link rel="stylesheet" href="paper-viewport-refresh-20261020.css?v=b74586eaa5ef6110">
+<link rel="stylesheet" href="esoria-paper-final-20261020.css?v=b74586eaa5ef6110"><link rel="stylesheet" href="paper-date.css?v=b74586eaa5ef6110"></head>
+<body class="profile-body auth-pending">
+  <div class="auth-gate"><span></span><strong>Memeriksa sesi akun…</strong><small>Menyiapkan halaman profil</small></div>
+  <header class="profile-header"><div class="container profile-nav"><a class="brand" href="index.html"><span class="brand-mark"><img alt="Logo Esoria" src="assets/logo_esoria.webp"></span><span class="brand-copy"><strong>ESORIA CODEFEST</strong><small>PROFIL PESERTA</small></span></a><nav aria-label="Navigasi profil" class="profile-nav-actions"><button aria-pressed="false" class="profile-push-button" data-push-toggle type="button"><i aria-hidden="true"></i><span data-push-label>Aktifkan Push</span></button><button aria-expanded="false" class="profile-notification-button" data-notification-toggle type="button"><i aria-hidden="true"></i><span>Notifikasi</span><b data-notification-count hidden>0</b></button><a class="profile-landing-link" href="index.html">Beranda</a><a class="profile-home-link" href="dashboard.html"><span>Dashboard</span></a><a class="profile-current-tab" href="profil.html" aria-current="page">Profil</a><button class="profile-logout" id="profile-logout" type="button"><span>Keluar</span></button></nav></div></header>
+
+  <main class="profile-main">
+    <section class="container profile-hero">
+      <article class="profile-identity-card">
+        <span class="profile-file-label">AKUN PESERTA / AKTIF</span>
+        <div class="profile-identity-head">
+          <div class="profile-avatar" id="profile-avatar"><span id="profile-avatar-initials">E</span><img alt="Foto profil peserta" decoding="async" height="512" hidden id="profile-avatar-image" width="512"></div>
+          <div class="profile-identity-copy">
+            <h1 id="profile-user-name">Profil Peserta</h1>
+            <p id="profile-user-email"></p>
+          </div>
+          <button class="profile-photo-picker" id="profile-photo-pick" type="button">Pilih Foto</button>
+        </div>
+        <div class="profile-photo-controls">
+          <input accept="image/jpeg,image/png,image/webp" aria-describedby="profile-photo-status" aria-label="Pilih foto profil" hidden id="profile-photo-input" type="file">
+          <div class="profile-photo-actions" hidden id="profile-photo-pending-actions"><button data-primary hidden id="profile-photo-save" type="button">Simpan Foto</button><button hidden id="profile-photo-cancel" type="button">Batal</button></div>
+          <p aria-live="polite" class="profile-photo-status" id="profile-photo-status">JPG, PNG, atau WebP, maksimal 8 MB. Foto dipotong persegi dan dikompres otomatis.</p>
+        </div>
+        <div class="profile-skill-strip"><span><small>KATEGORI MINAT</small><b id="profile-user-track">Belum dipilih</b></span><span><small>TINGKAT</small><b id="profile-user-level">Belum dipilih</b></span></div>
+        <div class="profile-access-grid"><span><b>01</b><em>Profil aktif</em></span><span><b>02</b><em>Tiket peserta</em></span><span><b>03</b><em>Status akun</em></span></div>
+        <div class="profile-primary-actions"><button class="profile-edit-button" id="profile-edit" type="button"><span>Edit Profil</span><b aria-hidden="true">✎</b></button><a class="btn btn-register" href="dashboard.html">Dashboard &amp; Karya</a></div>
+      </article>
+      <article class="profile-intro">
+        <span>PROFIL PESERTA</span>
+        <div class="profile-welcome-layout">
+          <div class="profile-welcome-copy"><h2>Giliranmu unjuk kemampuan.</h2><p>Lengkapi identitasmu sebelum memilih lomba. Tiket dan kabar pendaftaranmu bisa kamu cek di halaman ini.</p></div>
+          <div aria-hidden="true" class="profile-paper-collage">
+            <i class="profile-paper-backing"></i>
+            <div class="profile-paper-poster"><span>ESORIA / CODEFEST</span><strong>CODE.<br>CREATE.<br>COMPETE.</strong><small>PILIH TANTANGANMU</small></div>
+            <span class="profile-paper-stamp">ESORIA<br>CODEFEST</span>
+            <b class="profile-paper-tab tab-web">WEB</b><b class="profile-paper-tab tab-cyber">CYBER</b><b class="profile-paper-tab tab-team">FULL STACK</b>
+            <i class="profile-paper-spark">✦</i>
+          </div>
+        </div>
+        <div class="profile-intro-statusline"><span><i></i>AKUN PESERTA</span><span>ESORIA CODEFEST</span></div>
+      </article>
+    </section>
+
+    <section class="container profile-workspace">
+      <form class="profile-form" id="profile-form">
+        <div class="profile-form-top"><div><span>BERKAS PESERTA</span><strong>PROFIL ESORIA</strong></div><p>Kolom bertanda <b>*</b> wajib diisi.</p></div><div aria-live="polite" class="profile-lock-banner" data-state="initial" id="profile-lock-banner"><b>DATA BELUM DIKUNCI</b><span>Lengkapi profil lalu periksa kembali sebelum penyimpanan pertama.</span></div>
+        <section class="form-section profile-form-section">
+          <header class="form-section-head"><span>01</span><div><h2>Identitas Utama</h2><p>Data yang muncul pada pendaftaran peserta.</p></div></header>
+          <div class="form-grid">
+            <label class="form-field"><span>Nama lengkap *</span><input autocomplete="name" maxlength="100" minlength="2" name="display_name" required type="text"></label>
+            <label class="form-field"><span>Email akun</span><input autocomplete="email" name="email" readonly type="email"></label>
+            <label class="form-field"><span>Tanggal lahir *</span><input autocomplete="bday" id="profile-birth-date" name="birth_date" required type="date"></label>
+            <label class="form-field age-field"><span>Umur</span><input aria-label="Umur" id="profile-age" readonly type="text"></label>
+            <div class="form-field"><span id="gender-label">Jenis kelamin *</span><div class="custom-select" data-profile-select="gender"><input data-custom-input name="gender" type="hidden"><button aria-controls="gender-options" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="gender-label gender-selected" class="custom-select-trigger is-placeholder" type="button"><b>ID</b><span data-placeholder="Pilih jenis kelamin" data-selected-label id="gender-selected">Pilih jenis kelamin</span><i aria-hidden="true"></i></button><!-- [html-validate-disable-next prefer-native-element] --><div aria-labelledby="gender-label" class="custom-options" hidden id="gender-options" role="listbox"><button aria-selected="false" data-label="Laki-laki" data-value="Laki-laki" role="option" tabindex="-1" type="button"><span>L</span><strong>Laki-laki</strong><small>Data identitas peserta</small></button><button aria-selected="false" data-label="Perempuan" data-value="Perempuan" role="option" tabindex="-1" type="button"><span>P</span><strong>Perempuan</strong><small>Data identitas peserta</small></button><button aria-selected="false" data-label="Memilih tidak menyebutkan" data-value="Tidak disebutkan" role="option" tabindex="-1" type="button"><span>—</span><strong>Tidak disebutkan</strong><small>Tetap dapat melanjutkan</small></button></div></div></div>
+            <div class="form-field phone-field"><span id="profile-phone-label">Nomor telepon *</span><div class="phone-input-shell"><b aria-hidden="true">ID</b><input aria-describedby="profile-phone-hint" aria-labelledby="profile-phone-label" autocomplete="tel" inputmode="numeric" maxlength="16" name="phone" pattern="\+62[0-9]{8,13}" placeholder="+628123456789" required type="tel"></div><small id="profile-phone-hint">Gunakan nomor Indonesia aktif dengan awalan +62.</small></div>
+          </div>
+        </section>
+
+        <section class="form-section profile-form-section">
+          <header class="form-section-head"><span>02</span><div><h2>Domisili &amp; Aktivitas</h2><p>Kota tempat tinggal dan kegiatanmu saat ini.</p></div></header>
+          <div class="form-grid">
+            <div class="form-field"><span id="occupation-label">Status utama *</span><div class="custom-select" data-profile-select="occupation"><input data-custom-input name="occupation" type="hidden"><button aria-controls="occupation-options" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="occupation-label occupation-selected" class="custom-select-trigger is-placeholder" type="button"><b>ACT</b><span data-placeholder="Pilih status utama" data-selected-label id="occupation-selected">Pilih status utama</span><i aria-hidden="true"></i></button><!-- [html-validate-disable-next prefer-native-element] --><div aria-labelledby="occupation-label" class="custom-options" hidden id="occupation-options" role="listbox"><button aria-selected="false" data-label="Pelajar" data-value="Pelajar" role="option" tabindex="-1" type="button"><span>01</span><strong>Pelajar</strong><small>Sekolah atau setara</small></button><button aria-selected="false" data-label="Mahasiswa" data-value="Mahasiswa" role="option" tabindex="-1" type="button"><span>02</span><strong>Mahasiswa</strong><small>Kampus atau perguruan tinggi</small></button><button aria-selected="false" data-label="Profesional" data-value="Profesional" role="option" tabindex="-1" type="button"><span>03</span><strong>Profesional</strong><small>Bekerja atau freelance</small></button><button aria-selected="false" data-label="Komunitas" data-value="Komunitas" role="option" tabindex="-1" type="button"><span>04</span><strong>Komunitas</strong><small>Anggota komunitas digital</small></button><button aria-selected="false" data-label="Lainnya" data-value="Lainnya" role="option" tabindex="-1" type="button"><span>05</span><strong>Lainnya</strong><small>Status lain</small></button></div></div></div>
+            <label class="form-field"><span>Sekolah/kampus/instansi</span><input name="institution" type="text"></label>
+            <div class="form-field region-field"><span id="profile-province-label">Provinsi *</span><div class="custom-select region-select" data-profile-select="province"><input data-custom-input name="province" type="hidden"><button aria-controls="profile-province-options" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="profile-province-label profile-province-selected" class="custom-select-trigger is-placeholder" type="button"><b>PROV</b><span data-placeholder="Pilih provinsi" data-selected-label id="profile-province-selected">Pilih provinsi</span><i aria-hidden="true"></i></button><div aria-labelledby="profile-province-label" class="custom-options" hidden id="profile-province-options" role="listbox"></div></div><small class="region-hint">38 provinsi di Indonesia · pilih provinsi terlebih dahulu.</small></div>
+            <div class="form-field region-field"><span id="profile-city-label">Kota/Kabupaten *</span><div class="custom-select region-select" data-profile-select="city"><input data-custom-input name="city" type="hidden"><button aria-controls="profile-city-options" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="profile-city-label profile-city-selected" class="custom-select-trigger is-placeholder" type="button" disabled><b>KOTA</b><span data-placeholder="Pilih provinsi dahulu" data-selected-label id="profile-city-selected">Pilih provinsi dahulu</span><i aria-hidden="true"></i></button><div aria-labelledby="profile-city-label" class="custom-options" hidden id="profile-city-options" role="listbox"></div></div><small class="region-hint" id="profile-city-hint" role="status" aria-live="polite">Daftar kota/kabupaten mengikuti provinsi terpilih.</small></div>
+            <label class="form-field form-field-wide"><span>Alamat ringkas</span><textarea autocomplete="street-address" name="address" placeholder="Kecamatan atau alamat ringkas" rows="3"></textarea></label>
+          </div>
+        </section>
+
+        <section class="form-section profile-form-section">
+          <header class="form-section-head"><span>03</span><div><h2>Keahlian &amp; Kategori Minat</h2><p>Ceritakan keahlianmu dan pilih bidang yang paling kamu minati.</p></div></header>
+          <div class="form-grid">
+            <label class="form-field"><span>Keahlian utama *</span><input maxlength="120" minlength="2" name="primary_skill" placeholder="Tuliskan keahlian utama Anda" required type="text"></label>
+            <div class="form-field"><span id="experience-label">Tingkat pengalaman *</span><div class="custom-select" data-profile-select="experienceLevel"><input data-custom-input name="experience_level" type="hidden"><button aria-controls="experience-options" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="experience-label experience-selected" class="custom-select-trigger is-placeholder" type="button"><b>LVL</b><span data-placeholder="Pilih tingkat pengalaman" data-selected-label id="experience-selected">Pilih tingkat pengalaman</span><i aria-hidden="true"></i></button><!-- [html-validate-disable-next prefer-native-element] --><div aria-labelledby="experience-label" class="custom-options" hidden id="experience-options" role="listbox"><button aria-selected="false" data-label="Pemula" data-value="Pemula" role="option" tabindex="-1" type="button"><span>01</span><strong>Pemula</strong><small>Sedang membangun dasar</small></button><button aria-selected="false" data-label="Menengah" data-value="Menengah" role="option" tabindex="-1" type="button"><span>02</span><strong>Menengah</strong><small>Sudah membuat beberapa project</small></button><button aria-selected="false" data-label="Mahir" data-value="Mahir" role="option" tabindex="-1" type="button"><span>03</span><strong>Mahir</strong><small>Siap menangani tantangan kompleks</small></button></div></div></div>
+            <div class="form-field form-field-wide"><span id="preferred-track-label">Kategori yang paling diminati *</span><div class="custom-select" data-profile-select="preferredTrack"><input data-custom-input name="preferred_track" type="hidden"><button aria-controls="preferred-track-options" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="preferred-track-label preferred-track-selected" class="custom-select-trigger is-placeholder" type="button"><b>TRK</b><span data-placeholder="Pilih kategori minat" data-selected-label id="preferred-track-selected">Pilih kategori minat</span><i aria-hidden="true"></i></button><!-- [html-validate-disable-next prefer-native-element] --><div aria-labelledby="preferred-track-label" class="custom-options" hidden id="preferred-track-options" role="listbox"><button aria-selected="false" data-label="Website Programming" data-value="Website Programming" role="option" tabindex="-1" type="button"><span>WEB</span><strong>Website Programming</strong><small>Frontend dan responsive interface</small></button><button aria-selected="false" data-label="Cybersecurity Mini CTF" data-value="Cybersecurity Mini CTF" role="option" tabindex="-1" type="button"><span>SEC</span><strong>Cybersecurity Mini CTF</strong><small>Analisis, flag, dan technical writeup</small></button><button aria-selected="false" data-label="Full Stack Development Team" data-value="Full Stack Development Team" role="option" tabindex="-1" type="button"><span>FS</span><strong>Full Stack Development Team</strong><small>Frontend, backend, API, dan data</small></button></div></div></div>
+            <label class="form-field form-field-wide"><span>Portfolio/GitHub/LinkedIn</span><input name="portfolio_url" placeholder="https://" type="url"></label>
+            <label class="form-field form-field-wide"><span>Bio singkat</span><textarea maxlength="300" name="bio" placeholder="Ringkas fokus keahlian atau pengalaman digital Anda" rows="4"></textarea></label>
+          </div>
+          <div aria-live="polite" class="form-alert profile-alert" hidden id="profile-alert"></div>
+          <div class="form-submit-dossier profile-save-panel"><div><span>PERIKSA IDENTITAS</span><strong id="profile-save-title">Simpan dan kunci profil Anda.</strong><small aria-live="polite" id="profile-save-state">Lengkapi seluruh kolom wajib untuk mengaktifkan tombol simpan.</small></div><button class="btn btn-register form-submit" disabled id="profile-save" type="submit"><span>Simpan &amp; Kunci Profil</span><b aria-hidden="true">→</b></button></div>
+          <div class="profile-continue profile-ready-paper" hidden id="profile-continue-wrap"><span>PROFIL TERVERIFIKASI · SIAP DAFTAR</span><a class="btn btn-ghost" href="form-pendaftaran.html" id="profile-continue">Lanjut ke Pendaftaran →</a></div>
+        </section>
+      </form>
+
+      <aside class="profile-history"><div class="profile-history-head"><span>REGISTRATION ARCHIVE</span><h2>Riwayat Pendaftaran</h2><p>Seluruh pendaftaran yang dikirim dengan akun ini.</p></div><div class="profile-registration-list" id="profile-registrations"><div class="profile-empty"><b>Memuat pendaftaran…</b><span>Menyiapkan riwayat Anda.</span></div></div></aside>
+    </section>
+  </main>
+
+  <dialog aria-labelledby="profile-request-title" class="profile-action-dialog profile-request-dialog" id="profile-request-dialog">
+    <button aria-label="Tutup dialog" class="profile-dialog-close" data-profile-dialog-close type="button">×</button>
+    <div class="profile-dialog-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+    <header><span>PERUBAHAN IDENTITAS</span><h2 id="profile-request-title">Ada data yang perlu diubah?</h2><p id="profile-request-text">Sampaikan data yang ingin diubah beserta alasannya. Panitia akan memeriksa permintaanmu.</p></header>
+    <div class="profile-request-status" data-state="none" id="profile-request-status"><b>Belum ada permintaan</b><span>Jelaskan data yang perlu diubah.</span></div>
+    <form id="profile-request-form"><label><span>Alasan perubahan *</span><textarea id="profile-request-reason" maxlength="500" minlength="10" placeholder="Tuliskan data yang ingin diubah dan alasannya." required rows="5"></textarea><small>Minimal 10 karakter. Jangan sertakan kata sandi atau data rahasia.</small></label><div><button data-profile-dialog-close type="button">Batal</button><button id="profile-request-submit" type="submit">Kirim Permintaan →</button></div></form>
+  </dialog>
+  <dialog aria-describedby="profile-save-confirm-text" aria-labelledby="profile-save-confirm-title" class="profile-action-dialog profile-save-confirm-dialog" id="profile-save-confirm-dialog">
+    <button aria-label="Tutup konfirmasi" class="profile-dialog-close" data-profile-dialog-close type="button">×</button>
+    <header><div class="profile-confirm-kicker"><div class="profile-confirm-seal" aria-hidden="true"><span>ECF</span></div><span>PERIKSA IDENTITAS</span></div><h2 id="profile-save-confirm-title">Simpan dan kunci profil?</h2><p id="profile-save-confirm-text">Pastikan seluruh data sudah benar.</p></header>
+    <div class="profile-confirm-points"><span><b>01</b>Identitas ini dipakai untuk pendaftaran lomba.</span><span><b>02</b>Perubahan berikutnya perlu persetujuan panitia.</span><span><b>03</b>Pastikan nama dan kontakmu sudah benar.</span></div>
+    <div class="profile-dialog-actions"><button data-profile-dialog-close type="button">Periksa Lagi</button><button id="profile-save-confirm-action" type="button">Ya, Simpan &amp; Kunci</button></div>
+  </dialog>
+  <dialog class="profile-ticket-dialog" id="profile-ticket-dialog"><button aria-label="Tutup detail tiket" class="profile-ticket-dialog-close" data-ticket-dialog-close type="button">×</button><div data-ticket-dialog-content></div></dialog>
+  <footer class="registration-footer"><div class="container"><span>ESORIA CODEFEST / PROFIL PESERTA</span><p>Identitas yang sudah disimpan dapat diubah setelah mendapat persetujuan panitia.</p><a href="index.html">Kembali ke beranda</a></div></footer>
+  <script data-module="./profile.js?v=b74586eaa5ef6110" src="app-loader.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="notification-center.js?v=b74586eaa5ef6110"></script>
+  <script type="module" src="analytics-consent.js?v=b74586eaa5ef6110"></script>
+  <script data-esoria-cookie src="cookie-consent.js?v=b74586eaa5ef6110"></script>
+<script type="module" src="/logout-controller.js?v=b74586eaa5ef6110"></script>
+<script type="module" src="paper-date-init.js?v=b74586eaa5ef6110"></script>
+</body>
+</html>

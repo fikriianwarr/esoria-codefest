@@ -1,0 +1,156 @@
+{
+  "web": {
+    "filename": "ESORIA_Bahan_web.zip",
+    "bytes": 17647,
+    "sha256": "22f7c235a0c3033a3ffcc700268ea4f0ce874f174d8e6ff7247dbfcd58ce429a",
+    "sourceFileCount": 5,
+    "sourceFiles": [
+      [
+        "01_Website_Programming/Bahan_Kerja/Data_Kegiatan.json",
+        5442,
+        "e38c71b6b5d0dce339c5ee69d0c4e4e2560252850d521446467b5c385075e568"
+      ],
+      [
+        "01_Website_Programming/Panduan_Peserta.html",
+        33707,
+        "1e3d74f2a260d45c764bdb8072826be1bb8586a646c8869310de8507401ef032"
+      ],
+      [
+        "01_Website_Programming/Proyek_Awal/app.js",
+        2419,
+        "6431dfa9d51165832540f02fb21c38146a9f9e3096d7c01045c6df7220d5198f"
+      ],
+      [
+        "01_Website_Programming/Proyek_Awal/index.html",
+        3139,
+        "f5873ac6698901e4732b04e7e72f83f18460a367553408f38e5dc6aa7a1e6744"
+      ],
+      [
+        "01_Website_Programming/Proyek_Awal/style.css",
+        6419,
+        "f7e9a0bfc364604b627a1198ef87ff43d3d02f0b288dce9cf3e2902a4aa46f0b"
+      ]
+    ]
+  },
+  "cyber": {
+    "filename": "ESORIA_Bahan_cyber.zip",
+    "bytes": 14726,
+    "sha256": "c1d411ccf1a688ec7aefb4e61c9d702dd121e823a354f3f78a759e7bdf5ca78b",
+    "sourceFileCount": 13,
+    "sourceFiles": [
+      [
+        "02_Cybersecurity_Mini_CTF/Panduan_Peserta.html",
+        30683,
+        "6aa2b6d0084a29e4063eac09cc8ee400fb25488bcdfd5117065b5b8e9b54a330"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C01_pesan.txt",
+        89,
+        "755c01ef754d3faeec7699e2ba6bd57a8ad0b127cc43f9452ea266f378d13f0c"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C02_source.html",
+        717,
+        "adaada2f3b26f632f9cc0ca99bc846ab696fec0edd217f38a5699159a69fdb9e"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C03_akses.json",
+        4580,
+        "87b6b47aeed4b648f630e942e6468d346aeaca19171f0ee9cf4feb8947964ccb"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C04_pesan.jsonl",
+        1189,
+        "8ef70a586c9a20a64cbaf3c5853d39920e231072d1331c491a3b2d204a3cb005"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C05_capture.hex",
+        57,
+        "d1e4f47cd7e94fbb8443014e90323f1a42283e1dbb9dc71f91d6cc94546cd006"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C06_aturan.json",
+        735,
+        "c020846b9a8903d3e27cdc7638497b0a0ec81da8cfdbe64593c33fd2beb3d8ce"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C06_matriks.md",
+        610,
+        "5b35134e74282db622ae358667970d3239b268799c77f47550c9a37781d84cde"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C07_ekspor-a.txt",
+        58,
+        "0309e4ee3fd9c508f14da40eb4a3c1fe0dad9260ecd51c331db35ec5cca6b096"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C07_ekspor-b.txt",
+        78,
+        "fd0b973e04b7a7c5e9b5c9ca2f06327f91b887a455b55ab962ff58caaba6bb8d"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C07_ekspor-c.txt",
+        58,
+        "1fee29c9ea26cd76bdbd8c0502c5651214bb16361fa2494beaea79c68881616d"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C07_hash-tepercaya.txt",
+        65,
+        "4f2edea2e9352e6b19a645e42bc5369fd398d9b9bdffb6d52b07e11473ed1830"
+      ],
+      [
+        "02_Cybersecurity_Mini_CTF/Tantangan/C08_event.json",
+        1181,
+        "5987c839b22fbff05cc2a7b41d92e9e04dbd7e72056c622082f3935c1d6c6311"
+      ]
+    ]
+  },
+  "team": {
+    "filename": "ESORIA_Bahan_team.zip",
+    "bytes": 21315,
+    "sha256": "cc40e9d624c400473b33291ca19ef6bb166de30b469772da20d033a11263e167",
+    "sourceFileCount": 8,
+    "sourceFiles": [
+      [
+        "03_Full_Stack_Team/Bahan_Kerja/Data_Awal.json",
+        1881,
+        "7544b2af8c8f4a93af469dce043a938999981736d98df1f5cbb95dd411dbaa1b"
+      ],
+      [
+        "03_Full_Stack_Team/Panduan_Peserta.html",
+        34237,
+        "a116b53f79869b528c535488e8cf853fb7b28f8ed857d0581e1252afb7170320"
+      ],
+      [
+        "03_Full_Stack_Team/Proyek_Awal/seed.py",
+        2811,
+        "c1f71d3917aae5fedafeba5e4c23c64bc420791fd6af5e081ea67557d2346733"
+      ],
+      [
+        "03_Full_Stack_Team/Proyek_Awal/server.py",
+        4973,
+        "5b3ec336d07d7b2ce5c610cc2293ef908954698c0fdc56fdfe945b0e38ac301a"
+      ],
+      [
+        "03_Full_Stack_Team/Proyek_Awal/skema.sql",
+        1877,
+        "ea1bc1f82e9e56e35a393c2e78e2fdca30e0f1f48eb98fea9d29733ef32965df"
+      ],
+      [
+        "03_Full_Stack_Team/Proyek_Awal/web/app.js",
+        2784,
+        "dddc357556fbcfb9454ff0a1b297622adde0328f754498db65ea7ed269db376b"
+      ],
+      [
+        "03_Full_Stack_Team/Proyek_Awal/web/index.html",
+        2244,
+        "338bbe3514e6e829be1a6f8c76215f0362fd6da5572f72979911da458c77823e"
+      ],
+      [
+        "03_Full_Stack_Team/Proyek_Awal/web/style.css",
+        4964,
+        "c46008c7b7c2902f81d1de91418f41ec08be9378eab4327bb8f4534b24d9fc4e"
+      ]
+    ]
+  }
+}

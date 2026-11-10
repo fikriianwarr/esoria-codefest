@@ -1,0 +1,337 @@
+/* ESORIA paper finalization: responsive navigation and printable receipt. 2026-10-20 */
+:root{--ec-cream:#fff8eb;--ec-navy:#18364b;--ec-rule:#b9aa91}
+/* Interactive home link visually matches active paper buttons (not disabled). */
+.profile-body .profile-nav-actions .profile-landing-link{opacity:1!important;background:linear-gradient(150deg,#fffdf6,#e3d5b9)!important;color:#102c41!important;border:1px solid #88785e!important;box-shadow:inset 3px 0 0 #ae3436,3px 4px 0 #c3b398!important;transition:transform .16s ease,box-shadow .16s ease,background .16s ease!important}
+.profile-body .profile-nav-actions .profile-landing-link:hover{transform:translateY(-2px)!important;background:#fff9e9!important;box-shadow:inset 3px 0 0 #ae3436,4px 6px 0 #c3b398!important}
+.profile-body .profile-nav-actions .profile-landing-link:focus-visible{outline:3px solid #b68742;outline-offset:2px}
+/* Six navigation actions in one compact, accessible row on narrow screens. */
+@media(max-width:960px){.profile-body .profile-nav-actions{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;align-items:stretch!important;width:100%!important;gap:clamp(2px,.9vw,6px)!important}
+.profile-body .profile-nav-actions>:is(a,button){display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;width:100%!important;min-height:44px!important;height:44px!important;padding:5px 1px!important;flex:none!important;white-space:nowrap!important;font-size:clamp(8px,1.8vw,10px)!important;line-height:1.08!important;letter-spacing:0!important;overflow:hidden!important;text-overflow:clip!important;box-sizing:border-box!important;gap:2px!important}
+.profile-body .profile-nav-actions .profile-notification-button > span{font-size:0!important}
+.profile-body .profile-nav-actions .profile-notification-button > span:after{content:'Notif';font-size:10px!important}
+.profile-body .profile-nav-actions [data-push-label]{font-size:0!important}
+.profile-body .profile-nav-actions [data-push-label]:after{content:'Push';font-size:10px!important}
+.profile-body .profile-nav-actions :is(.profile-push-button,.profile-notification-button) i{max-width:9px;max-height:9px;flex:0 0 9px}
+.profile-body .profile-nav-actions .profile-landing-link{min-width:0!important;padding-inline:1px!important}
+}
+@media(max-width:380px){.profile-body .profile-nav-actions>:is(a,button){font-size:8px!important}.profile-body .profile-nav-actions .profile-notification-button > span:after,.profile-body .profile-nav-actions [data-push-label]:after{font-size:8px!important}}
+/* Show a non-privileged paper outline while role is checked; links require real verification. */
+body[data-workspace="jury"] .cf-header,body[data-workspace="operations"] .cf-header{position:relative;z-index:4}
+body:is([data-workspace="jury"],[data-workspace="operations"]).auth-pending .cf-nav-verifying{display:flex!important}
+body:is([data-workspace="jury"],[data-workspace="operations"]).auth-ready .cf-nav-verifying{display:none!important}
+.cf-nav-verifying{display:none;flex-wrap:wrap;gap:4px;padding:5px;background:#e9dfca;border:1px solid #bcae98;box-shadow:3px 3px 0 #d0c2a8}
+.cf-nav-verifying>:is(span,a,button){display:flex;min-height:40px;align-items:center;padding:7px 10px;font-weight:750;font-size:11px;color:#465a62;background:#f6f0e4;border:1px dashed #b6aa96;text-decoration:none}
+.cf-nav-verifying>.cf-nav-pending-status{background:#fff9ef;color:#9a2932;border-style:solid}
+/* Pending skeleton sits next to the actual header, and verified menu owns the links. */
+body:is([data-workspace="jury"],[data-workspace="operations"]).auth-pending .cf-header>.cf-nav:not(.cf-nav-verifying){display:none!important}
+@media(max-width:720px){.cf-nav-verifying{width:100%;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}.cf-nav-verifying>:is(span,a,button){min-width:0;padding:6px 2px;text-align:center;justify-content:center;font-size:clamp(8px,1.7vw,10px);line-height:1.12}.cf-nav-verifying>.cf-nav-pending-status{grid-column:1/-1;min-height:28px}}
+/* Keep two-up member facts where legible; last odd field occupies both columns. */
+@media(max-width:590px){body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts{grid-template-columns:repeat(2,minmax(0,1fr))!important}body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-facts>div:last-child:nth-child(odd){grid-column:1/-1}}
+/* Payment proof is a document, not an oversized empty thumbnail region. */
+.admin-body .admin-payment-proof-figure{display:grid;grid-template-columns:minmax(0,1fr) minmax(195px,26%);gap:12px;min-height:0;padding:12px;background:#142b41;border:1px solid #a58e68;box-shadow:5px 6px 0 #10243836}
+.admin-body .admin-payment-proof-figure>img{max-height:min(52dvh,530px);height:auto;min-height:0;object-fit:contain;border:1px solid #c9bba1;background:#fff8ea}
+.admin-body .admin-payment-proof-figure figcaption{display:flex;flex-direction:column;gap:9px;min-width:0;padding:10px!important;border:1px solid #a99a80;background:#fff8ea;color:#173549}
+.admin-body .admin-payment-proof-figure figcaption>div:first-child{padding:11px;background:#f4ead7;border:1px solid #c9bba2;color:#163449}
+.admin-body .admin-payment-proof-figure figcaption .admin-payment-proof-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;min-width:0;background:transparent;padding:0;border:0}
+.admin-body .admin-payment-proof-figure figcaption .admin-payment-proof-actions>:is(a,button){display:flex;justify-content:center;align-items:center;width:100%;min-width:0;min-height:44px;margin:0;padding:8px!important;box-sizing:border-box;font-size:11px!important;white-space:normal;line-height:1.2;word-break:normal;background:#17394d;color:#fffaf0;border:1px solid #284e61;box-shadow:2px 2px 0 #b5a68c}
+.admin-body .admin-payment-proof-figure figcaption .admin-payment-proof-actions>:is(a,button):hover{transform:translateY(-1px);background:#24536a}
+@media(max-width:680px){.admin-body .admin-payment-proof-figure{grid-template-columns:1fr;gap:8px;padding:8px}.admin-body .admin-payment-proof-figure>img{max-height:38dvh}.admin-body .admin-payment-proof-figure figcaption .admin-payment-proof-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}}
+:is(.admin-body .admin-card-actions .checkin,body[data-workspace="operations"] .cf-button[data-operation="check-in"]){white-space:nowrap!important;min-width:max-content;font-size:clamp(10px,1vw,12px)!important}
+/* Paper select remains native for keyboard and optgroup semantics. */
+.registration-body select[name="bank_pengirim"]{display:block;width:100%;max-width:100%;min-height:48px;padding:10px 13px;border:1px solid #8d8069;border-radius:0;background:#fffaf0;color:#17364c;box-shadow:3px 4px 0 #d3c3a9;font-weight:650;cursor:pointer}
+.registration-body select[name="bank_pengirim"]:focus-visible{outline:3px solid #ac8b49;outline-offset:3px}
+.registration-body #bank-pengirim-note{display:block;margin-top:5px;font-size:11px;line-height:1.35;color:#50606a}
+/* Receipt: compact but do not clip references, account data or legal text. */
+.success-body{min-height:100dvh;overflow-x:clip}
+.success-main{min-height:100dvh;padding:clamp(8px,1.4dvh,16px) 12px;align-items:center}
+.success-dossier{width:min(100%,920px);padding:clamp(37px,5dvh,48px) clamp(14px,3vw,28px) clamp(12px,2dvh,18px);box-shadow:5px 6px 0 #cbbda5}
+.success-ribbon{padding:9px 10px;font-size:10px}
+.success-logo-mark{width:76px;height:65px}.success-logo-mark img{width:156px;height:156px}
+.success-code{margin-top:7px}.success-dossier h1{font-size:clamp(25px,4.2vw,42px);line-height:1.08;margin:6px auto 0}
+.success-dossier>p{margin:8px auto 0;font-size:clamp(12px,1.1vw,14px);line-height:1.4}
+.success-checklist{margin-top:11px}.success-checklist span{padding:8px 5px;gap:2px;font-size:10px}.success-checklist b{font-size:13px}
+.success-reference-card{margin-top:10px!important;padding:10px 13px!important}.success-reference-card strong{font-size:clamp(15px,2.8vw,25px)!important;overflow-wrap:anywhere}
+.success-contact-note{margin-top:9px;padding:9px 12px;box-shadow:2px 3px 0 #d5c6ad}.success-contact-note>strong{margin-top:3px;font-size:13px}.success-contact-note>p{margin-top:3px;line-height:1.35;font-size:11px}.success-contact-note>a{margin-top:5px}
+.success-dossier .center-actions{margin-top:11px!important;gap:7px!important}.success-dossier .center-actions>:is(a,button){min-height:40px!important;padding:6px 8px!important;font-size:11px!important}
+.success-dossier>small{margin-top:9px;font-size:10px}
+@media(max-width:540px){.success-main{padding:5px}.success-dossier{width:100%;padding:37px 10px 11px}.success-logo-mark{width:56px;height:47px}.success-logo-mark img{width:118px;height:118px}.success-dossier h1{font-size:clamp(24px,7vw,32px)}.success-dossier>p{font-size:11px}.success-checklist span{font-size:9px;padding:6px 3px}.success-contact-note>p{font-size:10px}.success-dossier .center-actions{grid-template-columns:repeat(3,minmax(0,1fr))!important}.success-dossier .center-actions>:is(a,button){font-size:9px!important;padding:5px 2px!important;min-height:38px!important}}
+@media(max-height:650px){.success-main{display:block}.success-dossier{margin-inline:auto}}
+@media(prefers-reduced-motion:reduce){.profile-body .profile-nav-actions .profile-landing-link{transition:none!important}}
+
+/* Pending sign-out appears only after Firebase Auth confirms a user; it is not an admin privilege. */
+.cf-nav-verifying>button[data-logout]:not([hidden]){display:flex!important;align-items:center;justify-content:center;cursor:pointer;color:#892b2e;background:#f3dfd3;border:1px solid #bb6c62;font:800 11px/1.1 inherit}
+.cf-nav-verifying>button[data-logout][hidden]{display:none!important}
+
+/* Admin: two-column compact facts and final full-width odd tile. */
+@media(max-width:760px){
+.admin-body .period-availability>div,.admin-body .period-capacity-grid,.admin-body .period-record-summary{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
+.admin-body .period-availability>div>:last-child:nth-child(odd),.admin-body .period-capacity-grid>:last-child:nth-child(odd),.admin-body .period-record-summary>:last-child:nth-child(odd){grid-column:1/-1!important}
+.admin-body .period-availability label,.admin-body .period-capacity-grid label{min-width:0!important;padding:9px!important}
+.admin-body .admin-metrics{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.admin-body .admin-metrics>article:last-child:nth-child(odd){grid-column:1/-1!important}
+}
+
+/* ESORIA QA 20261020: final responsive corrections, non-privileged UI only. */
+.profile-body .profile-nav,.profile-body .profile-nav-actions,
+body[data-workspace="dashboard"] .cf-nav,
+body[data-workspace="results"] .cf-nav{min-width:0;max-width:100%;box-sizing:border-box}
+/* Hidden state is authoritative, even when legacy styles specify display:flex!important. */
+.profile-body .profile-nav-actions [hidden],
+body[data-workspace="dashboard"] .cf-nav [hidden],
+body[data-workspace="results"] .cf-nav [hidden],
+body[data-workspace="results"] .cf-nav[hidden]{display:none!important}
+.profile-body .profile-nav-actions .profile-notification-button [data-notification-count][hidden]{display:none!important}
+.profile-body .profile-nav-actions .profile-notification-button [data-notification-count]:not([hidden]){
+  top:2px!important;right:2px!important;min-width:15px!important;width:15px;height:15px!important;
+  padding:0 2px!important;font-size:9px!important;border:1px solid #fffaf0!important;
+  box-shadow:none!important;line-height:1!important;z-index:2
+}
+@media(max-width:960px){
+  .profile-body .profile-nav-actions{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;width:100%!important;gap:clamp(2px,.75vw,5px)!important;overflow:visible!important}
+  .profile-body .profile-nav-actions>:is(a,button){display:flex!important;justify-content:center!important;align-items:center!important;min-width:0!important;width:100%!important;min-height:44px!important;height:44px!important;box-sizing:border-box!important;padding:5px 2px!important;white-space:nowrap!important;font-size:clamp(9px,1.75vw,11px)!important;line-height:1.1!important;overflow:hidden!important;text-overflow:ellipsis!important;gap:3px!important}
+  .profile-body .profile-nav-actions .profile-notification-button{position:relative;grid-template-columns:auto auto!important;padding:5px 3px!important;gap:3px!important}
+  .profile-body .profile-nav-actions [data-push-label],
+  .profile-body .profile-nav-actions .profile-notification-button>span{font-size:0!important}
+  .profile-body .profile-nav-actions [data-push-label]::after{content:'Push';font-size:clamp(8px,1.75vw,10px)!important}
+  .profile-body .profile-nav-actions .profile-notification-button>span::after{content:'Notif';font-size:clamp(8px,1.75vw,10px)!important}
+  .profile-body .profile-nav-actions :is(.profile-push-button,.profile-notification-button)>i{flex:0 0 8px;max-width:8px;max-height:8px}
+}
+@media(max-width:380px){
+  .profile-body .profile-nav-actions>:is(a,button){font-size:8px!important;gap:1px!important;padding-inline:1px!important}
+}
+@media(max-width:600px){
+  .profile-body .profile-ticket-print-actions,
+  .profile-body .ticket-detail-actions{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:8px!important;padding-inline:12px!important;max-width:100%!important;min-width:0!important}
+  .profile-body .profile-ticket-print-actions .btn,
+  .profile-body .ticket-detail-actions .btn{display:flex!important;width:100%!important;min-width:0!important;min-height:44px!important;justify-content:center!important;box-sizing:border-box!important;padding:9px 12px!important;font-size:12px!important;white-space:normal!important;text-align:center!important}
+  .profile-body .profile-ticket-print-actions small,
+  .profile-body .ticket-detail-actions small{display:block!important;max-width:100%;overflow-wrap:anywhere;line-height:1.35;font-size:11px!important}
+}
+@media(max-width:720px){
+  body[data-workspace="dashboard"].esoria-dossier-page .cf-header,
+  body[data-workspace="results"].esoria-dossier-page .cf-header{gap:9px}
+  body[data-workspace="dashboard"].esoria-dossier-page nav.cf-nav,
+  body[data-workspace="results"].esoria-dossier-page nav.cf-nav:not([data-paper-menu-enhanced]){
+    display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:4px!important;padding:5px!important;max-width:100%!important;width:100%!important;
+    min-width:0!important;overflow-x:clip!important;box-sizing:border-box!important
+  }
+  body[data-workspace="dashboard"].esoria-dossier-page nav.cf-nav:has(>button[data-logout]:not([hidden])),
+  body[data-workspace="results"].esoria-dossier-page nav.cf-nav:not([data-paper-menu-enhanced]):has(>button[data-logout]:not([hidden])){
+    grid-template-columns:repeat(6,minmax(0,1fr))!important
+  }
+  body[data-workspace="results"].esoria-dossier-page nav.cf-nav[data-context-nav="public"]{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important
+  }
+  body[data-workspace="dashboard"].esoria-dossier-page nav.cf-nav>:is(a,button):not([hidden]),
+  body[data-workspace="results"].esoria-dossier-page nav.cf-nav:not([data-paper-menu-enhanced])>:is(a,button):not([hidden]){
+    display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;
+    width:100%!important;min-height:44px!important;padding:8px 2px!important;box-sizing:border-box!important;
+    font-size:clamp(8px,2.2vw,11px)!important;line-height:1.15!important;white-space:nowrap!important;
+    text-align:center!important;overflow:hidden!important;text-overflow:ellipsis!important
+  }
+  body[data-workspace="dashboard"].esoria-dossier-page .cf-card .cf-kicker{
+    display:block;min-width:0;overflow-wrap:anywhere;line-height:1.25
+  }
+  .admin-body .admin-competition-links{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;align-items:stretch!important}
+  .admin-body .admin-competition-links a{min-height:60px!important;padding:9px 7px!important;justify-content:flex-start!important;box-sizing:border-box!important}
+  .admin-body .admin-competition-links .admin-workflow-number{margin-bottom:3px!important;font-size:8px!important;letter-spacing:.03em!important}
+  .admin-body .admin-competition-links strong{font-size:clamp(9px,2.4vw,11px)!important;line-height:1.16!important;overflow-wrap:anywhere}
+  .admin-body .admin-competition-links small{display:none!important}
+}
+
+/* ESORIA / REGISTRATION EDITORIAL TICKETS — paper & vintage coding poster.
+ * Scope strictly to the three informational process cards; no form behavior
+ * or Firebase-related UI is affected by this visual enhancement. */
+.registration-body .registration-intro .registration-flow-mini {
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:clamp(7px,1vw,13px)!important;
+  align-items:stretch!important;
+  width:100%!important;
+  min-width:0!important;
+  margin-top:clamp(15px,2vw,22px)!important;
+  padding:clamp(7px,1vw,12px)!important;
+  border:1px solid #968b77!important;
+  background:repeating-linear-gradient(90deg,transparent 0 27px,rgba(18,39,57,.022) 27px 28px),#eee7d8!important;
+  box-shadow:5px 6px 0 rgba(24,39,50,.11)!important;
+}
+.registration-body .registration-intro .registration-flow-mini > span,
+.registration-body .registration-intro .registration-flow-mini > span:nth-child(2),
+.registration-body .registration-intro .registration-flow-mini > span:nth-child(3) {
+  --ticket-accent:#14658a;
+  --ticket-wash:#e5eff0;
+  position:relative;
+  isolation:isolate;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 34px!important;
+  grid-template-rows:auto auto 1fr!important;
+  align-items:start!important;
+  align-content:stretch!important;
+  min-width:0!important;
+  min-height:157px!important;
+  height:100%!important;
+  gap:6px 4px!important;
+  padding:15px 15px 13px 18px!important;
+  overflow:hidden!important;
+  transform:none!important;
+  border:1px solid #837968!important;
+  border-left:5px solid var(--ticket-accent)!important;
+  border-top:5px solid var(--ticket-accent)!important;
+  border-radius:0!important;
+  color:#152a36!important;
+  background:
+    radial-gradient(circle at 88% 80%,rgba(255,255,255,.44) 0 22%,transparent 23%),
+    repeating-linear-gradient(0deg,transparent 0 18px,rgba(40,49,46,.032) 18px 19px),
+    linear-gradient(145deg,#fffaf0 5%,var(--ticket-wash) 100%)!important;
+  box-shadow:3px 4px 0 #c4b8a3!important;
+  transition:transform .24s cubic-bezier(.2,.7,.25,1),box-shadow .24s ease,border-color .24s ease!important;
+}
+.registration-body .registration-intro .registration-flow-mini > span:nth-child(2){
+  --ticket-accent:#b33432;--ticket-wash:#f4e7df;
+}
+.registration-body .registration-intro .registration-flow-mini > span:nth-child(3){
+  --ticket-accent:#19714f;--ticket-wash:#f3edc9;
+}
+.registration-body .registration-intro .registration-flow-mini > span::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:90px;
+  height:90px;
+  right:-39px;
+  bottom:-54px;
+  border:17px solid var(--ticket-accent);
+  border-radius:50%;
+  opacity:.14;
+  pointer-events:none;
+}
+.registration-body .registration-intro .registration-flow-mini > span::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  bottom:0;
+  left:0;
+  right:0;
+  height:5px;
+  background:linear-gradient(90deg,var(--ticket-accent) 0 62%,#e9b72e 62% 100%);
+  opacity:.94;
+  pointer-events:none;
+}
+.registration-body .registration-intro .registration-flow-mini > span > b{
+  grid-area:1/1!important;
+  align-self:start!important;
+  color:var(--ticket-accent)!important;
+  font:900 clamp(2.05rem,3.7vw,3.3rem)/.94 Georgia,serif!important;
+  letter-spacing:-.085em!important;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.registration-body .registration-intro .registration-flow-mini > span > i{
+  grid-area:1/2!important;
+  display:grid!important;
+  place-items:center!important;
+  width:33px!important;
+  height:33px!important;
+  margin:0!important;
+  border:1px solid var(--ticket-accent)!important;
+  background:var(--ticket-accent)!important;
+  color:#fffaf0!important;
+  border-radius:0!important;
+  box-shadow:3px 3px 0 rgba(23,43,56,.18)!important;
+  transform:rotate(3deg);
+  transition:transform .24s ease!important;
+}
+.registration-body .registration-intro .registration-flow-mini > span > i svg{
+  display:block;
+  width:21px!important;
+  height:21px!important;
+  stroke:currentColor!important;
+  stroke-width:1.9!important;
+}
+.registration-body .registration-intro .registration-flow-mini > span > strong{
+  grid-area:2/1/3/3!important;
+  align-self:end!important;
+  min-width:0!important;
+  color:#142b39!important;
+  font:900 clamp(.9rem,1.22vw,1.13rem)/1.15 system-ui,sans-serif!important;
+  letter-spacing:-.035em!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  text-wrap:balance;
+}
+.registration-body .registration-intro .registration-flow-mini > span > small{
+  grid-area:3/1/4/3!important;
+  align-self:start!important;
+  display:block!important;
+  min-width:0!important;
+  color:#514e47!important;
+  font:500 clamp(.7rem,.85vw,.8rem)/1.4 system-ui,sans-serif!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .registration-body .registration-intro .registration-flow-mini > span:hover{
+   transform:translateY(-4px)!important;
+   box-shadow:4px 8px 0 #baad96!important;
+ }
+ .registration-body .registration-intro .registration-flow-mini > span:hover > i{
+   transform:rotate(-5deg) scale(1.07)!important;
+ }
+}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes esoria-flow-posters-arrive{
+    from{opacity:0;translate:0 9px}
+    to{opacity:1;translate:0 0}
+  }
+  .registration-body:not(.auth-pending) .registration-intro .registration-flow-mini > span{
+    animation:esoria-flow-posters-arrive .42s ease-out both;
+  }
+  .registration-body:not(.auth-pending) .registration-intro .registration-flow-mini > span:nth-child(2){animation-delay:70ms}
+  .registration-body:not(.auth-pending) .registration-intro .registration-flow-mini > span:nth-child(3){animation-delay:140ms}
+}
+@media(max-width:860px){
+  .registration-body .registration-intro .registration-flow-mini > span,
+  .registration-body .registration-intro .registration-flow-mini > span:nth-child(2),
+  .registration-body .registration-intro .registration-flow-mini > span:nth-child(3){min-height:138px!important;padding:11px 10px 12px 12px!important;gap:5px 3px!important;grid-template-columns:minmax(0,1fr) 27px!important}
+  .registration-body .registration-intro .registration-flow-mini > span > i{width:27px!important;height:27px!important}
+  .registration-body .registration-intro .registration-flow-mini > span > i svg{width:17px!important;height:17px!important}
+  .registration-body .registration-intro .registration-flow-mini > span > b{font-size:clamp(1.9rem,5vw,2.8rem)!important}
+  .registration-body .registration-intro .registration-flow-mini > span > strong{font-size:clamp(.76rem,1.75vw,.97rem)!important}
+  .registration-body .registration-intro .registration-flow-mini > span > small{font-size:clamp(.66rem,1.48vw,.76rem)!important}
+}
+@media(max-width:530px){
+  .registration-body .registration-intro .registration-flow-mini{
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:8px!important;
+    padding:8px!important;
+  }
+  .registration-body .registration-intro .registration-flow-mini > span,
+  .registration-body .registration-intro .registration-flow-mini > span:nth-child(2),
+  .registration-body .registration-intro .registration-flow-mini > span:nth-child(3){
+    display:grid!important;
+    grid-template-columns:55px minmax(0,1fr) 28px!important;
+    grid-template-rows:auto auto!important;
+    min-height:76px!important;
+    height:auto!important;
+    align-content:center!important;
+    align-items:center!important;
+    gap:3px 9px!important;
+    padding:9px 12px 10px 13px!important;
+  }
+  .registration-body .registration-intro .registration-flow-mini > span > b{grid-area:1/1/3/2!important;font-size:2.4rem!important}
+  .registration-body .registration-intro .registration-flow-mini > span > strong{grid-area:1/2/2/3!important;align-self:end!important;font-size:.94rem!important;white-space:nowrap}
+  .registration-body .registration-intro .registration-flow-mini > span > small{grid-area:2/2/3/3!important;align-self:start!important;font-size:.71rem!important}
+  .registration-body .registration-intro .registration-flow-mini > span > i{grid-area:1/3/3/4!important;width:27px!important;height:27px!important}
+}
+@media(max-width:350px){
+  .registration-body .registration-intro .registration-flow-mini > span > strong{white-space:normal!important;font-size:.83rem!important}
+  .registration-body .registration-intro .registration-flow-mini > span > small{font-size:.66rem!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .registration-body .registration-intro .registration-flow-mini > span,
+  .registration-body .registration-intro .registration-flow-mini > span > i{
+    animation:none!important;transition:none!important;transform:none!important;translate:none!important;
+  }
+}
+
+

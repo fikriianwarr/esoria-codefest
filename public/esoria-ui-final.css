@@ -1,0 +1,253 @@
+/* ESORIA CodeFest — perapihan panel, kontras, aksesibilitas, & microinteraction. */
+:root { --esoria-paper:#f5eddd; --esoria-ink:#0b2038; --esoria-line:#45617c; }
+:where(button, a, input, select):focus-visible { outline:3px solid #edbf62; outline-offset:3px; }
+:where(button):disabled { cursor:not-allowed; }
+/* Satu tinggi navbar, juga di layar kecil. */
+.profile-body .profile-nav-actions {display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.profile-body .profile-nav-actions > :is(button,a) {min-height:49px!important;height:49px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:8px 14px;white-space:nowrap;font-size:.78rem;line-height:1.15}
+.profile-body [data-push-toggle] {position:relative;transition:background-color .15s ease, box-shadow .15s ease, transform .15s ease;will-change:auto}
+.profile-body [data-push-toggle]:active:not(:disabled) {transform:translate(2px,2px)}
+.profile-body [data-push-toggle].is-processing {opacity:.88;cursor:progress}
+.profile-body [data-push-toggle].is-processing::after {content:'';border:2px solid currentColor;border-right-color:transparent;border-radius:50%;width:13px;height:13px;animation:esoria-rotate .7s linear infinite}
+@keyframes esoria-rotate {to{transform:rotate(360deg)}}
+/* Navbar admin: label, email dan peran dibuat terbaca dan sejajar. */
+.admin-body .admin-header {display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;min-height:86px}
+.admin-body .admin-account {display:flex!important;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;min-width:0}
+.admin-body .admin-account > span {font-size:.72rem!important;line-height:1.2;letter-spacing:.04em}
+.admin-body .admin-account > b {font-size:.78rem!important;line-height:1.25;max-width:min(42vw,320px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-body .admin-account > em {min-height:45px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem}
+.admin-body .admin-account > button {height:47px!important;min-height:47px!important;box-sizing:border-box;padding:8px 18px!important;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;white-space:nowrap}
+.admin-body .admin-account .admin-security-trigger {gap:9px;background:#15684d!important;border-color:#6ed3a6!important}
+.admin-body .admin-account .admin-security-trigger:hover {background:#1d8b65!important}
+/* Admin controls — hindari whitespace berlebihan dan warna tanggal tidak terlihat. */
+.admin-body .period-control-heading {gap:20px}
+.admin-body .period-master-controls :is(input,select) {min-width:0;width:100%;font-size:.93rem}
+.admin-body #period-month {color:#0b2038!important;background:#f7eddb!important;color-scheme:light!important;border-color:#d3b467!important}
+.admin-body #period-month::-webkit-calendar-picker-indicator {filter:none!important;opacity:1!important;cursor:pointer}
+.admin-body #period-status {color:#fff8e8!important;background:#122941!important}
+.admin-body .admin-control select {min-height:46px}
+.admin-body .period-edit-toolbar {display:flex;justify-content:space-between;align-items:center;gap:13px;flex-wrap:wrap;padding:15px 20px;background:linear-gradient(135deg,#f7efdf,#e9dfcb);border:1px solid #c7ab6c;border-left:5px solid #ba8c31;color:#0d2138}
+.admin-body .period-edit-toolbar p {font-size:.82rem;line-height:1.5;margin:0;flex:1 1 230px;color:#19354d;font-weight:700}
+.admin-body .period-edit-actions {display:flex;gap:8px;flex-wrap:wrap}
+.admin-body .period-edit-actions button {border:1px solid #1a3855;background:#173a56;color:#fff8e8;min-height:43px;padding:8px 13px;font-size:.77rem;font-weight:800;box-shadow:3px 3px 0 #8e9fad;transition:transform .14s ease,background-color .14s ease}
+.admin-body .period-edit-actions button:hover {background:#285b7b}
+.admin-body .period-edit-actions button:active {transform:translate(2px,2px);box-shadow:1px 1px 0 #8e9fad}
+.admin-body .period-edit-actions .period-delete-button {background:#b22b39;border-color:#8b1b28}
+.admin-body .period-edit-actions button[hidden] {display:none!important}
+.admin-body .period-control-form[data-edit-mode="view"] [data-enabled-package-wave] + i {filter:grayscale(.25);opacity:.75}
+.admin-body .period-control-form[data-edit-mode="view"] .period-capacity-field input {opacity:.76}
+.admin-body .period-control-form[data-edit-mode="view"] .admin-save-button {opacity:.62}
+.admin-body .period-wave-control :is(input,select):disabled {cursor:not-allowed}
+.admin-body .period-category-card {min-height:0!important}
+.admin-body .period-category-grid {align-items:stretch}
+.admin-body .admin-edit-dialog {width:min(920px,calc(100vw - 26px))!important;max-width:920px!important;max-height:calc(100dvh - 26px)!important;overflow:auto!important}
+.admin-body .admin-edit-dialog form {display:block;width:100%!important;max-width:none!important;margin:0!important}
+.admin-body .admin-edit-dialog .admin-edit-grid {width:100%!important;max-width:none!important;box-sizing:border-box;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:22px clamp(15px,3vw,30px)}
+.admin-body .admin-edit-dialog .admin-edit-grid > label {min-width:0}
+.admin-body .admin-edit-dialog :is(input,select,textarea) {box-sizing:border-box}
+.admin-body .admin-edit-dialog input[type="date"] {color-scheme:light;color:#0c2139;background:#faf2e5}
+.admin-body .admin-edit-dialog input[type="date"]::-webkit-calendar-picker-indicator {filter:none!important;opacity:1!important}
+.admin-body .admin-edit-dialog .admin-detail-head {padding:27px clamp(15px,3vw,30px)}
+.admin-body .admin-edit-dialog .admin-detail-head h2 {font-size:clamp(1.65rem,3vw,2.6rem);line-height:1.08}
+.admin-body .admin-confirm-dialog {width:min(92vw,520px);border-top:7px solid #ba2938;background:#f5eddd;color:#10253d;box-shadow:8px 8px 0 #071120}
+.admin-body .admin-confirm-dialog h2 {overflow-wrap:break-word}
+@media(max-width:840px){
+ .admin-body .admin-header {padding:12px 14px}
+ .admin-body .admin-account {justify-content:flex-start;width:100%}
+ .admin-body .admin-account > span {display:none}
+ .admin-body .admin-account > b {max-width:48vw}
+ .admin-body .admin-edit-dialog .admin-edit-grid {grid-template-columns:minmax(0,1fr)}
+ .admin-body .admin-edit-dialog .admin-edit-grid .wide {grid-column:auto}
+ .profile-body .profile-nav-actions {width:100%;justify-content:flex-start}
+ .profile-body .profile-nav-actions > :is(button,a) {flex:1 1 140px;height:46px!important;min-height:46px!important}
+}
+@media(max-width:470px){
+ .admin-body .admin-account > b {width:100%;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+ .admin-body .admin-account > :is(button,em) {flex:1 1 auto}
+ .admin-body .period-edit-actions {width:100%}
+ .admin-body .period-edit-actions button {flex:1 1 100%;text-align:center}
+ .profile-body .profile-nav-actions > :is(button,a) {font-size:.7rem;padding-inline:8px}
+}
+@media(prefers-reduced-motion:reduce) { .profile-body [data-push-toggle], .admin-body .period-edit-actions button {transition:none} .profile-body [data-push-toggle].is-processing::after {animation:none;border-style:dotted} }
+
+
+/* === ESORIA profile & auth paper refinement v20261016 === */
+.auth-body .auth-security-note{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(247,241,229,.94), rgba(235,227,211,.92));
+  border:1px solid rgba(17,32,56,.16);
+  border-top-width:4px;
+  border-top-color:#b53a44;
+  box-shadow:6px 8px 0 rgba(17,27,45,.10);
+}
+.auth-body .auth-security-note::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,.20), rgba(0,0,0,0) 45%), repeating-linear-gradient(90deg, rgba(12,35,58,.03) 0 1px, transparent 1px 24px);
+  pointer-events:none;
+}
+.auth-body .auth-security-note strong{font-size:clamp(1.12rem,2vw,1.42rem)!important; line-height:1.18;}
+.auth-body .auth-security-note p{max-width:42ch; color:#4b5663!important; font-size:.81rem!important; line-height:1.65!important;}
+
+.profile-body .profile-hero{align-items:start!important;}
+.profile-body .profile-identity-card,
+.profile-body .profile-intro{min-height:0!important; align-self:start;}
+.profile-body .profile-identity-card{
+  padding:26px 26px 28px!important;
+  gap:14px;
+}
+.profile-body .profile-file-label{margin-bottom:2px;}
+.profile-body .profile-identity-head{
+  display:grid;
+  grid-template-columns:72px minmax(0,1fr);
+  gap:18px;
+  align-items:center;
+}
+.profile-body .profile-avatar{
+  width:72px!important; height:72px!important; margin-top:0!important;
+  font-size:1.75rem!important; border-width:3px!important;
+  box-shadow:4px 5px 0 rgba(255,255,255,.08);
+}
+.profile-body .profile-identity-copy{min-width:0; display:grid; gap:6px;}
+.profile-body .profile-identity-card h1,
+.profile-body .profile-identity-copy h1{margin:0!important; font-size:clamp(2rem,3vw,3rem)!important; line-height:.95!important;}
+.profile-body .profile-identity-card > p,
+.profile-body .profile-identity-copy p{margin:0!important; color:rgba(255,255,255,.72)!important; font-size:1rem;}
+.profile-body .profile-skill-strip{margin-top:0!important;}
+.profile-body .profile-access-grid{margin:0!important;}
+.profile-body .profile-access-grid span{gap:6px!important; min-height:58px; align-content:center;}
+.profile-body .profile-primary-actions{margin-top:0!important;}
+
+.profile-body .profile-intro{
+  padding:40px 42px 34px!important;
+  display:grid!important;
+  gap:18px;
+  background:linear-gradient(180deg, rgba(247,242,232,.98), rgba(240,233,220,.96))!important;
+}
+.profile-body .profile-intro h2{margin-top:0!important; max-width:13ch; font-size:clamp(2.9rem,5vw,4.7rem)!important; line-height:.92!important;}
+.profile-body .profile-intro .profile-welcome-copy > p{margin-top:0!important; max-width:58ch; font-size:1rem; line-height:1.75!important;}
+.profile-body .profile-intro-statusline{margin-top:2px!important; box-shadow:6px 7px 0 rgba(17,27,45,.08);}
+
+@media (max-width: 980px){
+  .profile-body .profile-identity-head{grid-template-columns:64px minmax(0,1fr); gap:14px;}
+  .profile-body .profile-avatar{width:64px!important; height:64px!important; font-size:1.55rem!important;}
+  .profile-body .profile-intro{padding:32px 28px 28px!important;}
+}
+@media (max-width: 760px){
+  .profile-body .profile-identity-card{padding:22px 20px 24px!important;}
+}
+@media (max-width: 560px){
+  .profile-body .profile-identity-head{grid-template-columns:1fr; justify-items:start;}
+  .profile-body .profile-identity-copy{gap:4px;}
+  .profile-body .profile-intro h2{max-width:100%; font-size:clamp(2.4rem,13vw,3.6rem)!important;}
+}
+
+
+
+/* Admin participant meta cards */
+.admin-body .admin-user-card{align-items:center}
+.admin-body .admin-user-meta{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(112px,1fr));
+  gap:10px;
+  min-width:min(34vw,420px);
+}
+.admin-body .admin-user-meta > span{
+  display:grid;
+  gap:6px;
+  padding:12px 13px;
+  background:linear-gradient(180deg, rgba(247,242,232,.94), rgba(236,228,213,.9));
+  border:1px solid rgba(53,81,109,.22);
+  border-top:3px solid #254f79;
+  box-shadow:4px 5px 0 rgba(17,27,45,.08);
+}
+.admin-body .admin-user-meta > span:nth-child(2){border-top-color:#c08d36}
+.admin-body .admin-user-meta > span:nth-child(3){border-top-color:#15724f}
+.admin-body .admin-user-meta small{color:#8a6a44; font:900 .54rem/1 var(--mono); letter-spacing:.12em}
+.admin-body .admin-user-meta b{color:#0f263e; font-size:1.02rem; line-height:1.15; overflow-wrap:anywhere}
+@media(max-width:1100px){
+  .admin-body .admin-user-meta{min-width:0; width:100%;}
+}
+@media(max-width:640px){
+  .admin-body .admin-user-meta{grid-template-columns:1fr;}
+}
+
+/* Keep profile controls stable; the decorative collage has a finite opt-in animation. */
+.profile-body .paper-noise { display:none; }
+.profile-body :is(.profile-intro,.profile-identity-card,.profile-hero) { animation:none!important; will-change:auto!important; }
+.profile-body .profile-intro { gap:16px; min-height:0!important; }
+.profile-body .profile-intro-statusline {margin-top:0!important;}
+/* Reduce flashing/repainting on the actual profile, including edit banners.
+   Keep the authentication gate's own loading indicator until access resolves. */
+.profile-body .profile-main *,
+.profile-body .profile-main *::before,
+.profile-body .profile-main *::after {
+  animation:none!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+
+
+.profile-body dialog, .profile-body dialog *, .profile-body dialog *::before, .profile-body dialog *::after {animation:none!important;transition:none!important;}
+
+
+/* Policy links presented before Google login and with explicit email consent. */
+.auth-body .auth-policy-notice{
+  margin:14px 0 12px;
+  padding:12px 14px;
+  color:#203b54;
+  background:linear-gradient(155deg,#f8f1df,#efe4cc);
+  border:1px solid #dbcaa7;
+  border-left:4px solid #c6a15c;
+  font-size:.76rem;
+  line-height:1.6;
+}
+.auth-body .auth-policy-notice a,
+.auth-body .auth-consent a{
+  color:#173f65;
+  font-weight:800;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.auth-body .auth-policy-notice a:focus-visible,
+.auth-body .auth-consent a:focus-visible{
+  outline:3px solid #bb9240;
+  outline-offset:3px;
+}
+
+
+/* Participant pages: printed tickets and layered paper collage, without adhesive tape. */
+.profile-welcome-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,.7fr);align-items:center;gap:20px;min-width:0}
+.profile-welcome-copy{min-width:0}
+.profile-body .profile-intro .profile-welcome-copy h2{max-width:15ch;font-size:clamp(2.35rem,4vw,3.6rem)!important;line-height:1.02!important;letter-spacing:-.055em}
+.profile-body .profile-intro .profile-welcome-copy p{max-width:37ch;margin:16px 0 0!important;font-size:.95rem!important;line-height:1.7!important;color:#5e5b55}
+.profile-paper-collage{position:relative;justify-self:center;width:230px;max-width:100%;height:260px;isolation:isolate;container-type:inline-size;pointer-events:none}
+.profile-paper-backing{position:absolute;inset:27px 18px 31px 22px;border:1px solid #19364d;background:repeating-linear-gradient(0deg,transparent 0 21px,rgba(250,242,219,.13) 21px 22px),#19364d;transform:rotate(7deg);box-shadow:5px 6px 0 rgba(21,38,52,.12)}
+.profile-paper-poster{position:absolute;top:10px;left:12px;display:grid;align-content:start;gap:16px;box-sizing:border-box;width:calc(100% - 30px);max-width:190px;min-height:214px;padding:22px 17px 17px;color:#12283e;border:1px solid #142b42;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(34,49,65,.025) 5px 6px),#fff9ec;box-shadow:5px 7px 0 rgba(22,35,50,.16);transform:rotate(-5deg)}
+.profile-body .profile-paper-collage .profile-paper-poster{animation:esoriaPaperSway 7s ease-in-out 2!important}
+.profile-paper-poster > span{font:800 .48rem/1.35 var(--mono);letter-spacing:.09em}
+.profile-paper-poster strong{min-width:0;font:900 1.25rem/.99 var(--serif);font-size:clamp(1.25rem,11cqw,1.65rem);letter-spacing:-.035em}
+.profile-paper-poster small{width:max-content;max-width:100%;padding-top:11px;border-top:1px dashed #bba98a;font:800 .43rem/1.45 var(--mono);letter-spacing:.06em}
+.profile-paper-stamp{position:absolute;z-index:2;top:151px;right:0;display:grid;place-content:center;box-sizing:border-box;width:72px;height:72px;text-align:center;border:3px double #17684d;border-radius:50%;background:#f0edd9;color:#17684d;font:900 .56rem/1.4 var(--mono);letter-spacing:.02em;transform:rotate(13deg)}
+.profile-paper-tab{position:absolute;z-index:3;bottom:16px;padding:8px 10px;border:1px solid #162d40;box-shadow:3px 4px 0 rgba(25,39,50,.13);color:#fff9ed;font:900 .53rem/1.1 var(--mono);letter-spacing:.04em}
+.profile-paper-tab.tab-web{left:0;background:#214966;transform:rotate(-7deg)}
+.profile-paper-tab.tab-cyber{left:34%;bottom:5px;background:#aa3035;transform:rotate(3deg)}
+.profile-paper-tab.tab-team{right:0;bottom:22px;background:#17684d;transform:rotate(-3deg)}
+.profile-paper-spark{position:absolute;top:0;right:0;width:30px;color:#b22e34;font:normal 2rem/1 var(--serif);transform:rotate(8deg)}
+@keyframes esoriaPaperSway{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-5px) rotate(-3deg)}}
+
+@media(max-width:1100px) and (min-width:761px){
+ .profile-welcome-layout{grid-template-columns:minmax(0,1fr) 190px;gap:16px}
+ .profile-body .profile-intro .profile-welcome-copy h2{font-size:2.45rem!important}
+}
+@media(max-width:620px){
+ .profile-welcome-layout{grid-template-columns:minmax(0,1fr);gap:18px}
+ .profile-body .profile-intro .profile-welcome-copy h2{max-width:15ch;font-size:clamp(2.05rem,8vw,2.75rem)!important}
+ .profile-body .profile-intro .profile-welcome-copy p{max-width:100%;font-size:.88rem!important}
+ .profile-paper-collage{height:250px}
+}
+@media(prefers-reduced-motion:reduce){
+ .profile-body .profile-paper-collage .profile-paper-poster{animation:none!important}
+}
+

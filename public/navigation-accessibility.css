@@ -1,0 +1,49 @@
+/* ESORIA 2026 | Accessibility/role/navigation refinement. Source-of-truth override. */
+:root{--ec-paper:#fff9ed;--ec-ink:#152f40;--ec-paper-border:#c7b99e}
+body.esoria-dossier-page .cf-nav a:focus-visible,
+body.esoria-dossier-page .cf-nav button:focus-visible,
+body[data-workspace="jury"] .cf-nav a:focus-visible,
+body[data-workspace="operations"] .cf-nav a:focus-visible,
+.admin-body .admin-competition-links a:focus-visible{outline:3px solid #9d6b20;outline-offset:3px}
+@media(max-width:700px){
+ body.esoria-dossier-page .cf-header,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-header{min-width:0}
+ body.esoria-dossier-page .cf-nav,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav{
+   box-sizing:border-box;display:flex;flex-wrap:nowrap;max-width:100%;width:100%;
+   overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;
+   -webkit-overflow-scrolling:touch;gap:3px;padding:4px;
+ }
+ body.esoria-dossier-page .cf-nav a,
+ body.esoria-dossier-page .cf-nav button,
+ body.esoria-dossier-page .cf-nav-staff a,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav a,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-nav button{
+   box-sizing:border-box;flex:0 0 auto;min-height:44px;min-width:56px;
+   padding:9px 10px;font-size:12px;line-height:1.3;white-space:nowrap;
+   scroll-snap-align:start;
+ }
+ body.esoria-dossier-page .cf-nav-staff .cf-nav-back{min-width:104px}
+ body.esoria-dossier-page .cf-toolbar,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ body.esoria-dossier-page .cf-toolbar .cf-field>span,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar .cf-field>span{font-size:11px}
+ body.esoria-dossier-page .cf-toolbar .cf-field :is(input,select),
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar .cf-field input,
+ body.esoria-dossier-page .cf-paper-dropdown-trigger{min-height:44px;font-size:13px;padding:10px}
+ body.esoria-dossier-page .cf-toolbar>.cf-button,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar>.cf-button{
+   grid-column:auto;justify-self:stretch;width:100%;min-height:44px;font-size:12px}
+ body.esoria-dossier-page .cf-paper-dropdown-option{min-height:44px;font-size:13px}
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-hero{padding-block:18px}
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-stamp{max-width:245px}
+}
+@media(max-width:390px){
+ body.esoria-dossier-page .cf-toolbar,
+ body:is([data-workspace="jury"],[data-workspace="operations"]) .cf-toolbar{gap:10px}
+ body.esoria-dossier-page .cf-toolbar .cf-field :is(input,select){font-size:12px}
+ body.esoria-dossier-page .cf-header .cf-brand{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){
+ body.esoria-dossier-page *,body:is([data-workspace="jury"],[data-workspace="operations"]) *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+}

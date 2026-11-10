@@ -1,0 +1,20 @@
+ESORIA CODEFEST - UPLOAD GITHUB PUBLIC
+
+Target : https://github.com/fikriianwarr/esoria-codefest
+Branch : main
+Status : PUBLIC (kode dapat dilihat semua orang)
+
+1. EKSTRAK semua isi ZIP ke folder baru di Windows.
+2. Pastikan Git for Windows dan GitHub CLI (gh) terpasang.
+3. KLIK DUA KALI file upload.cmd pada folder utama.
+4. Jika diminta, login GitHub di browser dengan akun yang berizin.
+5. Tunggu hasil di layar CMD; jika BERHASIL, buka URL di atas.
+
+Skrip menangani remote origin yang belum ada dan riwayat repo yang
+sudah berisi commit. Push menggunakan mekanisme non-force.
+
+PENTING: Repository PUBLIC artinya source dan riwayat yang terlihat
+dapat dibaca orang lain. Periksa konten/sensitivitas sebelum upload.
+Tidak ada Firebase deploy atau pengubahan database produksi.
+
+Dokumentasi lengkap: docs/PANDUAN_GITHUB.md dan README.md
