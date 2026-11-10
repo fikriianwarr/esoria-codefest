@@ -14,7 +14,7 @@
 
 ## 1. Tentang proyek
 
-**ESORIA CodeFest** merupakan aplikasi web untuk mengelola kompetisi informatika dalam satu platform. Ruang lingkup kode mencakup halaman publik, akun dan profil peserta, pendaftaran kategori dan gelombang, unggah bukti pembayaran untuk diverifikasi secara manual, pengelolaan peserta dan tim, pemberian akses bahan kompetisi, pengumpulan karya, ruang kerja administrator/juri/operasional, pengelolaan hasil, serta penerbitan dan verifikasi sertifikat sesuai aturan backend.
+**ESORIA CodeFest** merupakan aplikasi web untuk mengelola kompetisi informatika dalam satu platform. Ruang lingkup ini mencakup halaman publik, akun dan profil peserta, pendaftaran kategori dan gelombang, unggah bukti pembayaran untuk diverifikasi secara manual, pengelolaan peserta dan tim, pemberian akses bahan kompetisi, pengumpulan karya, ruang kerja administrator/juri/operasional, pengelolaan hasil, serta penerbitan dan verifikasi sertifikat sesuai aturan backend.
 
 Repo ini berisi **kode sumber aplikasi dan konfigurasi terkait**, bukan ekspor database peserta, hasil keuangan, kredensial admin, ataupun cadangan Firebase produksi. Keberadaan sebuah modul atau skenario uji di kode tidak secara otomatis berarti alurnya telah berhasil diuji end-to-end pada lingkungan produksi. Untuk menilai kesiapan produksi, jalankan tes dan pemeriksaan operasional yang relevan.
 
